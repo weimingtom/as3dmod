@@ -4,7 +4,7 @@ This document provides information on how to use AS3Dmod on a basic level. It as
 
 Currently supported engines are: 
 
-  #[Papervision3d http://blog.papervision3d.org]
-  #[Awat3d http://www.away3d.com]
-  #[Sandy3d http://www.flashsandy.org]
-  #[Alternativa3d http://alternativaplatform.com/en/]
+  #[http://blog.papervision3d.org Papervision3d]
+  #[http://www.away3d.com Away3d]
+  #[http://www.flashsandy.org Sandy3d]
+  #[http://alternativaplatform.com/en/ Alternativa3d]
