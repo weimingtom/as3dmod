@@ -107,6 +107,15 @@
 			}
 		}
 		
+		public function collapseGeometry():void {
+			var vc:int = getVertices().length;
+			for (var i:int = 0; i < vc; i++) {
+				var v:VertexProxy = getVertices()[i] as VertexProxy;
+				v.collapse();
+			}
+			analyzeGeometry();
+		}
+		
 		public function get minX():Number {
 			return _minX;
 		}

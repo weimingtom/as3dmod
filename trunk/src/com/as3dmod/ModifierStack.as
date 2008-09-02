@@ -60,6 +60,12 @@ package com.as3dmod {
 				(stack[i] as IModifier).apply();
 			}
 		}
+		
+		public function collapse():void {
+			apply();
+			baseMesh.collapseGeometry();
+			stack = new Array();
+		}
 	}
 }
 

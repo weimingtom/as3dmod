@@ -47,7 +47,9 @@
 			var app:Appearance = new Appearance(material, materialb);
 			
 			c = new Plane3D("plane", 600, 250, 10, 24);
-			c.rotateX = 70;
+			c.rotateZ = 90;
+			c.rotateX = 60;
+			c.rotateY = -45;
 			c.z = 400;
 			c.appearance = app;
 			scene.root.addChild(c);
@@ -64,8 +66,6 @@
 		private function render(event:Event):void {
 			base.onRender();
 			m.apply();
-			//c.rotateX += 2;
-			c.rotateY += 2;
 			scene.render();
 		}
 	}

@@ -18,8 +18,6 @@
 	import com.as3dmod.util.ModConstant;
 	
 	import com.as3dmod.ModifierStack;
-	import com.as3dmod.modifiers.Noise;
-	import com.as3dmod.modifiers.Bend;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -44,23 +42,20 @@
 		
 		public function init(e:Event): void {
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-
-			// Creating scene
+			
 			scene = new Scene3D();
 			scene.root = new Object3D();
 			
-			c = new Plane(600, 250, 24, 10, true);
+			c = new Plane(600, 250, 12, 5, true, false, false);
 			c.cloneMaterialToAllSurfaces(new FillMaterial(0x27590e, 1, "normal", 0));
 			scene.root.addChild(c);
-			c.rotationX = 90;
+			c.rotationX = -60/180*Math.PI;
+			c.rotationY = -45/180*Math.PI;
 			
 			m = new ModifierStack(new LibraryAlternativa3d(), c);
 			
 			base.setupStack(m);
-			
-			
-			
-			// Adding camera and view
+
 			camera = new Camera3D();
 			camera.x = 0;
 			camera.y = 0;
@@ -71,7 +66,6 @@
 			addChild(view);
 			view.camera = camera;
 
-			// Connecting camera controller
 			cameraController = new CameraController(stage);
 			cameraController.camera = camera;
 			cameraController.setDefaultBindings();
@@ -79,13 +73,9 @@
 			cameraController.collisionRadius = 20;
 			cameraController.lookAt(c.coords);
 			cameraController.controlsEnabled = false;
-
-			stage.addEventListener(Event.RESIZE, onResize);
+			
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
-			onResize(null);
-		}
-		
-		private function onResize(e:Event):void {
+			
 			view.width = stage.stageWidth;
 			view.height = stage.stageHeight;
 		}
@@ -93,8 +83,6 @@
 		private function onEnterFrame(e:Event):void {
 			base.onRender();
 			m.apply();
-			c.rotationY += .02;
-			//cameraController.processInput();
 			scene.calculate();
 		}
 	}

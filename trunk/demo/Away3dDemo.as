@@ -39,7 +39,8 @@
 			mt.wirecolor = 0x49a51c;
 			c.material = mt;
 			c.bothsides = true;
-			c.rotationX = 60;
+			c.rotationX = -20;
+			c.rotationY = 45;
 			view.scene.addChild(c);
 			
 			m = new ModifierStack(new LibraryAway3d(), c);
@@ -54,8 +55,6 @@
 		private function render(event:Event):void {
 			base.onRender();
 			m.apply();
-			//c.rotationX += 2;
-			c.rotationY += 2;
 			view.render();
 		}
 	}

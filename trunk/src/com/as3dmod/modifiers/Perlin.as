@@ -9,32 +9,73 @@
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.display.BitmapDataChannel;
+	import com.carlcalderon.arthropod.Debug;
 
 	public class Perlin extends Modifier implements IModifier {
 		
 		private var b:BitmapData = null;
-		public var o:Number = 0;
+		private var off:Number;
+		private var frc:Number;
+		private var seed:Number;
 		
-		public function Perlin() {
+		private var start:Number = 0;
+		private var end:Number = 0;
+		
+		public function Perlin(f:Number=1) {
+			frc = f;
 			b = new BitmapData(25, 11);
+			off = 0;
+			seed = Math.random() * 1000;
+		}
+		
+		public function setFalloff(start:Number=0, end:Number=1):void {
+			this.start = start;
+			this.end = end;
+		}
+		
+		public function set force(f:Number):void {
+			frc = f;
+		}
+		
+		public function get previev():Bitmap {
+			var pr:Bitmap = new Bitmap(b);
+			pr.scaleX = pr.scaleY = 4;
+			return pr;
+		}
+		
+		public function get force():Number {
+			return frc;
 		}
 		
 		public function apply():void {
-			var p:Point = new Point(o++, 0);
-			b.perlinNoise(25, 11, 1, 9830, false, false, BitmapDataChannel.RED, true, [p, p, p]);
+			var p:Point = new Point(off++, 0);
+			b.perlinNoise(25, 11, 1, seed, false, true, BitmapDataChannel.RED, true, [p, p, p]);
 			
 			var vs:Array = mod.getVertices();
 			var vc:int = vs.length;
 			
 			for (var i:int = 0; i < vc; i++) {
-                var px:int = i % 11;
-                var py:int = i / 11;
-                var v:VertexProxy = vs[i] as VertexProxy;
+				var v:VertexProxy = vs[i] as VertexProxy;
+				
+                var py:int = Math.round(v.getRatio(mod.maxAxis) * 24);
+                var px:int = Math.round(v.getRatio(mod.midAxis) * 10);
+
                 var vzpos:Number = b.getPixel(py, px) & 0xff;
-                //v.setValue(mod.minAxis, (128 - vzpos) * .3);
-                v.setValue(mod.minAxis, (128 - vzpos));
+				
+				var fa:Number = v.getRatio(mod.maxAxis);
+				if(start < end) {
+					if (fa < start) fa = 0;
+					if (fa > end) fa = 1;
+				} else if(start > end) {
+					fa = 1 - fa;
+					if (fa > start) fa = 0;
+					if (fa < end) fa = 1;
+				} else {
+					fa = 1;
+				}
+				
+                v.setValue(mod.minAxis, v.getValue(mod.minAxis) + (128 - vzpos) * frc * fa);
             }
 		}
 	}
-	
 }
