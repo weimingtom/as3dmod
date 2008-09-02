@@ -120,5 +120,11 @@
 			y = oy;
 			z = oz;
 		}
+		
+		public function collapse():void {
+			ox = x;
+			oy = y;
+			oz = z;
+		}
 	}
 }

@@ -3,6 +3,7 @@
 	import com.as3dmod.modifiers.Bend;
 	import com.as3dmod.modifiers.Noise;
 	import com.as3dmod.ModifierStack;
+	
 	import com.as3dmod.plugins.pv3d.LibraryPv3d;
 	import org.papervision3d.core.proto.MaterialObject3D;
 	import org.papervision3d.materials.BitmapWireframeMaterial;
@@ -31,6 +32,8 @@
 			mt.doubleSided = true;
 			
 			c = new Plane(mt, 1200, 500, 24, 10);
+			c.rotationX = 60;
+			c.rotationY = 45;
 			scene.addChild(c);
 			
 			m = new ModifierStack(new LibraryPv3d(), c);
@@ -42,8 +45,6 @@
 		
 		protected override function onRenderTick(event:Event = null):void {
 			base.onRender();
-			c.rotationX += 1;
-			c.rotationY += 1;
 			m.apply();
 			super.onRenderTick(event);
 		}

@@ -3,6 +3,7 @@
 	import com.as3dmod.modifiers.Perlin;
 	import com.as3dmod.ModifierStack;
 	import com.as3dmod.util.Phase;
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.display.StageQuality;
 	import flash.display.StageAlign;
@@ -44,8 +45,18 @@
 		}
 		
 		public function setupStack(m:ModifierStack):void {
-			p = new Perlin();
+			n = new Noise(10);
+			n.constraintAxes(ModConstant.X | ModConstant.Y); // alternativa / pv3d
+			//n.constraintAxes(ModConstant.X | ModConstant.Z); // away
+			//n.constraintAxes(ModConstant.Y | ModConstant.X); // sandy
+			m.addModifier(n);
+			m.collapse();
+			
+			p = new Perlin(3);
+			//p = new Perlin(1); // away
+			p.setFalloff(1,0);
 			m.addModifier(p);
+			//addChild(p.previev);
 			
 			bone = new Bend(0, .7);
 			bone.constraint = ModConstant.LEFT;
@@ -56,14 +67,6 @@
 			btwo.constraint = ModConstant.RIGHT;
 			btwoPhase = new Phase();
 			m.addModifier(btwo);
-			
-			n = new Noise();
-			n.constraintAxes(ModConstant.X | ModConstant.Y); // alternativa / pv3d
-			//n.constraintAxes(ModConstant.X | ModConstant.Z); // away
-			//n.constraintAxes(ModConstant.Y | ModConstant.X); // sandy
-			n.setFalloff();
-			nph = new Phase();
-			//m.addModifier(n);
 		}
 		
 		public function onRender():void {
@@ -72,9 +75,6 @@
 			
 			btwoPhase.value -= 0.02;
 			btwo.force = btwoPhase.phasedValue * 2;
-			
-			nph.value += 0.04;
-			n.force = nph.phasedValue * 20;
 		}
 	}	
 }

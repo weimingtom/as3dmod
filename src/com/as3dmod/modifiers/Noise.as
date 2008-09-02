@@ -46,8 +46,16 @@
 				var r:Number = (Math.random() * force) - (force / 2);
 				
 				var p:Number = v.getRatio(mod.maxAxis);
-				if (p < start) p = 0;
-				if (p > end) p = 1;
+				if(start < end) {
+					if (p < start) p = 0;
+					if (p > end) p = 1;
+				} else if(start > end) {
+					p = 1 - p;
+					if (p > start) p = 0;
+					if (p < end) p = 1;
+				} else {
+					p = 1;
+				}
 
 				if (!(axc & 1)) v.x += r * p;
 				if (!(axc >> 1 & 1)) v.y += r * p;
