@@ -10,6 +10,7 @@
 	import alternativa.engine3d.materials.TextureMaterial;
 	import alternativa.engine3d.materials.WireMaterial;
 	import alternativa.engine3d.primitives.Box;
+	import alternativa.engine3d.primitives.GeoPlane;
 	import alternativa.engine3d.primitives.Plane;
 	import alternativa.types.Texture;
 	import alternativa.utils.FPS;
@@ -46,7 +47,7 @@
 			scene = new Scene3D();
 			scene.root = new Object3D();
 			
-			c = new Plane(600, 250, 12, 5, true, false, false);
+			c = new Plane(600, 250, 12, 5, true, true, true);
 			c.cloneMaterialToAllSurfaces(new FillMaterial(0x27590e, 1, "normal", 0));
 			scene.root.addChild(c);
 			c.rotationX = -60/180*Math.PI;
