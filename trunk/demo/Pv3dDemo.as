@@ -30,8 +30,15 @@
 			mt.addMaterial(new WireframeMaterial(0x49a51c));
 			mt.doubleSided = true;
 			
-			c = new Plane(mt, 1200, 500, 24, 10);
-			c.rotationX = 60;
+			//c = new Plane(mt, 1200, 500, 24, 10);
+			//c.rotationX = 60;
+			//c.rotationY = 45;
+			//scene.addChild(c);
+			
+			var ml:MaterialsList = new MaterialsList();
+			var wm:WireframeMaterial = new WireframeMaterial();
+			ml.addMaterial(wm, "all");
+			c = new Cube(ml, 100, 100, 1000, 2, 20, 2);
 			c.rotationY = 45;
 			scene.addChild(c);
 			
@@ -46,6 +53,8 @@
 			base.onRender();
 			m.apply();
 			super.onRenderTick(event);
+			
+			c.rotationY += 5;
 		}
 	}
 }

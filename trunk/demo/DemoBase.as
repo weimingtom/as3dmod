@@ -1,6 +1,8 @@
 ﻿package  {
 
 	import com.as3dmod.modifiers.Perlin;
+	import com.as3dmod.modifiers.Skew;
+	import com.as3dmod.modifiers.Taper;
 	import com.as3dmod.ModifierStack;
 	import com.as3dmod.util.Phase;
 	import flash.display.Bitmap;
@@ -28,6 +30,12 @@
 		private var n:Noise;
 		private var nph:Phase;
 		
+		private var s:Skew;
+		private var sph:Phase;
+		
+		private var t:Taper;
+		private var tph:Phase;
+		
 		private var p:Perlin;
 		
 		/**
@@ -48,14 +56,29 @@
 			 * Look below to the setupstack() methode,
 			 * and uncomment the proper line.
 			 */
-			//demo = new Pv3dDemo(this);
+			demo = new Pv3dDemo(this);
 			//demo = new Away3dDemo(this);
 			//demo = new Sandy3dDemo(this);
-			demo = new Alternativa3dDemo(this);
+			//demo = new Alternativa3dDemo(this);
 			addChild(demo);
 		}
 		
 		public function setupStack(m:ModifierStack):void {
+			cubeSetup(m);
+		}
+		
+		public function cubeSetup(m:ModifierStack):void {
+			s = new Skew(500);
+			sph = new Phase();
+			
+			t = new Taper(200);
+			tph = new Phase();
+			
+			m.addModifier(t);
+			m.addModifier(s);
+		}
+		
+		public function planeSetup(m:ModifierStack):void {
 			// ## 1. create a Noise modifier and constraint it to on axis only
 			n = new Noise(10);
 			//n.constraintAxes(ModConstant.X | ModConstant.Y); // alternativa / pv3d
@@ -89,6 +112,18 @@
 		}
 		
 		public function onRender():void {
+			onRenderCube();
+		}
+		
+		public function onRenderCube():void {
+			sph.value += 0.05;
+			s.force = sph.phasedValue * 500;
+			
+			tph.value += 0.05;
+			t.force = tph.phasedValue * 200;
+		}
+		
+		public function onRenderPlane():void {
 			// # 10. animate the sine wave and apply its value to the modifier
 			bonePhase.value += 0.05;
 			bone.force = bonePhase.phasedValue * 2;

@@ -37,6 +37,13 @@
 			frc = f;
 		}
 		
+		/**
+		 * Returns a previes of the perlin noise source bitmapData
+		 * 
+		 * @deprecated
+		 * @param s blAH
+		 * @return bitmap Bitmap object that can be attached to a display list. Contains the bitmapData used a the perlin noise source.
+		 */
 		public function get previev():Bitmap {
 			var pr:Bitmap = new Bitmap(b);
 			pr.scaleX = pr.scaleY = 4;
@@ -47,6 +54,13 @@
 			return frc;
 		}
 		
+		/**
+		 * Returns a previes of the perlin noise source bitmapData
+		 * 
+		 * @deprecated
+		 * @param s blAH
+		 * @return bitmap Bitmap object that can be attached to a display list. Contains the bitmapData used a the perlin noise source.
+		 */
 		public function apply():void {
 			var p:Point = new Point(off++, 0);
 			b.perlinNoise(25, 11, 1, seed, false, true, BitmapDataChannel.RED, true, [p, p, p]);

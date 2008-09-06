@@ -1,12 +1,6 @@
-﻿package com.as3dmod.util 
-{
-	
-	/**
-	* ...
-	* @author Bartek Drozdz @ MusicBay
-	*/
-	public class Phase 
-	{
+﻿package com.as3dmod.util {
+
+	public class Phase {
 		
 		private var v:Number;
 		

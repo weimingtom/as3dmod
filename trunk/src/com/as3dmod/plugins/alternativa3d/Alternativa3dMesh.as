@@ -4,7 +4,6 @@
 	import alternativa.engine3d.core.Vertex;
 	import alternativa.types.Set;
 	import com.as3dmod.core.MeshProxy;
-	import com.carlcalderon.arthropod.Debug;
 
 	public class Alternativa3dMesh extends MeshProxy {
 		
