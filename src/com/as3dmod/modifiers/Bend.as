@@ -17,7 +17,6 @@
 		private var mia:int = ModConstant.NONE;
 
 		/**
-		 * 
 		 * @param	f force. May be modified later with the force attribute
 		 * @param	o offset. May be modified later with the offset attribute
 		 */
@@ -56,7 +55,7 @@
 		/**
 		 *  Takes 3 values: 
 		 * 
-		 *  ModConstraint.NONE (default)
+		 *  ModConstraint.NONE (default) - vertices are bent on both side of the offset
 		 *  ModConstraint.LEFT - all vertices to the left of the offset will be left unaffected
 		 *  ModConstraint.RIGHT - all vertices to the right of the offset will be left unaffected
 		 */
@@ -126,8 +125,6 @@
 
 			var vs:Array = mod.getVertices();
 			var vc:int = vs.length;
-			
-			//Debug.log("Bend apply " + mia + " / " + maa + " | " + pto + " / " + ptd);
 			
 			var distance:Number = pto + ptd * offset;
 			var radius:Number = ptd / Math.PI / force;

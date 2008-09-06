@@ -48,19 +48,19 @@
 			 * Look below to the setupstack() methode,
 			 * and uncomment the proper line.
 			 */
-			demo = new Pv3dDemo(this);
+			//demo = new Pv3dDemo(this);
 			//demo = new Away3dDemo(this);
 			//demo = new Sandy3dDemo(this);
-			//demo = new Alternativa3dDemo(this);
+			demo = new Alternativa3dDemo(this);
 			addChild(demo);
 		}
 		
 		public function setupStack(m:ModifierStack):void {
 			// ## 1. create a Noise modifier and constraint it to on axis only
 			n = new Noise(10);
-			n.constraintAxes(ModConstant.X | ModConstant.Y); // alternativa / pv3d
+			//n.constraintAxes(ModConstant.X | ModConstant.Y); // alternativa / pv3d
 			//n.constraintAxes(ModConstant.X | ModConstant.Z); // away
-			//n.constraintAxes(ModConstant.Y | ModConstant.X); // sandy
+			n.constraintAxes(ModConstant.Y | ModConstant.X); // sandy
 			// ## 2. add the modifier to the stack
 			m.addModifier(n);
 			// ## 3. collapse - apply the current modifications to the mesh and clear the stack
