@@ -13,7 +13,6 @@
 	import com.as3dmod.modifiers.Noise;
 	import com.as3dmod.modifiers.Bend;
 	import com.as3dmod.util.ModConstant;
-	import com.carlcalderon.arthropod.Debug;
 
 	public class Away3dDemo extends Sprite {
 		

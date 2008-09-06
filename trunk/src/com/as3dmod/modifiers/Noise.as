@@ -6,8 +6,6 @@
 	import com.as3dmod.util.ModConstant;
 	import com.carlcalderon.arthropod.Debug;
 	
-	import alternativa.types.Matrix3D;
-
 	public class Noise extends Modifier implements IModifier {
 		
 		private var frc:Number;

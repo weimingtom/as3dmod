@@ -16,7 +16,6 @@
 	import org.papervision3d.objects.primitives.Plane;
 	import org.papervision3d.view.BasicView;
 	import flash.events.Event;
-	import com.carlcalderon.arthropod.Debug;
 	import com.as3dmod.util.ModConstant;
 
 	public class Pv3dDemo extends BasicView {
