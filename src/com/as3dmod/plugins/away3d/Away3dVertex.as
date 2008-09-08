@@ -1,8 +1,7 @@
-﻿package com.as3dmod.plugins.away3d  {
-	
-	import away3d.core.base.Vertex;
+package com.as3dmod.plugins.away3d {
 	import com.as3dmod.core.VertexProxy;
-	import com.carlcalderon.arthropod.Debug;
+	
+	import away3d.core.base.Vertex;	
 
 	public class Away3dVertex extends VertexProxy {
 		

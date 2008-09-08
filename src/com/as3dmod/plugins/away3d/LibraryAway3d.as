@@ -1,8 +1,7 @@
-﻿package com.as3dmod.plugins.away3d {
-	
-	import com.as3dmod.plugins.Library3d;
+package com.as3dmod.plugins.away3d {
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.VertexProxy;
+	import com.as3dmod.plugins.Library3d;	
 
 	public class LibraryAway3d extends Library3d {
 		

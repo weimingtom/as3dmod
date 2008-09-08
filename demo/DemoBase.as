@@ -1,20 +1,18 @@
-﻿package  {
-
+package {
+	
+	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
+	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.modifiers.Bend;
+	import com.as3dmod.modifiers.Noise;
 	import com.as3dmod.modifiers.Perlin;
 	import com.as3dmod.modifiers.Skew;
 	import com.as3dmod.modifiers.Taper;
-	import com.as3dmod.ModifierStack;
-	import com.as3dmod.util.Phase;
-	import flash.display.Bitmap;
-	import flash.display.Sprite;
-	import flash.display.StageQuality;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
-	
-	import com.as3dmod.modifiers.Bend;
-	import com.as3dmod.modifiers.Noise;
 	import com.as3dmod.util.ModConstant;
-	
+	import com.as3dmod.util.Phase;
 	import com.carlcalderon.arthropod.Debug;
 	
 	public class DemoBase extends Sprite {
@@ -53,7 +51,7 @@
 			 * Uncomment one of this lines to compile a 
 			 * version of the demo for the given engine
 			 * 
-			 * Look below to the setupstack() methode,
+			 * Look below to the setupstack() method,
 			 * and uncomment the proper line.
 			 */
 			demo = new Pv3dDemo(this);

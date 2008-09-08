@@ -1,4 +1,4 @@
-﻿package com.as3dmod.util {
+package com.as3dmod.util {
 
 	public class ModConstant {
 		

@@ -1,8 +1,7 @@
-﻿package com.as3dmod.plugins.alternativa3d {
-	
-	import com.as3dmod.plugins.Library3d;
+package com.as3dmod.plugins.alternativa3d {
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.VertexProxy;
+	import com.as3dmod.plugins.Library3d;	
 
 	public class LibraryAlternativa3d extends Library3d {
 		

@@ -1,7 +1,6 @@
-﻿package com.as3dmod.core {
-	
-	import com.as3dmod.util.ModConstant;
-	
+package com.as3dmod.core {
+	import com.as3dmod.util.ModConstant;	
+
 	public class VertexProxy 
 	{
 		

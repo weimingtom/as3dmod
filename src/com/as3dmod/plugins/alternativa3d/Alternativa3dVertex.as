@@ -1,7 +1,7 @@
-﻿package com.as3dmod.plugins.alternativa3d  {
-	
-	import alternativa.engine3d.core.Vertex;
+package com.as3dmod.plugins.alternativa3d {
 	import com.as3dmod.core.VertexProxy;
+	
+	import away3d.core.base.Vertex;	
 
 	public class Alternativa3dVertex extends VertexProxy {
 		

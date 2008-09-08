@@ -1,18 +1,14 @@
-﻿package {
+package {
+	import flash.display.Sprite;
+	import flash.events.Event;
 	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.away3d.LibraryAway3d;
+	
+	import away3d.containers.View3D;
 	import away3d.core.base.Mesh;
 	import away3d.materials.WireColorMaterial;
-	import away3d.primitives.Plane;
-	import com.as3dmod.plugins.away3d.LibraryAway3d;
-	import flash.display.Sprite;
-	import flash.display.StageQuality;
-	import flash.events.Event;
-	import away3d.containers.View3D;
-	import away3d.primitives.Cube;
-	import com.as3dmod.ModifierStack;
-	import com.as3dmod.modifiers.Noise;
-	import com.as3dmod.modifiers.Bend;
-	import com.as3dmod.util.ModConstant;
+	import away3d.primitives.Plane;	
 
 	public class Away3dDemo extends Sprite {
 		

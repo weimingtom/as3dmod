@@ -1,15 +1,12 @@
-﻿package com.as3dmod.modifiers {
-	
-	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.IModifier;
+package com.as3dmod.modifiers {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.geom.Point;
 	import flash.display.BitmapDataChannel;
-	import com.carlcalderon.arthropod.Debug;
+	import flash.geom.Point;
+	
+	import com.as3dmod.IModifier;
+	import com.as3dmod.core.Modifier;
+	import com.as3dmod.core.VertexProxy;	
 
 	public class Perlin extends Modifier implements IModifier {
 		

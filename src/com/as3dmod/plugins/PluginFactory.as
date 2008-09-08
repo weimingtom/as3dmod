@@ -1,8 +1,7 @@
-﻿package com.as3dmod.plugins {
-	
-	import com.as3dmod.core.MeshProxy;
-	import com.as3dmod.ModifierStack;
+package com.as3dmod.plugins {
 	import flash.utils.getDefinitionByName;
+	
+	import com.as3dmod.core.MeshProxy;	
 
 	public class PluginFactory {
 

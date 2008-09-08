@@ -1,8 +1,7 @@
-﻿package com.as3dmod.plugins.pv3d  {
-	
+package com.as3dmod.plugins.pv3d {
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.plugins.Library3d;
+	import com.as3dmod.plugins.Library3d;	
 
 	public class LibraryPv3d extends Library3d {
 		

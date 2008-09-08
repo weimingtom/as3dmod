@@ -1,26 +1,21 @@
-﻿package  {
-
-	import com.as3dmod.plugins.sandy3d.LibrarySandy3d;
+package {
 	import flash.display.Sprite;
+	import flash.events.Event;
+	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.sandy3d.LibrarySandy3d;
+	
 	import sandy.core.Scene3D;
 	import sandy.core.scenegraph.Camera3D;
 	import sandy.core.scenegraph.Group;
 	import sandy.core.scenegraph.Shape3D;
 	import sandy.materials.Appearance;
-	import sandy.materials.attributes.LineAttributes;
-	import sandy.materials.attributes.MaterialAttributes;
 	import sandy.materials.ColorMaterial;
 	import sandy.materials.Material;
-	import sandy.materials.WireFrameMaterial;
-	import sandy.primitive.Plane3D;
-	import sandy.primitive.Sphere;
-	import flash.events.Event;
-	import com.as3dmod.ModifierStack;
-	import com.as3dmod.modifiers.Noise;
-	import com.as3dmod.modifiers.Bend;
-	import com.as3dmod.util.ModConstant;
-	import flash.display.StageQuality;
- 
+	import sandy.materials.attributes.LineAttributes;
+	import sandy.materials.attributes.MaterialAttributes;
+	import sandy.primitive.Plane3D;	
+
 	public class Sandy3dDemo extends Sprite {
 		
 		private var scene:Scene3D;

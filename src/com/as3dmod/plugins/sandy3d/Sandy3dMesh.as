@@ -1,8 +1,8 @@
-﻿package com.as3dmod.plugins.sandy3d {
-	
+package com.as3dmod.plugins.sandy3d {
 	import com.as3dmod.core.MeshProxy;
+	
 	import sandy.core.data.Vertex;
-	import sandy.core.scenegraph.Shape3D;
+	import sandy.core.scenegraph.Shape3D;	
 
 	public class Sandy3dMesh extends MeshProxy {
 		
