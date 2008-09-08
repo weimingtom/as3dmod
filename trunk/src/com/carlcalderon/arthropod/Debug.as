@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Debug
 * Designed for version 0.81 to 0.96.7 of the Arthropod Debugger.
 * 
@@ -21,15 +21,13 @@
 */
 
 package com.carlcalderon.arthropod {
-	
-	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.events.StatusEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 	import flash.net.LocalConnection;
 	import flash.system.System;
-	import flash.utils.ByteArray;
+	import flash.utils.ByteArray;	
 
 	public class Debug {
 		

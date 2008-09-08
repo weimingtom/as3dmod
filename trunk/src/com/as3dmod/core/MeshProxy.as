@@ -1,8 +1,6 @@
-﻿package com.as3dmod.core {
+package com.as3dmod.core {
+	import com.as3dmod.util.ModConstant;	
 
-	import com.as3dmod.util.ModConstant;
-	import com.carlcalderon.arthropod.Debug;
-	
 	public class MeshProxy {
 		
 		protected var vertices:Array;

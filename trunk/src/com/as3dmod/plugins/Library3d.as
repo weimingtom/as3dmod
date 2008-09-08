@@ -1,4 +1,4 @@
-﻿package com.as3dmod.plugins {
+package com.as3dmod.plugins {
 
 	/**
 	 * 	Library 3D represents a 3D engine inside AS3Dmod. 

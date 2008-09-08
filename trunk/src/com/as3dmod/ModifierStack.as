@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (c) 2008 Bartek Drozdz (http://www.everydayflash.com)
  * 
  * Permission is hereby granted, free of charge, to any person
@@ -25,11 +25,10 @@
  * Same license applies to every file in this package and its subpackages.  
  */
 package com.as3dmod {
-	
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.plugins.Library3d;
-	import com.as3dmod.plugins.PluginFactory;
+	import com.as3dmod.plugins.PluginFactory;	
 
 	/**
 	 * <p><h2>Modifier Stack</h2>

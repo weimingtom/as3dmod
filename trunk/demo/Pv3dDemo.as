@@ -1,22 +1,17 @@
-﻿package {
+package {
+	import flash.events.Event;
 	
-	import com.as3dmod.modifiers.Bend;
-	import com.as3dmod.modifiers.Noise;
-	import com.as3dmod.ModifierStack;
-	
-	import com.as3dmod.plugins.pv3d.LibraryPv3d;
 	import org.papervision3d.core.proto.MaterialObject3D;
-	import org.papervision3d.materials.BitmapWireframeMaterial;
 	import org.papervision3d.materials.ColorMaterial;
-	import org.papervision3d.materials.special.CompositeMaterial;
 	import org.papervision3d.materials.WireframeMaterial;
+	import org.papervision3d.materials.special.CompositeMaterial;
 	import org.papervision3d.materials.utils.MaterialsList;
 	import org.papervision3d.objects.DisplayObject3D;
 	import org.papervision3d.objects.primitives.Cube;
-	import org.papervision3d.objects.primitives.Plane;
 	import org.papervision3d.view.BasicView;
-	import flash.events.Event;
-	import com.as3dmod.util.ModConstant;
+	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.pv3d.LibraryPv3d;	
 
 	public class Pv3dDemo extends BasicView {
 		

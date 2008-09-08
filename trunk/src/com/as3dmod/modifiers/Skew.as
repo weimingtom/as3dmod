@@ -1,9 +1,7 @@
-﻿package com.as3dmod.modifiers {
-	
-	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.VertexProxy;
+package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
-	import com.as3dmod.util.ModConstant;
+	import com.as3dmod.core.Modifier;
+	import com.as3dmod.core.VertexProxy;	
 
 	public class Skew extends Modifier implements IModifier
 	{

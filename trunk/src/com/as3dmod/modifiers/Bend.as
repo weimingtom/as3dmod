@@ -1,12 +1,9 @@
 ﻿package com.as3dmod.modifiers {
-
-	import com.as3dmod.core.Modifier;
 	import com.as3dmod.IModifier;
+	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.util.ModConstant;
-	
-	import com.carlcalderon.arthropod.Debug;
-	
+	import com.as3dmod.util.ModConstant;	
+
 	public class Bend extends Modifier implements IModifier {
 		
 		private var frc:Number;

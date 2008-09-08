@@ -1,7 +1,7 @@
-﻿package com.as3dmod.plugins.sandy3d {
-	
+package com.as3dmod.plugins.sandy3d {
 	import com.as3dmod.core.VertexProxy;
-	import sandy.core.data.Vertex;
+	
+	import sandy.core.data.Vertex;	
 
 	public class Sandy3dVertex extends VertexProxy {
 		

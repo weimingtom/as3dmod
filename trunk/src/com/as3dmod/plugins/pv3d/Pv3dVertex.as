@@ -1,7 +1,7 @@
-﻿package com.as3dmod.plugins.pv3d {
-	
-	import com.as3dmod.core.VertexProxy;
+package com.as3dmod.plugins.pv3d {
 	import org.papervision3d.core.geom.renderables.Vertex3D;
+	
+	import com.as3dmod.core.VertexProxy;	
 
 	public class Pv3dVertex extends VertexProxy {
 		

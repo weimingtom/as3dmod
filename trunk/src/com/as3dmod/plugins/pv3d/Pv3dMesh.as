@@ -1,8 +1,8 @@
-﻿package com.as3dmod.plugins.pv3d {
-	
-	import com.as3dmod.core.MeshProxy;
-	import org.papervision3d.objects.DisplayObject3D;
+package com.as3dmod.plugins.pv3d {
 	import org.papervision3d.core.geom.renderables.Vertex3D;
+	import org.papervision3d.objects.DisplayObject3D;
+	
+	import com.as3dmod.core.MeshProxy;	
 
 	public class Pv3dMesh extends MeshProxy {
 		

@@ -1,8 +1,8 @@
-﻿package com.as3dmod.plugins.away3d {
+package com.as3dmod.plugins.away3d {
+	import com.as3dmod.core.MeshProxy;
 	
 	import away3d.core.base.Mesh;
-	import away3d.core.base.Vertex;
-	import com.as3dmod.core.MeshProxy;
+	import away3d.core.base.Vertex;	
 
 	public class Away3dMesh extends MeshProxy {
 		

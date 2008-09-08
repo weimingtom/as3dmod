@@ -1,4 +1,9 @@
 ﻿package {
+	import flash.display.Sprite;
+	import flash.events.Event;
+	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.alternativa3d.LibraryAlternativa3d;
 	
 	import alternativa.engine3d.controllers.CameraController;
 	import alternativa.engine3d.core.Camera3D;
@@ -7,24 +12,7 @@
 	import alternativa.engine3d.core.Scene3D;
 	import alternativa.engine3d.display.View;
 	import alternativa.engine3d.materials.FillMaterial;
-	import alternativa.engine3d.materials.TextureMaterial;
-	import alternativa.engine3d.materials.WireMaterial;
-	import alternativa.engine3d.primitives.Box;
-	import alternativa.engine3d.primitives.GeoPlane;
-	import alternativa.engine3d.primitives.Plane;
-	import alternativa.types.Texture;
-	import alternativa.utils.FPS;
-	import com.as3dmod.plugins.alternativa3d.LibraryAlternativa3d;
-	import flash.display.BitmapData;
-	import com.as3dmod.util.ModConstant;
-	
-	import com.as3dmod.ModifierStack;
-	
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageQuality;
-	import flash.display.StageScaleMode;
-	import flash.events.Event;
+	import alternativa.engine3d.primitives.Plane;	
 
 	public class Alternativa3dDemo extends Sprite	{
 		

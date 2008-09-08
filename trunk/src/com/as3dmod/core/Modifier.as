@@ -1,7 +1,5 @@
-﻿package com.as3dmod.core {
+package com.as3dmod.core {
 
-	import com.as3dmod.util.ModConstant;
-	
 	public class Modifier {
 		
 		protected var mod:MeshProxy;
