@@ -14,7 +14,7 @@ package {
 	import com.as3dmod.util.ModConstant;
 	import com.as3dmod.util.Phase;
 	import com.carlcalderon.arthropod.Debug;
-	
+
 	public class DemoBase extends Sprite {
 
 		private var demo:Sprite;
@@ -70,10 +70,12 @@ package {
 			sph = new Phase();
 			
 			t = new Taper(200);
+			t.setFalloff(0.2, 0.5);
+			t.power = 2;
 			tph = new Phase();
 			
 			m.addModifier(t);
-			m.addModifier(s);
+//			m.addModifier(s);
 		}
 		
 		public function planeSetup(m:ModifierStack):void {
@@ -118,7 +120,7 @@ package {
 			s.force = sph.phasedValue * 500;
 			
 			tph.value += 0.05;
-			t.force = tph.phasedValue * 200;
+			t.force = Math.abs(tph.phasedValue * 200);
 		}
 		
 		public function onRenderPlane():void {

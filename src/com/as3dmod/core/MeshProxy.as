@@ -1,5 +1,5 @@
 package com.as3dmod.core {
-	import com.as3dmod.util.ModConstant;	
+	import com.as3dmod.util.ModConstant;		
 
 	public class MeshProxy {
 		

@@ -1,4 +1,4 @@
-﻿package com.as3dmod.modifiers {
+package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
