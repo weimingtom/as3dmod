@@ -11,7 +11,7 @@ package {
 	import org.papervision3d.view.BasicView;
 	
 	import com.as3dmod.ModifierStack;
-	import com.as3dmod.plugins.pv3d.LibraryPv3d;	
+	import com.as3dmod.plugins.pv3d.LibraryPv3d;		
 
 	public class Pv3dDemo extends BasicView {
 		
@@ -39,11 +39,9 @@ package {
 			
 			m = new ModifierStack(new LibraryPv3d(), c);
 			base.setupStack(m);
-			
-			
 			startRendering();
 		}
-		
+
 		protected override function onRenderTick(event:Event = null):void {
 			base.onRender();
 			m.apply();
