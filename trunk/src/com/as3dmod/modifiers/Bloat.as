@@ -39,9 +39,9 @@
 				var v:VertexProxy = VertexProxy (vs [i]);
 
 				// get distance and unit vector towards vertex
-				var ux:Number = v.originalX - _x;
-				var uy:Number = v.originalY - _y;
-				var uz:Number = v.originalZ - _z;
+				var ux:Number = v.x - _x;
+				var uy:Number = v.y - _y;
+				var uz:Number = v.z - _z;
 				var ur:Number = Math.sqrt (ux * ux + uy * uy + uz * uz);
 				if (ur > 0) {
 					ux /= ur; uy /= ur; uz /= ur;
