@@ -4,6 +4,11 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.core.VertexProxy;
 	import com.as3dmod.util.ModConstant;	
 
+	/**
+	 * 	<b>Bend modifier.</b>
+	 * 	
+	 * 	Bends an object along an axis.
+	 */
 	public class Bend extends Modifier implements IModifier {
 		
 		private var frc:Number;
@@ -113,6 +118,8 @@ package com.as3dmod.modifiers {
 		 *  Applies the modifier to the mesh
 		 */
 		public function apply():void {	
+			if(force == 0) return;
+			
 			
 			if (maa == ModConstant.NONE) maa = mod.maxAxis;
 			if (mia == ModConstant.NONE) mia = mod.minAxis;

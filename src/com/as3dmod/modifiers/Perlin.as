@@ -7,7 +7,13 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;	
-
+	
+	/**
+	 * 	<b>Perlin modifier.</b>
+	 * 
+	 *  Generates a perlin noise bitmap and displaces vertices 
+	 *  based on the color value of each pixel of the noise map.
+	 */
 	public class Perlin extends Modifier implements IModifier {
 		
 		private var b:BitmapData = null;

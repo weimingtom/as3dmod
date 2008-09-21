@@ -1,10 +1,8 @@
-﻿package com.as3dmod.modifiers 
-{
+﻿package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.util.ModConstant;
-	
+	import com.as3dmod.core.VertexProxy;	
+
 	/**
 	* Bloats your stuff by forcing vertices out of specified sphere.
 	* @author makc

@@ -2,7 +2,7 @@ package com.as3dmod.plugins.alternativa3d {
 	import com.as3dmod.core.MeshProxy;
 	
 	import alternativa.engine3d.core.Mesh;
-	import alternativa.types.Set;	
+	import alternativa.types.Set;		
 
 	public class Alternativa3dMesh extends MeshProxy {
 		

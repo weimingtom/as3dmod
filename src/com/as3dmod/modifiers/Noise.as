@@ -4,6 +4,12 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.core.VertexProxy;
 	import com.as3dmod.util.ModConstant;	
 
+	/**
+	 * 	<b>Noise modifier.</b>
+	 * 
+	 *  Randomly displaces each vertex in all 3 axes 
+	 *  (or less if constraintAxes() is used). 
+	 */
 	public class Noise extends Modifier implements IModifier {
 		
 		private var frc:Number;

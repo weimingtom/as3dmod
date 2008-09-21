@@ -1,24 +1,27 @@
 package com.as3dmod.modifiers {
+	import org.papervision3d.core.math.Number3D;		
+	import org.papervision3d.core.math.Matrix3D;	
+	
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
 	import com.as3dmod.util.XMath;		
 
+	/**
+	 * 	<b>Taper modifier.</b>
+	 * 	
+	 * 	The taper modifier displaces the vertices on two 
+	 * 	axes proportionally to their position on the third axis.
+	 * 	
+	 * 	
+	 */
 	public class Taper extends Modifier implements IModifier
 	{
 		private var frc:Number;		private var pow:Number;
 		
 		private var start:Number = 0;
 		private var end:Number = 1;
-		
-		/**
-		 * 	Taper modifier. 
-		 * 	
-		 * 	The taper modifier displaces the vertices on two 
-		 * 	axes proportionally to their position on the third axis.
-		 * 	
-		 * 	
-		 */
+
 		public function Taper(f:Number) {
 			frc = f;
 			pow = 1;
@@ -51,18 +54,14 @@ package com.as3dmod.modifiers {
 			
 			for (var i:int = 0; i < vc; i++) {
 				var v:VertexProxy = vs[i] as VertexProxy;
+
+				var ar:Number = Math.pow(XMath.normalize(start, end, v.getRatio(mod.maxAxis)), pow);				var sc:Number = frc * ar;
 				
-				var appliedForce:Number = frc;
-				var appliedRatio:Number = Math.pow(XMath.normalize(start, end, v.getRatio(mod.maxAxis)), pow);
-				var origMin:Number = v.getValue(mod.minAxis);
-				var absMin:Number = (origMin != 0) ? origMin / Math.abs(origMin) : 0;
-				var offsetMin:Number = origMin + appliedForce * appliedRatio * absMin;
-				v.setValue(mod.minAxis, offsetMin);
+				var m:Matrix3D = Matrix3D.scaleMatrix(1+sc, 1+sc, 1);
+				var n:Number3D = new Number3D(v.getValue(mod.minAxis), v.getValue(mod.midAxis), v.getValue(mod.maxAxis));
+				Matrix3D.multiplyVector(m, n);
 				
-				var origMid:Number = v.getValue(mod.midAxis);
-				var absMid:Number = (origMid != 0) ? origMid / Math.abs(origMid) : 0;
-				var offsetMid:Number = origMid + appliedForce * appliedRatio * absMid;
-				v.setValue(mod.midAxis, offsetMid);
+				v.setValue(mod.minAxis, n.x);				v.setValue(mod.midAxis, n.y);
 			}
 		}
 	}

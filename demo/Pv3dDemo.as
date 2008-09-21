@@ -29,11 +29,13 @@ package {
 			//c.rotationX = 60;
 			//c.rotationY = 45;
 			//scene.addChild(c);
+
+			
 			
 			var ml:MaterialsList = new MaterialsList();
-			var wm:WireframeMaterial = new WireframeMaterial();
+//			var wm:ColorMaterial = new ColorMaterial(0xff0000);			var wm:WireframeMaterial = new WireframeMaterial();
 			ml.addMaterial(wm, "all");
-			c = new Cube(ml, 100, 100, 1000, 2, 20, 2);
+//			c = new Cube(ml, 400, 400, 400, 12, 12, 12);			c = new Cube(ml, 300, 300, 700, 5, 20, 5);
 			c.rotationY = 45;
 			scene.addChild(c);
 			
@@ -44,10 +46,9 @@ package {
 
 		protected override function onRenderTick(event:Event = null):void {
 			base.onRender();
-			m.apply();
 			super.onRenderTick(event);
-			
-			c.rotationY += 5;
+			m.apply();
+//			c.rotationY += 1;
 		}
 	}
 }

@@ -7,8 +7,7 @@ package {
 	
 	import away3d.containers.View3D;
 	import away3d.core.base.Mesh;
-	import away3d.materials.WireColorMaterial;
-	import away3d.primitives.Plane;	
+	import away3d.primitives.Cube;		
 
 	public class Away3dDemo extends Sprite {
 		
@@ -29,12 +28,18 @@ package {
             view.y = stage.stageHeight / 2;
             addChild(view);
 			
-			c = new Plane( { width:600, height:250, segmentsW:24, segmentsH:10 } );
-			var mt:WireColorMaterial = new WireColorMaterial(0x27590e);
-			mt.wirecolor = 0x49a51c;
-			c.material = mt;
-			c.bothsides = true;
-			c.rotationX = -20;
+//			c = new Plane( { width:600, height:250, segmentsW:24, segmentsH:10 } );
+//			var mt:WireColorMaterial = new WireColorMaterial(0x27590e);
+//			mt.wirecolor = 0x49a51c;
+//			c.material = mt;
+//			c.bothsides = true;
+//			c.rotationX = -20;
+//			c.rotationY = 45;
+//			view.scene.addChild(c);
+
+			c = new Cube({width:200, height:200, depth:200});
+			c.quarterFaces();			c.quarterFaces();
+			c.rotationX = 45;
 			c.rotationY = 45;
 			view.scene.addChild(c);
 			
