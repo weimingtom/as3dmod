@@ -1,5 +1,4 @@
 package {
-	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageQuality;
@@ -11,9 +10,10 @@ package {
 	import com.as3dmod.modifiers.Perlin;
 	import com.as3dmod.modifiers.Skew;
 	import com.as3dmod.modifiers.Taper;
+	import com.as3dmod.modifiers.Twist;
 	import com.as3dmod.util.ModConstant;
 	import com.as3dmod.util.Phase;
-	import com.carlcalderon.arthropod.Debug;
+	import com.carlcalderon.arthropod.Debug;		
 
 	public class DemoBase extends Sprite {
 
@@ -34,6 +34,8 @@ package {
 		private var t:Taper;
 		private var tph:Phase;
 		
+		private var w:Twist;		private var wph:Phase;
+
 		private var p:Perlin;
 		
 		/**
@@ -54,28 +56,33 @@ package {
 			 * Look below to the setupstack() method,
 			 * and uncomment the proper line.
 			 */
-			demo = new Pv3dDemo(this);
-			//demo = new Away3dDemo(this);
-			//demo = new Sandy3dDemo(this);
-			//demo = new Alternativa3dDemo(this);
+			 
+//			demo = new Pv3dDemo(this);
+//			demo = new Away3dDemo(this);
+//			demo = new Sandy3dDemo(this);
+			demo = new Alternativa3dDemo(this);
 			addChild(demo);
 		}
 		
 		public function setupStack(m:ModifierStack):void {
-			cubeSetup(m);
+//			planeSetup(m);			cubeSetup(m);
 		}
 		
 		public function cubeSetup(m:ModifierStack):void {
 			s = new Skew(500);
 			sph = new Phase();
 			
-			t = new Taper(200);
+			t = new Taper(3);
 			t.setFalloff(0.2, 0.5);
-			t.power = 2;
+			t.power = 6;
 			tph = new Phase();
 			
-			m.addModifier(t);
+			w = new Twist(Math.PI / 2);
+			wph = new Phase();
+			
+//			m.addModifier(t);
 //			m.addModifier(s);
+			m.addModifier(w);
 		}
 		
 		public function planeSetup(m:ModifierStack):void {
@@ -112,7 +119,7 @@ package {
 		}
 		
 		public function onRender():void {
-			onRenderCube();
+//			onRenderPlane();			onRenderCube();
 		}
 		
 		public function onRenderCube():void {
@@ -120,7 +127,9 @@ package {
 			s.force = sph.phasedValue * 500;
 			
 			tph.value += 0.05;
-			t.force = Math.abs(tph.phasedValue * 200);
+			t.force = tph.absPhasedValue * 2;
+			
+			wph.value += 0.05;			w.angle = Math.PI / 8 * wph.phasedValue;
 		}
 		
 		public function onRenderPlane():void {
@@ -130,6 +139,8 @@ package {
 			
 			btwoPhase.value -= 0.02;
 			btwo.force = btwoPhase.phasedValue * 2;
+			
+			
 			
 			// # 11. The Perlin modifier is self-animated, no need to do anything here
 		}

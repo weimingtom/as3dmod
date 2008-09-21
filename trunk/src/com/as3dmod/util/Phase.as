@@ -19,5 +19,9 @@ package com.as3dmod.util {
 		public function get phasedValue():Number {
 			return Math.sin(v);
 		}
+		
+		public function get absPhasedValue():Number {
+			return Math.abs(phasedValue);
+		}
 	}
 }

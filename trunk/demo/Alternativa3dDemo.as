@@ -12,7 +12,7 @@
 	import alternativa.engine3d.core.Scene3D;
 	import alternativa.engine3d.display.View;
 	import alternativa.engine3d.materials.FillMaterial;
-	import alternativa.engine3d.primitives.Plane;	
+	import alternativa.engine3d.primitives.Box;	
 
 	public class Alternativa3dDemo extends Sprite	{
 		
@@ -35,14 +35,14 @@
 			scene = new Scene3D();
 			scene.root = new Object3D();
 			
-			c = new Plane(600, 250, 12, 5, true, true, true);
+//			c = new Plane(600, 250, 12, 5, true, true, true);
+			c = new Box(200,200,200,5,5,5);
 			c.cloneMaterialToAllSurfaces(new FillMaterial(0x27590e, 1, "normal", 0));
 			scene.root.addChild(c);
 			c.rotationX = -60/180*Math.PI;
 			c.rotationY = -45/180*Math.PI;
 			
 			m = new ModifierStack(new LibraryAlternativa3d(), c);
-			
 			base.setupStack(m);
 
 			camera = new Camera3D();

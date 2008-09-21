@@ -105,6 +105,15 @@ package com.as3dmod {
 			baseMesh.collapseGeometry();
 			stack = new Array();
 		}
+		
+		/**
+		 * 	Clears the stack. 
+		 * 
+		 * 	Removes all the elements from the stack.
+		 */
+		public function clear():void {
+			stack = new Array();
+		}
 	}
 }
 

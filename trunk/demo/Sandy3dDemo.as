@@ -14,7 +14,7 @@ package {
 	import sandy.materials.Material;
 	import sandy.materials.attributes.LineAttributes;
 	import sandy.materials.attributes.MaterialAttributes;
-	import sandy.primitive.Plane3D;	
+	import sandy.primitive.Box;	
 
 	public class Sandy3dDemo extends Sprite {
 		
@@ -41,12 +41,21 @@ package {
 			
 			var app:Appearance = new Appearance(material, materialb);
 			
-			c = new Plane3D("plane", 600, 250, 10, 24);
+//			c = new Plane3D("plane", 600, 250, 10, 24);
+//			c.rotateZ = 90;
+//			c.rotateX = 60;
+//			c.rotateY = -45;
+//			c.z = 400;
+//			c.appearance = app;
+//			scene.root.addChild(c);
+
+			c = new Box("box", 300,300,300,4);
 			c.rotateZ = 90;
 			c.rotateX = 60;
 			c.rotateY = -45;
 			c.z = 400;
 			c.appearance = app;
+//			c.appearance = app;
 			scene.root.addChild(c);
 			
 			m = new ModifierStack(new LibrarySandy3d(), c);

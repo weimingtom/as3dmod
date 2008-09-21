@@ -1,17 +1,17 @@
 package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.VertexProxy;	
+	import com.as3dmod.core.VertexProxy;		
 
+	/**
+	 * 	<b>Skew modifier.</b> 
+	 * 
+	 *  Skew acts just like classic 2d skew function.
+	 */
 	public class Skew extends Modifier implements IModifier
 	{
 		private var frc:Number;
 		
-		/**
-		 * 	Skew modifier. 
-		 * 
-		 *  This class is only a dev version for now. 
-		 */
 		public function Skew(f:Number) {
 			f = force;
 		}
@@ -31,12 +31,22 @@ package com.as3dmod.modifiers {
 			for (var i:int = 0; i < vc; i++) {
 				var v:VertexProxy = vs[i] as VertexProxy;
 				
-				var vl:Number = v.getValue(mod.minAxis) + force * v.getRatio(mod.maxAxis);
+				// Matrix version
+//				var vl:Number = force * v.getRatio(mod.maxAxis);
+//				var m:Matrix3D = Matrix3D.translationMatrix(vl, vl, 0);
+//				var n:Number3D = new Number3D(v.getValue(mod.minAxis), v.getValue(mod.midAxis), v.getValue(mod.maxAxis));
+//				Matrix3D.multiplyVector(m, n);
+//				
+//				v.setValue(mod.minAxis, n.x);
+				
+				// No matrix version
+				var vl:Number = v.getValue(mod.minAxis) + force * Math.pow(v.getRatio(mod.maxAxis), 2);
 				v.setValue(mod.minAxis, vl);
 			}
 		}
 	}
 }
+
 
 
 
