@@ -5,13 +5,17 @@
 	import com.as3dmod.core.Vector3D;
 	import com.as3dmod.core.VertexProxy;		
 
+	/**
+	 * Adapted from Adby Zupko's Twist Modifier for PV3D. 
+	 * More info here: http://blog.zupko.info/?p=140
+	 */
 	public class Twist extends Modifier implements IModifier {
 
 		private var _vector:Vector3D = new Vector3D(0, 1, 0);
 		private var _angle:Number;
 		public var center:Vector3D = new Vector3D();
 
-		public function Twist(a:Number=0) {
+		public function Twist(a:Number = 0) {
 			_angle = a;
 		}
 
@@ -37,7 +41,7 @@
 			var dv:Vector3D = new Vector3D(mod.maxX / 2, mod.maxY / 2, mod.maxZ / 2);
 			var d:Number = -Vector3D.dot(_vector, center);
 
-			for(var i:int = 0; i < mod.getVertices().length; i++) {
+			for(var i:int = 0;i < mod.getVertices().length; i++) {
 				var vertex:VertexProxy = mod.getVertices()[i];
 				var dd:Number = Vector3D.dot(new Vector3D(vertex.x, vertex.y, vertex.z), _vector) + d;
 				twistPoint(vertex, (dd / dv.modulo) * _angle);
@@ -46,8 +50,7 @@
 
 		private function twistPoint(v:VertexProxy, a:Number):void {
 			var mat:Matrix3D = Matrix3D.translationMatrix(v.x, v.y, v.z);	
-			mat = Matrix3D.multiply(Matrix3D.rotationMatrix(_vector.x, _vector.y, _vector.z, a), mat);
-			
+			mat = Matrix3D.multiply(Matrix3D.rotationMatrix(_vector.x, _vector.y, _vector.z, a), mat);	
 			v.x = mat.n14;
 			v.y = mat.n24;
 			v.z = mat.n34;
