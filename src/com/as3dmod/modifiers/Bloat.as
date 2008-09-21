@@ -4,9 +4,11 @@
 	import com.as3dmod.core.VertexProxy;	
 
 	/**
-	* Bloats your stuff by forcing vertices out of specified sphere.
-	* @author makc
-	*/
+	 * <b>Bloat modifier.</b>
+	 * 
+	 * Bloats your stuff by forcing vertices out of specified sphere.
+	 * @author makc
+	 */
 	public class Bloat extends Modifier implements IModifier {
 
 		private var _x:Number = 0;

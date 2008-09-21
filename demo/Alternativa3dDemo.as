@@ -1,10 +1,14 @@
 ﻿package {
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	
+
 	import com.as3dmod.ModifierStack;
 	import com.as3dmod.plugins.alternativa3d.LibraryAlternativa3d;
-	
+	import com.carlcalderon.arthropod.Debug;
+
 	import alternativa.engine3d.controllers.CameraController;
 	import alternativa.engine3d.core.Camera3D;
 	import alternativa.engine3d.core.Mesh;
@@ -14,8 +18,8 @@
 	import alternativa.engine3d.materials.FillMaterial;
 	import alternativa.engine3d.primitives.Box;	
 
-	public class Alternativa3dDemo extends Sprite	{
-		
+	public class Alternativa3dDemo extends Sprite {
+
 		private var scene:Scene3D;
 		private var view:View;
 		private var camera:Camera3D;
@@ -23,24 +27,30 @@
 		private var c:Mesh;
 		private var m:ModifierStack;
 		private var base:DemoBase;
-		
-		public function Alternativa3dDemo(base:DemoBase) {
-			this.base = base;
+
+		public function Alternativa3dDemo() {
+			stage.quality = StageQuality.LOW;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
+			
+			Debug.clear();
+			
+			base = new DemoBase();
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
-		
-		public function init(e:Event): void {
+
+		public function init(e:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			scene = new Scene3D();
 			scene.root = new Object3D();
 			
-//			c = new Plane(600, 250, 12, 5, true, true, true);
-			c = new Box(200,200,200,5,5,5);
+			//			c = new Plane(600, 250, 12, 5, true, true, true);
+			c = new Box(200, 200, 200, 5, 5, 5);
 			c.cloneMaterialToAllSurfaces(new FillMaterial(0x27590e, 1, "normal", 0));
 			scene.root.addChild(c);
-			c.rotationX = -60/180*Math.PI;
-			c.rotationY = -45/180*Math.PI;
+			c.rotationX = -60 / 180 * Math.PI;
+			c.rotationY = -45 / 180 * Math.PI;
 			
 			m = new ModifierStack(new LibraryAlternativa3d(), c);
 			base.setupStack(m);
@@ -68,7 +78,7 @@
 			view.width = stage.stageWidth;
 			view.height = stage.stageHeight;
 		}
-		
+
 		private function onEnterFrame(e:Event):void {
 			base.onRender();
 			m.apply();

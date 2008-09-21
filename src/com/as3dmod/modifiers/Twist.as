@@ -6,8 +6,10 @@
 	import com.as3dmod.core.VertexProxy;		
 
 	/**
-	 * Adapted from Adby Zupko's Twist Modifier for PV3D. 
-	 * More info here: http://blog.zupko.info/?p=140
+	 * <b>Twist modifier.</b>
+	 * 
+	 * Adapted from the Twist modifier for PV3D. 
+	 * More info here: <a href="http://blog.zupko.info/?p=140" target="_blank">http://blog.zupko.info/?p=140</a>.
 	 */
 	public class Twist extends Modifier implements IModifier {
 
