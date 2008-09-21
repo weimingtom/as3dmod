@@ -1,9 +1,8 @@
 package com.as3dmod.modifiers {
-	import org.papervision3d.core.math.Number3D;		
-	import org.papervision3d.core.math.Matrix3D;	
-	
 	import com.as3dmod.IModifier;
+	import com.as3dmod.core.Matrix3D;
 	import com.as3dmod.core.Modifier;
+	import com.as3dmod.core.Vector3D;
 	import com.as3dmod.core.VertexProxy;
 	import com.as3dmod.util.XMath;		
 
@@ -13,7 +12,7 @@ package com.as3dmod.modifiers {
 	 * 	The taper modifier displaces the vertices on two 
 	 * 	axes proportionally to their position on the third axis.
 	 * 	
-	 * 	
+	 * 	@author Bartek Drozdz
 	 */
 	public class Taper extends Modifier implements IModifier
 	{
@@ -58,7 +57,7 @@ package com.as3dmod.modifiers {
 				var ar:Number = Math.pow(XMath.normalize(start, end, v.getRatio(mod.maxAxis)), pow);				var sc:Number = frc * ar;
 				
 				var m:Matrix3D = Matrix3D.scaleMatrix(1+sc, 1+sc, 1);
-				var n:Number3D = new Number3D(v.getValue(mod.minAxis), v.getValue(mod.midAxis), v.getValue(mod.maxAxis));
+				var n:Vector3D = new Vector3D(v.getValue(mod.minAxis), v.getValue(mod.midAxis), v.getValue(mod.maxAxis));
 				Matrix3D.multiplyVector(m, n);
 				
 				v.setValue(mod.minAxis, n.x);				v.setValue(mod.midAxis, n.y);

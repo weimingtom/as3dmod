@@ -7,7 +7,9 @@ package com.as3dmod.modifiers {
 	/**
 	 * 	<b>Bend modifier.</b>
 	 * 	
-	 * 	Bends an object along an axis.
+	 * 	Bends an object along an axis
+	 * 	
+	 * 	@author Bartek Drozdz
 	 */
 	public class Bend extends Modifier implements IModifier {
 		

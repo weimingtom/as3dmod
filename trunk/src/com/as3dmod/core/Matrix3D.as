@@ -53,6 +53,14 @@ package com.as3dmod.core {
 			return m;
 		}
 
+		public static function scaleMatrix( x:Number, y:Number, z:Number ):Matrix3D {
+			var m:Matrix3D = new Matrix3D();
+			m.n11 = x;
+			m.n22 = y;
+			m.n33 = z;
+			return m;
+		}
+
 		public static function rotationMatrix( x:Number, y:Number, z:Number, rad:Number, targetmatrix:Matrix3D = null ):Matrix3D {
 			
 			var m:Matrix3D;
@@ -134,6 +142,16 @@ package com.as3dmod.core {
 			var m:Matrix3D = new Matrix3D();
 			m.calculateMultiply(a, b);
 			return m;
+		}
+
+		public static function multiplyVector( m:Matrix3D, v:Vector3D ):void {
+			var vx:Number = v.x;
+			var vy:Number = v.y;
+			var vz:Number = v.z;
+
+			v.x = vx * m.n11 + vy * m.n12 + vz * m.n13 + m.n14;
+			v.y = vx * m.n21 + vy * m.n22 + vz * m.n23 + m.n24;
+			v.z = vx * m.n31 + vy * m.n32 + vz * m.n33 + m.n34;
 		}
 	}
 }

@@ -6,7 +6,9 @@ package com.as3dmod.modifiers {
 	/**
 	 * 	<b>Skew modifier.</b> 
 	 * 
-	 *  Skew acts just like classic 2d skew function.
+	 *  Skew acts just like classic 2d skew function
+	 *  
+	 *  @author Bartek Drozdz
 	 */
 	public class Skew extends Modifier implements IModifier
 	{

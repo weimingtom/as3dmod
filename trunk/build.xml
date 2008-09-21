@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AS3DMod" default="build-all">
+	<property file="./build.properties" />
+	
+	<!-- IMPORTANT Adapt this path to your local filesystem prior to compilation,
+		 Update all the paths in build.properties as well -->
+	<taskdef resource="flexTasks.tasks" classpath="c:/ASpace/sdk/ant/lib/flexTasks.jar"/>
+
+	<property name="APP_WIDTH" value="800"/>
+	<property name="APP_HEIGHT" value="600"/>
+	
+	<target name="build-all" depends="papervision3d,sandy3d,away3d,alternativa3d" description="Build demos for 4 engines"/>
+	
+	<target name="papervision3d">
+        <mxmlc id="swf.compile"
+		    file="${app.home}/demo/Pv3dDemo.as" 
+			output="bin/as3dmod-pv3d.swf" 
+			keep-generated-actionscript="false">
+			<source-path path-element="${app.home}/src"/>
+        	<source-path path-element="${app.home}/demo"/>
+        	<source-path path-element="${papervision3d.home}"/>
+			<default-size width="${APP_WIDTH}" height="${APP_HEIGHT}" />
+			<default-background-color>0x000000</default-background-color>
+			<default-frame-rate>40</default-frame-rate>		
+        </mxmlc>
+    </target>
+	
+	<target name="sandy3d">
+	        <mxmlc id="swf.compile"
+			    file="${app.home}/demo/Sandy3dDemo.as" 
+				output="bin/as3dmod-sandy3d.swf" 
+				keep-generated-actionscript="false">
+				<source-path path-element="${app.home}/src"/>
+	        	<source-path path-element="${app.home}/demo"/>
+	        	<source-path path-element="${sandy3d.home}"/>
+				<default-size width="${APP_WIDTH}" height="${APP_HEIGHT}" />
+				<default-background-color>0x000000</default-background-color>
+				<default-frame-rate>40</default-frame-rate>		
+	        </mxmlc>
+	    </target>
+	
+	<target name="away3d">
+        <mxmlc id="swf.compile"
+		    file="${app.home}/demo/Away3dDemo.as" 
+			output="bin/as3dmod-away3d.swf" 
+			keep-generated-actionscript="false">
+			<source-path path-element="${app.home}/src"/>
+        	<source-path path-element="${app.home}/demo"/>
+        	<source-path path-element="${away3d.home}"/>
+			<default-size width="${APP_WIDTH}" height="${APP_HEIGHT}" />
+			<default-background-color>0x000000</default-background-color>
+			<default-frame-rate>40</default-frame-rate>		
+        </mxmlc>
+    </target>
+	
+	<target name="alternativa3d">
+	        <mxmlc id="swf.compile"
+			    file="${app.home}/demo/Alternativa3dDemo.as" 
+				output="bin/as3dmod-alternativa3d.swf" 
+				keep-generated-actionscript="false">
+				<source-path path-element="${app.home}/src"/>
+	        	<source-path path-element="${app.home}/demo"/>
+	        	<compiler.include-libraries dir="${app.home}/lib" append="true">
+	        		<include name="Alternativa3D.swc" />
+	        		<include name="AlternativaTypes.swc" />
+	        		<include name="AlternativaUtils.swc" />
+	        	</compiler.include-libraries>	
+				<default-size width="${APP_WIDTH}" height="${APP_HEIGHT}" />
+				<default-background-color>0x000000</default-background-color>
+				<default-frame-rate>40</default-frame-rate>		
+	        </mxmlc>
+	    </target>
+	
+	<!-- API GENERATION -->
+	<!-- adapted from: http://www.rubenswieringa.com/blog/ant-and-asdoc -->
+	<target name="clean-docs">
+		<delete dir="${outputfolder}" failOnError="false" includeEmptyDirs="true"/>
+		<mkdir dir="${outputfolder}"/>
+	</target>
+	
+	<target name="build-docs" depends="clean-docs">
+		<exec executable="${asdoc.exe}" failonerror="true">
+			<arg line='-doc-classes ${classes}'/>
+			<arg line='-main-title "${title}"' />
+			<arg line='-window-title "${title}"' />
+			<arg line='-output ${outputfolder}' />
+			<arg line="-compiler.source-path src/"/>
+			<!-- arg line="-exclude-dependencies"/ -->
+		</exec>
+	</target>
+</project>

@@ -1,9 +1,4 @@
 package {
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageQuality;
-	import flash.display.StageScaleMode;
-	
 	import com.as3dmod.ModifierStack;
 	import com.as3dmod.modifiers.Bend;
 	import com.as3dmod.modifiers.Noise;
@@ -12,13 +7,10 @@ package {
 	import com.as3dmod.modifiers.Taper;
 	import com.as3dmod.modifiers.Twist;
 	import com.as3dmod.util.ModConstant;
-	import com.as3dmod.util.Phase;
-	import com.carlcalderon.arthropod.Debug;		
+	import com.as3dmod.util.Phase;	
 
-	public class DemoBase extends Sprite {
+	public class DemoBase {
 
-		private var demo:Sprite;
-		
 		private var bone:Bend;
 		private var bonePhase:Phase;
 		
@@ -43,25 +35,7 @@ package {
 		 *  engines and get (hopefully) a basic idea of how the stack works.
 		 */
 		public function DemoBase() {
-			stage.quality = StageQuality.LOW;
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;
 			
-			Debug.clear();
-			
-			/*
-			 * Uncomment one of this lines to compile a 
-			 * version of the demo for the given engine
-			 * 
-			 * Look below to the setupstack() method,
-			 * and uncomment the proper line.
-			 */
-			 
-//			demo = new Pv3dDemo(this);
-//			demo = new Away3dDemo(this);
-//			demo = new Sandy3dDemo(this);
-			demo = new Alternativa3dDemo(this);
-			addChild(demo);
 		}
 		
 		public function setupStack(m:ModifierStack):void {
