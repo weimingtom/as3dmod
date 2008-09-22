@@ -3,7 +3,7 @@ package {
 	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-
+	
 	import org.papervision3d.core.proto.MaterialObject3D;
 	import org.papervision3d.materials.ColorMaterial;
 	import org.papervision3d.materials.WireframeMaterial;
@@ -12,7 +12,7 @@ package {
 	import org.papervision3d.objects.DisplayObject3D;
 	import org.papervision3d.objects.primitives.Cube;
 	import org.papervision3d.view.BasicView;
-
+	
 	import com.as3dmod.ModifierStack;
 	import com.as3dmod.plugins.pv3d.LibraryPv3d;
 	import com.carlcalderon.arthropod.Debug;	
@@ -24,10 +24,13 @@ package {
 		private var base:DemoBase;
 
 		public function Pv3dDemo() {
-			
 			stage.quality = StageQuality.LOW;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
+			stage.showDefaultContextMenu = false;
+			stage.stageFocusRect = false;
+			
+			
 			
 			Debug.clear();
 			
@@ -41,6 +44,8 @@ package {
 			//c.rotationX = 60;
 			//c.rotationY = 45;
 			//scene.addChild(c);
+			
+			
 			
 			var ml:MaterialsList = new MaterialsList();			var wm:WireframeMaterial = new WireframeMaterial();
 			ml.addMaterial(wm, "all");			c = new Cube(ml, 300, 300, 700, 5, 20, 5);

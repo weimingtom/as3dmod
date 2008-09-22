@@ -1,8 +1,5 @@
 package {
 	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageQuality;
-	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	
 	import com.as3dmod.ModifierStack;
@@ -21,9 +18,7 @@ package {
 		private var base:DemoBase;
 
 		public function Away3dDemo() {
-			stage.quality = StageQuality.LOW;
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;
+			
 			
 			Debug.clear();
 			base = new DemoBase();
@@ -37,14 +32,14 @@ package {
 			view.y = stage.stageHeight / 2;
 			addChild(view);
 			
-			//			c = new Plane( { width:600, height:250, segmentsW:24, segmentsH:10 } );
-			//			var mt:WireColorMaterial = new WireColorMaterial(0x27590e);
-			//			mt.wirecolor = 0x49a51c;
-			//			c.material = mt;
-			//			c.bothsides = true;
-			//			c.rotationX = -20;
-			//			c.rotationY = 45;
-			//			view.scene.addChild(c);
+//			c = new Plane( { width:600, height:250, segmentsW:24, segmentsH:10 } );
+//			var mt:WireColorMaterial = new WireColorMaterial(0x27590e);
+//			mt.wirecolor = 0x49a51c;
+//			c.material = mt;
+//			c.bothsides = true;
+//			c.rotationX = -20;
+//			c.rotationY = 45;
+//			view.scene.addChild(c);
 			c = new Cube({width:200, height:200, depth:200});
 			c.quarterFaces();			c.quarterFaces();
 			c.rotationX = 45;
@@ -54,9 +49,7 @@ package {
 			m = new ModifierStack(new LibraryAway3d(), c);
 			
 			base.setupStack(m);
-			
-			
-			
+
 			addEventListener(Event.ENTER_FRAME, render);
 		}
 
