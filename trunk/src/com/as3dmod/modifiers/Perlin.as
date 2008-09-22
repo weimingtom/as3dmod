@@ -24,9 +24,13 @@ package com.as3dmod.modifiers {
 		private var start:Number = 0;
 		private var end:Number = 0;
 		
-		public function Perlin(f:Number=1) {
+		/**
+		 * @param	f force. May be modified later with the force attribute
+		 * @param	bmpWidth Bitmap width. The width of the bitmap that will be generating the noise		 * @param	bmpHeight Bitmap height. The height of the bitmap that will be generating the noise
+		 */
+		public function Perlin(f:Number=1, bmpWidth:Number=25, bmpHeight:Number=25) {
 			frc = f;
-			b = new BitmapData(25, 11);
+			b = new BitmapData(bmpWidth, bmpHeight);
 			off = 0;
 			seed = Math.random() * 1000;
 		}
@@ -36,21 +40,11 @@ package com.as3dmod.modifiers {
 			this.end = end;
 		}
 		
+		/**
+		 * The force by which the perlin color value used to move the vertex will be multiplied.
+		 */
 		public function set force(f:Number):void {
 			frc = f;
-		}
-		
-		/**
-		 * Returns a previes of the perlin noise source bitmapData
-		 * 
-		 * @deprecated
-		 * @param s blAH
-		 * @return bitmap Bitmap object that can be attached to a display list. Contains the bitmapData used a the perlin noise source.
-		 */
-		public function get previev():Bitmap {
-			var pr:Bitmap = new Bitmap(b);
-			pr.scaleX = pr.scaleY = 4;
-			return pr;
 		}
 		
 		public function get force():Number {
@@ -58,12 +52,16 @@ package com.as3dmod.modifiers {
 		}
 		
 		/**
-		 * Returns a previes of the perlin noise source bitmapData
+		 * Returns a preview of the perlin noise source bitmapData
 		 * 
-		 * @deprecated
-		 * @param s blAH
 		 * @return bitmap Bitmap object that can be attached to a display list. Contains the bitmapData used a the perlin noise source.
 		 */
+		public function get previev():Bitmap {
+			var pr:Bitmap = new Bitmap(b);
+			pr.scaleX = pr.scaleY = 4;
+			return pr;
+		}
+
 		public function apply():void {
 			var p:Point = new Point(off++, 0);
 			b.perlinNoise(25, 11, 1, seed, false, true, BitmapDataChannel.RED, true, [p, p, p]);
