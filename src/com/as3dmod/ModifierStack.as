@@ -91,6 +91,7 @@ package com.as3dmod {
 			for (var i:int = 0; i < stack.length; i++) {
 				(stack[i] as IModifier).apply();
 			}
+			baseMesh.postApply();
 		}
 		
 		/**

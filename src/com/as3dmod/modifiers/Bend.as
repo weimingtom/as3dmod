@@ -2,7 +2,7 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.util.ModConstant;	
+	import com.as3dmod.util.ModConstant;		
 
 	/**
 	 * 	<b>Bend modifier.</b>
@@ -16,6 +16,9 @@ package com.as3dmod.modifiers {
 		private var frc:Number;
 		private var ofs:Number;
 		private var cst:int = ModConstant.NONE;
+		
+		private var vos:Number = 0.5;
+		private var vfo:Number = 0;
 		
 		private var maa:int = ModConstant.NONE;
 		private var mia:int = ModConstant.NONE;
@@ -146,9 +149,37 @@ package com.as3dmod.modifiers {
 				var fa:Number = ((Math.PI / 2) - angle * offset) + (angle * p);
 				var op:Number = Math.sin(fa) * (radius + v.getValue(mia)) - radius;
 				var ow:Number = distance - Math.cos(fa) * (radius + v.getValue(mia));
+				
+				if(vfo != 0) {
+//					var vrt:Number = v.getRatio(ModConstant.Y);
+//					var vff:Number = (vrt > vfo) ? 0 : XMath.normalize(0, vfo, vrt);
+//					
+//					var lp:Number = v.getValue(mia);
+//					op = lp + (op-lp) * vff;
+//					
+//					var lw:Number = v.getValue(maa);
+//					ow = lw + (ow-lw) * vff;
+				}
+				
 				v.setValue(mia, op);
 				v.setValue(maa, ow);
 			}
+		}
+		
+		public function get verticalOffset():Number {
+			return vos;
+		}
+		
+		public function set verticalOffset(vos:Number):void {
+			this.vos = vos;
+		}
+		
+		public function get verticalFalloff():Number {
+			return vfo;
+		}
+		
+		public function set verticalFalloff(vfo:Number):void {
+			this.vfo = vfo;
 		}
 	}
 }

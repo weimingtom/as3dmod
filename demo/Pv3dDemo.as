@@ -8,9 +8,8 @@ package {
 	import org.papervision3d.materials.ColorMaterial;
 	import org.papervision3d.materials.WireframeMaterial;
 	import org.papervision3d.materials.special.CompositeMaterial;
-	import org.papervision3d.materials.utils.MaterialsList;
 	import org.papervision3d.objects.DisplayObject3D;
-	import org.papervision3d.objects.primitives.Cube;
+	import org.papervision3d.objects.primitives.Plane;
 	import org.papervision3d.view.BasicView;
 	
 	import com.as3dmod.ModifierStack;
@@ -29,9 +28,7 @@ package {
 			stage.align = StageAlign.TOP_LEFT;
 			stage.showDefaultContextMenu = false;
 			stage.stageFocusRect = false;
-			
-			
-			
+
 			Debug.clear();
 			
 			base = new DemoBase();
@@ -40,29 +37,29 @@ package {
 			mt.addMaterial(new WireframeMaterial(0x49a51c));
 			mt.doubleSided = true;
 			
-			//c = new Plane(mt, 1200, 500, 24, 10);
-			//c.rotationX = 60;
-			//c.rotationY = 45;
-			//scene.addChild(c);
+			c = new Plane(mt, 1200, 500, 24, 10);
+			c.rotationZ = 90;
+			c.rotationY = 100;
+			scene.addChild(c);
 			
 			
 			
-			var ml:MaterialsList = new MaterialsList();			var wm:WireframeMaterial = new WireframeMaterial();
-			ml.addMaterial(wm, "all");			c = new Cube(ml, 300, 300, 700, 5, 20, 5);
-			c.rotationY = 45;
+//			var ml:MaterialsList = new MaterialsList();//			var wm:WireframeMaterial = new WireframeMaterial();
+//			ml.addMaterial(wm, "all");//			c = new Cube(ml, 300, 300, 700, 5, 20, 5);
+//			c.rotationY = 45;
 			
 			scene.addChild(c);
 			
 			m = new ModifierStack(new LibraryPv3d(), c);
-			base.setupStack(m);
+			base.planeSetup(m);
 			startRendering();
 		}
 
 		protected override function onRenderTick(event:Event = null):void {
-			base.onRender();
+			base.onRenderPlane();
 			super.onRenderTick(event);
 			m.apply();
-//			c.rotationY += 1;
+			c.rotationY += 1;
 		}
 	}
 }

@@ -25,6 +25,20 @@
         </mxmlc>
     </target>
 	
+	<target name="paperbend">
+	        <mxmlc id="swf.compile"
+			    file="${app.home}/demo/PaperBendDemo.as" 
+				output="bin/as3dmod-paper-bend.swf" 
+				keep-generated-actionscript="false">
+				<source-path path-element="${app.home}/src"/>
+	        	<source-path path-element="${app.home}/demo"/>
+	        	<source-path path-element="${papervision3d.home}"/>
+				<default-size width="${APP_WIDTH}" height="${APP_HEIGHT}" />
+				<default-background-color>0x000000</default-background-color>
+				<default-frame-rate>40</default-frame-rate>		
+	        </mxmlc>
+	    </target>
+	
 	<target name="sandy3d">
 	        <mxmlc id="swf.compile"
 			    file="${app.home}/demo/Sandy3dDemo.as" 

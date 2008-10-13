@@ -43,7 +43,7 @@ package {
 		}
 		
 		public function cubeSetup(m:ModifierStack):void {
-			s = new Skew(500);
+			s = new Skew(0);
 			sph = new Phase();
 			
 			t = new Taper(3);
@@ -55,8 +55,8 @@ package {
 			wph = new Phase();
 			
 //			m.addModifier(t);
-//			m.addModifier(s);
-			m.addModifier(w);
+			m.addModifier(s);
+//			m.addModifier(w);
 		}
 		
 		public function planeSetup(m:ModifierStack):void {
@@ -66,7 +66,7 @@ package {
 			//n.constraintAxes(ModConstant.X | ModConstant.Z); // away
 			n.constraintAxes(ModConstant.Y | ModConstant.X); // sandy
 			// ## 2. add the modifier to the stack
-			m.addModifier(n);
+//			m.addModifier(n);
 			// ## 3. collapse - apply the current modifications to the mesh and clear the stack
 			m.collapse();
 			
@@ -76,10 +76,10 @@ package {
 			// ## 5. the effect will be applied with decreasing intensity along the longes axis of the object
 			p.setFalloff(1, 0);
 			// ## 6. add the modifier to the stack
-			m.addModifier(p);
+//			m.addModifier(p);
 			
 			// ## 7. add a bend modifier. it works in a similar way, as the pv3d bend modifier
-			bone = new Bend(0, .7);
+			bone = new Bend(0, .2);
 			bone.constraint = ModConstant.LEFT;
 			// ## 8. create a phase object to help animate it back and forth (using a sine wave)
 			bonePhase = new Phase();
@@ -89,16 +89,16 @@ package {
 			btwo = new Bend(0, .3);
 			btwo.constraint = ModConstant.RIGHT;
 			btwoPhase = new Phase();
-			m.addModifier(btwo);
+//			m.addModifier(btwo);
 		}
 		
 		public function onRender():void {
-//			onRenderPlane();			onRenderCube();
+			onRenderPlane();//			onRenderCube();
 		}
 		
 		public function onRenderCube():void {
 			sph.value += 0.05;
-			s.force = sph.phasedValue * 500;
+			s.force = sph.phasedValue * 100;
 			
 			tph.value += 0.05;
 			t.force = tph.absPhasedValue * 2;
@@ -109,7 +109,7 @@ package {
 		public function onRenderPlane():void {
 			// # 10. animate the sine wave and apply its value to the modifier
 			bonePhase.value += 0.05;
-			bone.force = bonePhase.phasedValue * 2;
+			bone.force = bonePhase.phasedValue * .5;
 			
 			btwoPhase.value -= 0.02;
 			btwo.force = btwoPhase.phasedValue * 2;

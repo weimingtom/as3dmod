@@ -1,5 +1,8 @@
 package {
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	
 	import com.as3dmod.ModifierStack;
@@ -18,7 +21,11 @@ package {
 		private var base:DemoBase;
 
 		public function Away3dDemo() {
-			
+			stage.quality = StageQuality.LOW;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
+			stage.showDefaultContextMenu = false;
+			stage.stageFocusRect = false;
 			
 			Debug.clear();
 			base = new DemoBase();
@@ -40,21 +47,19 @@ package {
 //			c.rotationX = -20;
 //			c.rotationY = 45;
 //			view.scene.addChild(c);
-			c = new Cube({width:200, height:200, depth:200});
-			c.quarterFaces();			c.quarterFaces();
-			c.rotationX = 45;
-			c.rotationY = 45;
+			c = new Cube({width:100, height:400, depth:100});
+			c.quarterFaces();			c.quarterFaces();			c.quarterFaces();
 			view.scene.addChild(c);
 			
 			m = new ModifierStack(new LibraryAway3d(), c);
 			
-			base.setupStack(m);
+			base.cubeSetup(m);
 
 			addEventListener(Event.ENTER_FRAME, render);
 		}
 
 		private function render(event:Event):void {
-			base.onRender();
+			base.onRenderCube();
 			m.apply();
 			view.render();
 		}

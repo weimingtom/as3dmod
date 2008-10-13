@@ -167,5 +167,29 @@ package com.as3dmod.core {
 		public function get minAxis():int {
 			return _minAxis;
 		}
+		
+		public function getSize(axis:int):Number {
+			switch(axis) {
+				case ModConstant.X: return _sizeX;
+				case ModConstant.Y: return _sizeY;
+				case ModConstant.Z: return _sizeZ;
+			}
+			return -1;
+		}
+		
+		public function get sizeX():Number {
+			return _sizeX;
+		}
+		
+		public function get sizeY():Number {
+			return _sizeY;
+		}
+		
+		public function get sizeZ():Number {
+			return _sizeZ;
+		}
+		
+		public function postApply():void {
+		}
 	}
 }

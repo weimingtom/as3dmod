@@ -42,7 +42,7 @@ package com.as3dmod.modifiers {
 //				v.setValue(mod.minAxis, n.x);
 				
 				// No matrix version
-				var vl:Number = v.getValue(mod.minAxis) + force * Math.pow(v.getRatio(mod.maxAxis), 2);
+				var vl:Number = v.getValue(mod.minAxis) + force * v.getRatio(mod.maxAxis);
 				v.setValue(mod.minAxis, vl);
 			}
 		}
