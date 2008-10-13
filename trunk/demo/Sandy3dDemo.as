@@ -4,11 +4,11 @@ package {
 	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-
+	
 	import com.as3dmod.ModifierStack;
 	import com.as3dmod.plugins.sandy3d.LibrarySandy3d;
 	import com.carlcalderon.arthropod.Debug;
-
+	
 	import sandy.core.Scene3D;
 	import sandy.core.scenegraph.Camera3D;
 	import sandy.core.scenegraph.Group;
@@ -31,6 +31,8 @@ package {
 			stage.quality = StageQuality.LOW;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
+			stage.showDefaultContextMenu = false;
+			stage.stageFocusRect = false;
 			
 			Debug.clear();
 			base = new DemoBase();
@@ -57,10 +59,8 @@ package {
 			//			c.z = 400;
 			//			c.appearance = app;
 			//			scene.root.addChild(c);
-			c = new Box("box", 300, 300, 300, 4);
-			c.rotateZ = 90;
-			c.rotateX = 60;
-			c.rotateY = -45;
+			c = new Box("box", 60, 400, 60, 3);
+//			c.rotateY = 45;
 			c.z = 400;
 			c.appearance = app;
 			//			c.appearance = app;
@@ -68,7 +68,7 @@ package {
 			
 			m = new ModifierStack(new LibrarySandy3d(), c);
 			
-			base.setupStack(m);
+			base.cubeSetup(m);
 			
 			
 			
@@ -76,7 +76,7 @@ package {
 		}
 
 		private function render(event:Event):void {
-			base.onRender();
+			base.onRenderCube();
 			m.apply();
 			scene.render();
 		}
