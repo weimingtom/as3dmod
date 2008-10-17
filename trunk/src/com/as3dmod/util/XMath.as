@@ -30,8 +30,9 @@ package com.as3dmod.util {
 			return val;
 		}
 		
-		public static function sign(val:Number):Number {
-			return (val >= 0) ? 1 : -1;
+		public static function sign(val:Number, ifZero:Number=0):Number {
+			if(val == 0) return ifZero;
+			else return (val > 0) ? 1 : -1;
 		}
 	}
 }
