@@ -16,7 +16,9 @@ package com.as3dmod.modifiers {
 		
 		private var _force:Number;
 		private var _offset:Number;
-		private var _angle:Number;
+		
+		private var _angle:Number;		private var cosa:Number;		private var ncosa:Number;		private var sina:Number;		private var nsina:Number;
+		
 		private var _diagAngle:Number;
 		
 		private var _constraint:int = ModConstant.NONE;
@@ -31,7 +33,7 @@ package com.as3dmod.modifiers {
 		public function Paper(f:Number=0, o:Number=.5, a:Number=0, switchAxes:Boolean=false) {
 			_force = f;
 			_offset = o;
-			_angle = a;
+			angle = a;
 			this.switchAxes = switchAxes;
 		}
 
@@ -78,7 +80,12 @@ package com.as3dmod.modifiers {
 		 * The angle of the bend. In rad.
 		 */
 		public function get angle():Number { return _angle; }
-		public function set angle(angle:Number):void { _angle = angle; }
+		public function set angle(a:Number):void { 
+			_angle = a; 
+			cosa = Math.cos(a);			sina = Math.sin(a);
+			ncosa = Math.cos(-a);
+			nsina = Math.sin(-a);
+		}
 
 		/**
 		 *  Applies the modifier to the mesh
@@ -98,14 +105,13 @@ package com.as3dmod.modifiers {
 				
 				var vmax:Number = v.getValue(max);				var vmid:Number = v.getValue(mid);				var vmin:Number = v.getValue(min);
 
-				var vmax2:Number = Math.cos(_angle) * vmax - Math.sin(_angle) * vmid;				var vmid2:Number = Math.cos(_angle) * vmid + Math.sin(_angle) * vmax;
+				var vmax2:Number = cosa * vmax - sina * vmid;				var vmid2:Number = cosa * vmid + sina * vmax;
 				
 				vmax = vmax2;
 				vmid = vmid2;
-				
-				
+
 				var p:Number = (vmax - origin) / width;
-				
+
 				if ((constraint == ModConstant.LEFT && p <= offset) || (constraint == ModConstant.RIGHT && p >= offset)) {	
 				} else {
 					var fa:Number = ((Math.PI / 2) - bendAngle * offset) + (bendAngle * p);
@@ -115,8 +121,8 @@ package com.as3dmod.modifiers {
 					vmax = distance - ow;
 				}
 
-				vmax2 = Math.cos(-_angle) * vmax - Math.sin(-_angle) * vmid;
-				vmid2 = Math.cos(-_angle) * vmid + Math.sin(-_angle) * vmax;
+				vmax2 = ncosa * vmax - nsina * vmid;
+				vmid2 = ncosa * vmid + nsina * vmax;
 				
 				vmax = vmax2;
 				vmid = vmid2;
