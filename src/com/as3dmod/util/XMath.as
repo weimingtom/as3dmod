@@ -10,7 +10,7 @@ package com.as3dmod.util {
 			if (range == 0) {
 				normal = 1;
 			} else {
-				normal = (Math.min (Math.max ((val - start) / end, 0.0), 1.0));
+				normal = trim(0, 1, (val - start) / end);
 			}
 	
 			return normal;
@@ -30,9 +30,18 @@ package com.as3dmod.util {
 			return val;
 		}
 		
+		public static function inInRange(start:Number, end:Number, value:Number, excluding:Boolean=false):Boolean {
+			if(excluding) return value >= start && value <= end;
+			else return value > start && value < end;
+		}
+		
 		public static function sign(val:Number, ifZero:Number=0):Number {
 			if(val == 0) return ifZero;
 			else return (val > 0) ? 1 : -1;
+		}
+		
+		public static function trim(start:Number, end:Number, value:Number):Number {
+			return Math.min(end, Math.max(start, value));
 		}
 	}
 }

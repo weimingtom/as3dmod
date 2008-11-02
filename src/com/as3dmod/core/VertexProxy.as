@@ -71,7 +71,7 @@ package com.as3dmod.core {
 				case ModConstant.Z: z = v; break;
 			}
 		}
-		
+
 		public function get ratioX():Number {
 			return _ratioX;
 		}
