@@ -59,7 +59,7 @@ package {
 			//			c.z = 400;
 			//			c.appearance = app;
 			//			scene.root.addChild(c);
-			c = new Box("box", 60, 400, 60, 3);
+			c = new Box("box", 60, 400, 60, "tri", 3);
 //			c.rotateY = 45;
 			c.z = 400;
 			c.appearance = app;
