@@ -56,5 +56,7 @@ package com.as3dmod.core {
 		public static function dot( v:Vector3D, w:Vector3D ):Number {
 			return ( v.x * w.x + v.y * w.y + w.z * v.z );
 		}
+
+		public function toString ():String { return "[object Vector3D (" + x + ", " + y + ", " + z + ")]"; }
 	}
 }
