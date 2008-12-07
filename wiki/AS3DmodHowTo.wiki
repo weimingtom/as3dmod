@@ -1,12 +1,22 @@
-=AS3Dmod HOWTO=
+=The AS3Dmod Tutorial=
 
-This document provides information on how to use AS3Dmod on a basic level. It assumes that the user has one of the supported AS3 3D engines present in his CLASSPATH. 
+===0. Introduction===
 
-Currently supported engines are: 
+===1. Setting up the workspace===
 
-  # Papervision3d [http://blog.papervision3d.org/]
-  # Away3d [http://www.away3d.com/]
-  # Sandy3d [http://www.flashsandy.org/]
-  # Alternativa3d [http://alternativaplatform.com/en/]
+===2. Creating modifer stack===
 
-More coming soon.
+{{{
+var do3d:DisplayObject3d = new Plane();
+var stack:Modifierstack = new Modifierstack(new LibraryPv3d(), do3d);
+}}}
+
+===3. Creating modifiers===
+
+===4. Applying transformations===
+
+===5. Changing & tweening modifier properties===
+
+===6. Using Phase===
+
+===7. Collapsing the modifier stack===
