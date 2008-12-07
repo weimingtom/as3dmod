@@ -1,4 +1,4 @@
-=The AS3Dmod Tutorial (in prog=
+=The AS3Dmod Tutorial (in progress) =
 
 ===0. Introduction===
 
@@ -51,8 +51,6 @@ var phase:Phase = new Phase();
 {{{
 stack.collapse();
 }}}
-
-
 
 
 
