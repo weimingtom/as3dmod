@@ -11,7 +11,7 @@ To create 3d animations using AS3Dmod you will need the following:
   * *Actionscript3 editor*: [http://www.flashdevelop.org/community/ FlashDevelop], [http://fdt.powerflasher.com/ FDT] or [http://www.adobe.com/products/flex/ FlexBuilder]. The Flash IDE is not recommended. If you don't have any favorite editor use [http://www.flashdevelop.org/community/ FlashDevelop] which is available for free. 
   * *A Flash 3D engine* AS3Dmod currently works with [http://blog.papervision3d.org Papervision3d], [http://www.away3d.com Away3d], [http://www.sandy3d.com Sandy3d] and [http://alternativaplatform.com/en/ Alternativa3d]. This tutorial features examples in Papervision3d. Again, I recommend using the latest version from the projects' respective SVN repositories. 
   * *AS3Dmod library* It is strongly recommended to use the latest version from SVN available here.
-  * *Tweener* We will use Tweener in the animation examples, althought any other AS3 tweening library should work too.
+  * *Tweener* We will use Tweener in the animation examples, althought any other AS3 tweening library should also work.
 
 ===2. Creating modifer stack===
 
@@ -51,6 +51,4 @@ var phase:Phase = new Phase();
 {{{
 stack.collapse();
 }}}
-
-
 
