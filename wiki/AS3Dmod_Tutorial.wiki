@@ -6,7 +6,7 @@
 
 To create 3d animations using AS3Dmod you will need the following:
 
-  * *Actionscript3 editor*: FlashDevelop, FDT or FlexBuilder. The Flash IDE is not recommended.
+  * *Actionscript3 editor*: [http://www.flashdevelop.org/community/]FlashDevelop, [http://fdt.powerflasher.com/]FDT or [http://www.adobe.com/products/flex/]FlexBuilder. The Flash IDE is not recommended. If you don't have any favorite editor use FlashDevelop, which is available for free.
   * *AS3Dmod library* It is strongly recommended to use the latest version from SVN available here. 
   * *A Flash 3D engoine* AS3Dmod currently works with Papervision3d, Away3d, sandy3d and Alternativa3d. This tutorial features examples in Papervision3d. Again, I recommend using the latest version from the projects' respective SVN repositories. 
 
