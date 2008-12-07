@@ -1,0 +1,22 @@
+=The AS3Dmod Tutorial=
+
+===0. Introduction===
+
+===1. Setting up the workspace===
+
+===2. Creating modifer stack===
+
+{{{
+var do3d:DisplayObject3d = new Plane();
+var stack:Modifierstack = new Modifierstack(new LibraryPv3d(), do3d);
+}}}
+
+===3. Creating modifiers===
+
+===4. Applying transformations===
+
+===5. Changing & tweening modifier properties===
+
+===6. Using Phase===
+
+===7. Collapsing the modifier stack===
