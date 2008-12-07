@@ -1,6 +1,8 @@
-=The AS3Dmod Tutorial=
+=The AS3Dmod Tutorial (in prog=
 
 ===0. Introduction===
+
+AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash and AS3. 
 
 ===1. Setting up the workspace===
 
@@ -20,10 +22,37 @@ var stack:Modifierstack = new Modifierstack(new LibraryPv3d(), do3d);
 
 ===3. Creating modifiers===
 
+{{{
+var bend:Bend = new Bend(0.5, 0.5);
+stack.addModifier(bend);
+}}}
+
 ===4. Applying transformations===
+
+{{{
+stack.apply()
+}}}
 
 ===5. Changing & tweening modifier properties===
 
+{{{
+bend.force += 0.01;
+stack.apply();
+}}}
+
 ===6. Using Phase===
 
+{{{
+var phase:Phase = new Phase();
+}}}
+
 ===7. Collapsing the modifier stack===
+
+{{{
+stack.collapse();
+}}}
+
+
+
+
+
