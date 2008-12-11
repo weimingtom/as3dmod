@@ -2,7 +2,7 @@
 
 ===0. Introduction===
 
-AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash and AS3. 
+AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash and AS3.
 
 ===1. Setting up the workspace===
 
@@ -14,6 +14,8 @@ To create 3d animations using AS3Dmod you will need the following:
   * *Tweener* We will use Tweener in the animation examples, althought any other AS3 tweening library should also work.
 
 ===2. Creating modifer stack===
+
+To start working with AS3Dmod you need always to create a modifier stack.
 
 {{{
 var do3d:DisplayObject3d = new Plane();
@@ -51,4 +53,3 @@ var phase:Phase = new Phase();
 {{{
 stack.collapse();
 }}}
-
