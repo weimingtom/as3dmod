@@ -18,7 +18,7 @@ To create 3d animations using AS3Dmod you will need the following:
 
 As I mentioned above, this tutorial will assume that you use Papervision3D for you Flash 3D development. If you intend to use AS3Dmod with other supported engines, you will need to adapt your code. However, the rules apply the same way to any engine, so this tutorial is still valid.
 
-Create a project in your AS3 editor and make sure you have the Papervision3D classes as well as AS3Dmod classes in your classpath. To make things easier, we will extend the class `BasicView` to create ad 3d scene to work on. Here's our starting point:
+To start with, create a project in your AS3 editor and make sure you have the Papervision3D classes as well as AS3Dmod classes in your classpath. To make things easier, we will extend the class `BasicView` to create ad 3d scene to work on. Here's our starting point:
 
 {{{
 package com.as3dmod.tutorial {
@@ -38,6 +38,8 @@ package com.as3dmod.tutorial {
 			var mat:WireframeMaterial = new WireframeMaterial();
 			mat.doubleSided = true;
 			plane = new Plane(mat, 300, 300, 10, 10);
+			plane.rotationX = 45;
+			plane.rotationY = 45;
 			scene.addChild(plane);
 			startRendering();
 		}
@@ -49,21 +51,64 @@ package com.as3dmod.tutorial {
 }
 }}}
 
+The beauty of `BasicView` is that it does all the job of creating the 3d environment for us. The only thing we need to do is to create a plane to which we will later apply the modifiers. 
+
+The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later.
+
 ===2. Creating modifer stack===
 
-To start working with AS3Dmod you need always to create a modifier stack. A modifier stack is an array the contains all the modifiers. A single stack can be bound to only one 3d object
+The first step with AS3Dmod is to create a modifier stack. The modifier stack is a link between the 3d object that we want to modify and the modifiers themselves. The modifier stack is a central class of the whole AS3Dmod llibrary. It is important to note that modifiers cannot be applied directly to a 3d object. Everything is handled by the stack. Here's the import:
 
 {{{
-var do3d:DisplayObject3d = new Plane();
-var stack:Modifierstack = new Modifierstack(new LibraryPv3d(), do3d);
+import com.as3dmod.ModifierStack;
 }}}
+
+Since we might want to use the stack in different places in our code, it is always recommended to declare is as class member variable.
+
+{{{
+private var mstack:ModifierStack;
+}}}
+
+After that, in the constructor, before the call to the `startRendering()` we can create the instance of the stack:
+
+{{{
+mstack = new ModifierStack(new LibraryPv3d(), plane);
+}}}
+
+This important line creates the stack by providing it with two arguments. The first one indicates the 3d library we are using, by creating an instance of a special class. Here are the classes that you need to use for each of the supported libraries:
+
+{{{
+com.as3dmod.plugins.sandy3d.LibrarySandy3d;	
+com.as3dmod.plugins.alternativa3d.LibraryAlternativa3d;	
+com.as3dmod.plugins.away3d.LibraryAway3d;	
+com.as3dmod.plugins.pv3d.LibraryPv3d;
+}}}
+
+Just creating the instance of the right class like show above is enough, and you do not need to care about anything 3d engine related anymore - just use the modifiers.
+
+The second argument is the 3d object that the modifiers will be applied to. We pass the plane created before. AS3Dmod works with any 3d object, including all the primitives (planes, cubes, spheres, etc) as well as with different imported types like Collada DAE or Wavefront OBJ (available in Away3d). 
+
+However, if you want to apply the modifiers to Collada objects, you need to make sure you pass as argument the object that holds the geometry data (typically a child of the root object in a Collada file). I goes beyond the scope of this tutorial anyway :)
 
 ===3. Creating modifiers===
 
+The fun begins! Let's start with a simple bend. Immediately after you created the modifier stack, add the following lines:
+
 {{{
-var bend:Bend = new Bend(0.5, 0.5);
-stack.addModifier(bend);
+var noise:Noise = new Noise(20);
+mstack.addModifier(noise);
+mstack.apply();
 }}}
+
+Compile your class, and you will see that the plane is randomly displaced - this is what the Noise modifier does. 
+
+Let's examine the code. In the first line you create a modifier. Noise is one of the family of modifiers. The argument indicates the force of the effect
+
+All the modifiers can be found in the following package: `com.as3dmod.modifiers`. Refer to the docs to see them all:
+
+http://www.everydayflash.com/flash/as3dmod/doc/
+
+
 
 ===4. Applying transformations===
 
