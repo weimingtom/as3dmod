@@ -4,18 +4,54 @@
 
 AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash and AS3.
 
-===1. Setting up the workspace===
-
 To create 3d animations using AS3Dmod you will need the following:
 
   * *Actionscript3 editor*: [http://www.flashdevelop.org/community/ FlashDevelop], [http://fdt.powerflasher.com/ FDT] or [http://www.adobe.com/products/flex/ FlexBuilder]. The Flash IDE is not recommended. If you don't have any favorite editor use [http://www.flashdevelop.org/community/ FlashDevelop] which is available for free. 
+
   * *A Flash 3D engine* AS3Dmod currently works with [http://blog.papervision3d.org Papervision3d], [http://www.away3d.com Away3d], [http://www.sandy3d.com Sandy3d] and [http://alternativaplatform.com/en/ Alternativa3d]. This tutorial features examples in Papervision3d. Again, I recommend using the latest version from the projects' respective SVN repositories. 
+
   * *AS3Dmod library* It is strongly recommended to use the latest version from SVN [http://code.google.com/p/as3dmod/source/browse/trunk available here].
+
   * *Tweener* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, althought any other AS3 tweening library should also work.
+
+===1. Setting up the workspace===
+
+As I mentioned above, this tutorial will assume that you use Papervision3D for you Flash 3D development. If you intend to use AS3Dmod with other supported engines, you will need to adapt your code. However, the rules apply the same way to any engine, so this tutorial is still valid.
+
+Create a project in your AS3 editor and make sure you have the Papervision3D classes as well as AS3Dmod classes in your classpath. To make things easier, we will extend the class `BasicView` to create ad 3d scene to work on. Here's our starting point:
+
+{{{
+package com.as3dmod.tutorial {
+	import org.papervision3d.cameras.CameraType;
+	import org.papervision3d.materials.WireframeMaterial;
+	import org.papervision3d.objects.primitives.Plane;
+	import org.papervision3d.view.BasicView;
+	
+	import flash.events.Event;	
+
+	public class AS3DmodTutorial extends BasicView {
+
+		private var plane:Plane;
+
+		public function AS3DmodTutorial() {
+			super(800, 600, true, false, CameraType.FREE);
+			var mat:WireframeMaterial = new WireframeMaterial();
+			mat.doubleSided = true;
+			plane = new Plane(mat, 300, 300, 10, 10);
+			scene.addChild(plane);
+			startRendering();
+		}
+		
+		protected override function onRenderTick(event:Event = null):void {
+			super.onRenderTick(event);
+		}
+	}
+}
+}}}
 
 ===2. Creating modifer stack===
 
-To start working with AS3Dmod you need always to create a modifier stack.
+To start working with AS3Dmod you need always to create a modifier stack. A modifier stack is an array the contains all the modifiers. A single stack can be bound to only one 3d object
 
 {{{
 var do3d:DisplayObject3d = new Plane();
