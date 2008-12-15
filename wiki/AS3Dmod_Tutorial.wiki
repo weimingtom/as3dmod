@@ -1,6 +1,6 @@
 =The AS3Dmod Tutorial (in progress) =
 
-===0. Introduction===
+===Introduction===
 
 AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash and AS3.
 
@@ -51,7 +51,7 @@ package com.as3dmod.tutorial {
 }
 }}}
 
-The beauty of `BasicView` is that it does all the job of creating the 3d environment for us. The only thing we need to do is to create a plane to which we will later apply the modifiers. 
+The beauty of `BasicView` is that it does all the job of creating the 3d environment for us. The only thing we need to do is to create a plane to which we will later apply the modifiers. The plane is rotated on the X and Y axes a bit to give it a better 3d look.
 
 The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later.
 
@@ -102,34 +102,49 @@ mstack.apply();
 
 Compile your class, and you will see that the plane is randomly displaced - this is what the Noise modifier does. 
 
-Let's examine the code. In the first line you create a modifier. Noise is one of the family of modifiers. The argument indicates the force of the effect
+Let's examine the code. In the first line you create a modifier. Noise is one of the family of modifiers. The argument indicates the force of the effect - you can different values here. 0 means no deformation at all, while a value somewhere around a 200 creates such a strong deformation that it doesn't make much sense any more.
 
-All the modifiers can be found in the following package: `com.as3dmod.modifiers`. Refer to the docs to see them all:
+Once the modifier is created it needs to be added the the stack. That is the only way it can be applied to the 3d object. 
 
-http://www.everydayflash.com/flash/as3dmod/doc/
+This is good place to not one important feature. It DOES matter in which order the modifiers are added to the stack. The first ones added will be the first ones applied, and each modifier is applied to an object already transformed by any modifiers that were applied before him. Sometimes the difference won't be important, but in other cases changing the order the modifiers are added to the stack can completely change the final visual effect. It is always good to experiment with that, because in most cases the results are hard to predict. 
 
+The last line in the code above has a key importance. It tells the stack to apply ALL the modifiers to 3d object. What is important to understand here is that the modifiers are applied and deform the object but its original geometry (i.e. shape) is conserved. Whenever `apply()` is invoked again all the modifiers are applied on the original geometry of the object. In other words: calling apply multiple times gives end up always with the final result.
 
+===4. Changing & tweening modifier properties===
 
-===4. Applying transformations===
+Obviously, modifiers are most useful when used to animate object. In order to do this we need to change properties of the modifier in a regular timespan, and after each change call the `apply()`. Typically in Flash the best place to do this is on each frame just before calling the rendering function of the engine. 
 
-{{{
-stack.apply()
-}}}
-
-===5. Changing & tweening modifier properties===
+The Noise modifier that we added before is very simple and not very useful for animation purposes. Let's remove it and add another one instead:
 
 {{{
-bend.force += 0.01;
-stack.apply();
+import com.as3dmod.modifiers.Perlin;
+
+[...]
+
+var perlin:Perlin = new Perlin(2);
+mstack.addModifier(perlin);
 }}}
 
-===6. Using Phase===
+We do not call the `apply()` method here anymore. Instead we will call it on every frame. In the BasicView class, the the place where it should be done is the `onRenderTick` method already mentioned above:
+
+{{{
+protected override function onRenderTick(event:Event = null):void {
+	stack.apply();
+	super.onRenderTick(event);
+}
+}}}
+
+If you run the code you should see the plane waving gently as if it was a cloth exposed to  wind. This is the effect of the Perlin modifier. The animation is made possible because `apply()` is called on each frame. 
+
+If you are 
+
+===5. Using Phase===
 
 {{{
 var phase:Phase = new Phase();
 }}}
 
-===7. Collapsing the modifier stack===
+===6. Collapsing the modifier stack===
 
 {{{
 stack.collapse();
