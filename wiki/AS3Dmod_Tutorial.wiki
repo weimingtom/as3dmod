@@ -110,7 +110,7 @@ This is good place to not one important feature. It DOES matter in which order t
 
 The last line in the code above has a key importance. It tells the stack to apply ALL the modifiers to 3d object. What is important to understand here is that the modifiers are applied and deform the object but its original geometry (i.e. shape) is conserved. Whenever `apply()` is invoked again all the modifiers are applied on the original geometry of the object. In other words: calling apply multiple times gives end up always with the final result.
 
-===4. Changing & tweening modifier properties===
+===4. Animating modifiers===
 
 Obviously, modifiers are most useful when used to animate object. In order to do this we need to change properties of the modifier in a regular timespan, and after each change call the `apply()`. Typically in Flash the best place to do this is on each frame just before calling the rendering function of the engine. 
 
@@ -136,9 +136,11 @@ protected override function onRenderTick(event:Event = null):void {
 
 If you run the code you should see the plane waving gently as if it was a cloth exposed to  wind. This is the effect of the Perlin modifier. The animation is made possible because `apply()` is called on each frame. 
 
-If you are 
+If you were reading carefully, you might think that something is messing here: we call `apply()` over and over again, but we never modify any parameter of the modifier itself. That is true! The animation is made possible because Perlin is a bit special modifier. It animates itself internally. 
 
-===5. Using Phase===
+The other modifiers do not work like this, and their properties need to be explicitly updated in the code. Let's examine probably the most popular one: Bend.
+
+===5. Changing modifier properties===
 
 {{{
 var phase:Phase = new Phase();
