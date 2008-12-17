@@ -213,7 +213,7 @@ If you run the example now, the plane should bend back and forth in a movement t
 
 ==7. Animating with Tweener==
 
-[http://code.google.com/p/tweener/ Tweener] is a popular library used in Actionscript animation. It is very easy to understand and to use and has some quite powerful functionality. Fortunately integrating it with AS3Dmod is very a piece of cake. 
+[http://code.google.com/p/tweener/ Tweener] is a popular library used in Actionscript animation originally created by Zeh Fernando. It is very easy to understand and to use and has some quite powerful features. Fortunately integrating it with AS3Dmod is a piece of cake. 
 
 To use Tweener, you need first of all remove the code that animates the force value in `onRenderTick`: 
 
@@ -221,6 +221,20 @@ To use Tweener, you need first of all remove the code that animates the force va
 // phase.value += .05;
 // bend.force = phase.phasedValue;
 }}}
+
+Now lets add two new functions:
+
+{{{
+private function tweenA():void {
+	Tweener.addTween(bend, {force:1, time:2, transition:"easeInOutElastic", onComplete:tweenB});
+}
+		
+private function tweenB():void {
+	Tweener.addTween(bend, {force:-1, time:2, transition:"easeInOutElastic", onComplete:tweenA});
+}
+}}}
+
+Discussing Tweener in depth is not it the scope of this tutorial, but here's a very good documentation you can refer to [http://hosted.zeh.com.br/tweener/docs/en-us/]. 
 
 
 ==7. Collapsing the modifier stack==
