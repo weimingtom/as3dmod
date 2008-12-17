@@ -246,8 +246,24 @@ There you go! The plane sound now bend with an elastic movement back and forth.
 
 Now that you know all the basics of using the modifier stack as well as adding and animating modifiers, I'd like to cover one last feature. Collapsing the stack means applying all the modifiers and freezing the geometry. This is particularly usefull if you want to apply one modifier once, and then add more modifiers later that will be animated.
 
-Go to the place where the stack and all the 
+Go to the place where the stack and all the modifiers are initiated and add the Noise modifier:
 
 {{{
-stack.collapse();
+mstack = new ModifierStack(new LibraryPv3d(), plane);
+
+var noise:Noise = new Noise(20);
+mstack.addModifier(noise);
+
+bend = new Bend(0, 0.5);
+mstack.addModifier(bend);
 }}}
+
+If you run the code now, you will notice that the plane shakes like crazy. That is because  at each frame, when `apply()` is called both Noise and Bend are applied. Noise adds a random displacement to each vertex of the plane each time - hence the shaking. Now try to collapse the stack just after the Noise modifier was added:
+
+{{{
+mstack.addModifier(noise);
+mstack.collapse();
+bend = new Bend(0, 0.5);
+}}}
+
+The plane should now have a crumpled look and the bend should be working exactly the same as before. 
