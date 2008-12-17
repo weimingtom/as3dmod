@@ -20,7 +20,9 @@ To create 3d animations using AS3Dmod you will need the following:
 
 As I mentioned above, this tutorial will assume that you use Papervision3D for you Flash 3D development. If you intend to use AS3Dmod with other supported engines, you will need to adapt your code. However, the rules apply the same way to any engine, so this tutorial is still valid.
 
-To start with, create a project in your AS3 editor and make sure you have the Papervision3D classes as well as AS3Dmod classes in your classpath. To make things easier, we will extend the class `BasicView` to create ad 3d scene to work on. Here's our starting point:
+To start with, create a project in your AS3 editor and make sure you have the Papervision3D classes as well as AS3Dmod classes in your classpath. To make things easier, we will extend the class `BasicView` to create ad 3d scene to work on. BasicView is a class that makes working with Papervision3D a lot easier, and it is great for all demos/examples etc. Read more about it [http://pv3d.org/2008/12/06/what-is-basicview/ here]. 
+
+Here's a stub that we will use in our tutorial:
 
 {{{
 package com.as3dmod.tutorial {
@@ -181,7 +183,7 @@ bend.force += .01;
 
 At each frame we are incrementing the the force of the bend a little bit. If you run the example now you can see the the plane bending slowly, at the point where the force = 2 it will start to roll on itself (that usually doesn't look good, especially with a color/bitmap material). 
 
-==6. Using Phase & Tweener==
+==6. Animating with Phase==
 
 You can always write your own code to control the properties of any modifier. There are however two simple ways to animate them without to much hassle. The first one is the Phase class. To use it let's import it and create a new class member variable and initialize the instance:
 
@@ -194,18 +196,31 @@ private var phase:Phase;
 
 [...]
 
+// Anywhere in the constructor
 phase = new Phase();
 }}}
 
-Phase is a class that let's you create simple bouncing animation. It is very basic and is no match to other tweening solutions available, but it's very useful in many cases, and that is why I decided to include it in the sources. The way it works is that it holds a value and returns a sine of this values. If you increment the values, you will get back values in range -1 to 1 in form of a wave - going up and down. If you ever heard the term 'sine wave' - that's what it is. 
-
+Phase is a class that lets you create simple waveform animation. It is very basic and is no match to other tweening solutions available, but it's very useful in many cases, and that is why I decided to include it in the sources. The way it works is that it holds a value and returns a sine of this values. If you increment the values, you will get back values in range -1 to 1 in form of a wave - going up and down. If you ever heard the term 'sine wave' - that's what it is. 
 
 Now in `onRenderTick` instead of incrementing the force of the bend, add the following code:
 
 {{{
-bend.force += pa;
+phase.value += .05;
+bend.force = phase.phasedValue;
 }}}
 
+If you run the example now, the plane should bend back and forth in a movement that looks a little bit like a flight of a large (square) bird. The `phasedValue` will always oscillate between -1 and 1. Whenever you need different range - multiply this value or add something to it. 
+
+==7. Animating with Tweener==
+
+[http://code.google.com/p/tweener/ Tweener] is a popular library used in Actionscript animation. It is very easy to understand and to use and has some quite powerful functionality. Fortunately integrating it with AS3Dmod is very a piece of cake. 
+
+To use Tweener, you need first of all remove the code that animates the force value in `onRenderTick`: 
+
+{{{
+// phase.value += .05;
+// bend.force = phase.phasedValue;
+}}}
 
 
 ==7. Collapsing the modifier stack==
