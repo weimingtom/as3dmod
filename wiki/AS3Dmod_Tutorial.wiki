@@ -1,6 +1,6 @@
 =The AS3Dmod Tutorial (in progress) =
 
-<wiki:toc max_depth="1" />
+<wiki:toc max_depth="2" />
 
 ===Introduction===
 
