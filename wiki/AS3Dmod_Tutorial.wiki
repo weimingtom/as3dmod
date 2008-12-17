@@ -2,7 +2,7 @@
 
 <wiki:toc max_depth="2" />
 
-===Introduction===
+==Introduction==
 
 AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash and AS3.
 
@@ -16,7 +16,7 @@ To create 3d animations using AS3Dmod you will need the following:
 
   * *Tweener* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, althought any other AS3 tweening library should also work.
 
-===1. Setting up the workspace===
+==1. Setting up the workspace==
 
 As I mentioned above, this tutorial will assume that you use Papervision3D for you Flash 3D development. If you intend to use AS3Dmod with other supported engines, you will need to adapt your code. However, the rules apply the same way to any engine, so this tutorial is still valid.
 
@@ -57,7 +57,7 @@ The beauty of `BasicView` is that it does all the job of creating the 3d environ
 
 The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later.
 
-===2. Creating modifer stack===
+==2. Creating modifer stack==
 
 The first step with AS3Dmod is to create a modifier stack. The modifier stack is a link between the 3d object that we want to modify and the modifiers themselves. The modifier stack is a central class of the whole AS3Dmod llibrary. It is important to note that modifiers cannot be applied directly to a 3d object. Everything is handled by the stack. Here's the import:
 
@@ -92,7 +92,7 @@ The second argument is the 3d object that the modifiers will be applied to. We p
 
 However, if you want to apply the modifiers to Collada objects, you need to make sure you pass as argument the object that holds the geometry data (typically a child of the root object in a Collada file). I goes beyond the scope of this tutorial anyway :)
 
-===3. Creating modifiers===
+==3. Creating modifiers==
 
 The fun begins! Let's start with a simple bend. Immediately after you created the modifier stack, add the following lines:
 
@@ -112,7 +112,7 @@ This is good place to not one important feature. It DOES matter in which order t
 
 The last line in the code above has a key importance. It tells the stack to apply ALL the modifiers to 3d object. What is important to understand here is that the modifiers are applied and deform the object but its original geometry (i.e. shape) is conserved. Whenever `apply()` is invoked again all the modifiers are applied on the original geometry of the object. In other words: calling apply multiple times gives end up always with the final result.
 
-===4. Animating modifiers===
+==4. Animating modifiers==
 
 Obviously, modifiers are most useful when used to animate object. In order to do this we need to change properties of the modifier in a regular timespan, and after each change call the `apply()`. Typically in Flash the best place to do this is on each frame just before calling the rendering function of the engine. 
 
@@ -142,7 +142,7 @@ If you were reading carefully, you might think that something is messing here: w
 
 The other modifiers do not work like this, and their properties need to be explicitly updated in the code. Let's examine probably the most popular one: Bend.
 
-===5. Changing modifier properties===
+==5. Changing modifier properties==
 
 Let's start by removing the Perlin modifier. It is perfectly enough to comment out the line where it is added to the stack:
 
@@ -181,7 +181,7 @@ bend.force += .01;
 
 At each frame we are incrementing the the force of the bend a little bit. If you run the example now you can see the the plane bending slowly, at the point where the force = 2 it will start to roll on itself (that usually doesn't look good, especially with a color/bitmap material). 
 
-===6. Using Phase & Tweener ===
+==6. Using Phase & Tweener==
 
 You can always write your own code to control the properties of any modifier. There are however two simple ways to animate them without to much hassle. The first one is the Phase class. To use it let's import it and create a new class member variable and initialize the instance:
 
@@ -208,7 +208,7 @@ bend.force += pa;
 
 
 
-===7. Collapsing the modifier stack===
+==7. Collapsing the modifier stack==
 
 {{{
 stack.collapse();
