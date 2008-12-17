@@ -167,15 +167,44 @@ bend = new Bend(0, 0.5);
 mstack.addModifier(bend);
 }}}
 
-The two arguments in the constructor are: the force and the offset. Setting the force to 0 mean no bend at all - this is what we want to start with. The second argument, called offset, indicates the in the object where the bending will start. 0 is the top/left edge of the object and 1 is its bottom/right edge. 0.5 will start the bend in the middle point of the geometry - this is what we set here, but it is also the default value. 
+The two arguments in the constructor are: the force and the offset. Setting the force to 0 mean no bend at all - this is what we want to start with. The other meaningful values of bend force are: 1 for a 180 degrees bending for 2 for 360. If you know radians you can notice that the force is actually the value of the bend in radians divided by PI. 
 
-Now let's move...
+The second argument, called offset, indicates the in the object where the bending will start. 0 is the top/left edge of the object and 1 is its bottom/right edge. 0.5 will start the bend in the middle point of the geometry - this is what we set here, but it is also the default value. 
 
-===6. Using Phase===
+Now, let's move to the `onRenderTick` method. Just before the `mstack.apply()` line add the following:
 
 {{{
-var phase:Phase = new Phase();
+bend.force += .01;
 }}}
+
+At each frame we are incrementing the the force of the bend a little bit. If you run the example now you can see the the plane bending slowly, at the point where the force = 2 it will start to roll on itself (that usually doesn't look good, especially with a color/bitmap material). 
+
+===6. Using Phase & Tweener ===
+
+You can always write your own code to control the properties of any modifier. There are however two simple ways to animate them without to much hassle. The first one is the Phase class. To use it let's import it and create a new class member variable and initialize the instance:
+
+{{{
+import com.as3dmod.util.Phase;
+
+[...]
+
+private var phase:Phase;
+
+[...]
+
+phase = new Phase();
+}}}
+
+Phase is a class that let's you create simple bouncing animation. It is very basic and is no match to other tweening solutions available, but it's very useful in many cases, and that is why I decided to include it in the sources. The way it works is that it holds a value and returns a sine of this values. If you increment the values, you will get back values in range -1 to 1 in form of a wave - going up and down. If you ever heard the term 'sine wave' - that's what it is. 
+
+
+Now in `onRenderTick` instead of incrementing the force of the bend, add the following code:
+
+{{{
+bend.force += pa;
+}}}
+
+
 
 ===7. Collapsing the modifier stack===
 
