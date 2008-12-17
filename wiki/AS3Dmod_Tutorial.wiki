@@ -234,10 +234,19 @@ private function tweenB():void {
 }
 }}}
 
-Discussing Tweener in depth is not it the scope of this tutorial, but here's a very good documentation you can refer to [http://hosted.zeh.com.br/tweener/docs/en-us/]. 
+Discussing Tweener in depth is not it the scope of this tutorial, but here's a very good documentation you can refer to [http://hosted.zeh.com.br/tweener/docs/en-us/]. But in brief what those to functions do, is that they initiate animations of the bend force parameter. Thanks to the `onComplete` parameter whenever `tweenA` ends it calls `tweenB` and vice-versa. Thanks to this the animation is looped. No the only thing we need is to start the tween for the first time. To do this just add a method call at the very end of the constructor:
 
+{{{
+tweenA();
+}}}
+
+There you go! The plane sound now bend with an elastic movement back and forth. 
 
 ==7. Collapsing the modifier stack==
+
+Now that you know all the basics of using the modifier stack as well as adding and animating modifiers, I'd like to cover one last feature. Collapsing the stack means applying all the modifiers and freezing the geometry. This is particularly usefull if you want to apply one modifier once, and then add more modifiers later that will be animated.
+
+Go to the place where the stack and all the 
 
 {{{
 stack.collapse();
