@@ -1,5 +1,7 @@
 =The AS3Dmod Tutorial (in progress) =
 
+<wiki:toc max_depth="1" />
+
 ===Introduction===
 
 AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash and AS3.
