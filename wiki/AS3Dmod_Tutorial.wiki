@@ -142,11 +142,42 @@ The other modifiers do not work like this, and their properties need to be expli
 
 ===5. Changing modifier properties===
 
+Let's start by removing the Perlin modifier. It is perfectly enough to comment out the line where it is added to the stack:
+
+{{{
+// mstack.addModifier(perlin);
+}}}
+
+That way this modifier is not used anymore, and does not consume any ressources. 
+
+So instead of Perlin let's add Bend. But this time we will need to define it as a class member variable. So, add this before the constructor together with the rest of the variables: 
+
+{{{
+import com.as3dmod.modifiers.Bend;
+
+[...]
+
+private var bend:Bend;
+}}}
+
+Now we can define the modifier itself. In the same place where you added the Perlin modifier before add this:
+
+{{{
+bend = new Bend(0, 0.5);
+mstack.addModifier(bend);
+}}}
+
+The two arguments in the constructor are: the force and the offset. Setting the force to 0 mean no bend at all - this is what we want to start with. The second argument, called offset, indicates the in the object where the bending will start. 0 is the top/left edge of the object and 1 is its bottom/right edge. 0.5 will start the bend in the middle point of the geometry - this is what we set here, but it is also the default value. 
+
+Now let's move...
+
+===6. Using Phase===
+
 {{{
 var phase:Phase = new Phase();
 }}}
 
-===6. Collapsing the modifier stack===
+===7. Collapsing the modifier stack===
 
 {{{
 stack.collapse();
