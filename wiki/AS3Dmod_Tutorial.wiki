@@ -14,7 +14,7 @@ To create 3d animations using AS3Dmod you will need the following:
 
   * *AS3Dmod library* It is strongly recommended to use the latest version from SVN [http://code.google.com/p/as3dmod/source/browse/trunk available here].
 
-  * *Tweener* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, althought any other AS3 tweening library should also work.
+  * *Tweener* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, although any other AS3 tweening library should also work.
 
 ==1. Setting up the workspace==
 
@@ -59,9 +59,9 @@ The beauty of `BasicView` is that it does all the job of creating the 3d environ
 
 The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later.
 
-==2. Creating modifer stack==
+==2. Creating modifier stack==
 
-The first step with AS3Dmod is to create a modifier stack. The modifier stack is a link between the 3d object that we want to modify and the modifiers themselves. The modifier stack is a central class of the whole AS3Dmod llibrary. It is important to note that modifiers cannot be applied directly to a 3d object. Everything is handled by the stack. Here's the import:
+The first step with AS3Dmod is to create a modifier stack. The modifier stack is a link between the 3d object that we want to modify and the modifiers themselves. The modifier stack is a central class of the whole AS3Dmod library. It is important to note that modifiers cannot be applied directly to a 3d object. Everything is handled by the stack. Here's the import:
 
 {{{
 import com.as3dmod.ModifierStack;
@@ -116,7 +116,7 @@ The last line in the code above has a key importance. It tells the stack to appl
 
 ==4. Animating modifiers==
 
-Obviously, modifiers are most useful when used to animate object. In order to do this we need to change properties of the modifier in a regular timespan, and after each change call the `apply()`. Typically in Flash the best place to do this is on each frame just before calling the rendering function of the engine. 
+Obviously, modifiers are most useful when used to animate object. In order to do this we need to change properties of the modifier in a regular time interval, and after each change call the `apply()`. Typically in Flash the best place to do this is on each frame just before calling the rendering function of the engine. 
 
 The Noise modifier that we added before is very simple and not very useful for animation purposes. Let's remove it and add another one instead:
 
@@ -152,7 +152,7 @@ Let's start by removing the Perlin modifier. It is perfectly enough to comment o
 // mstack.addModifier(perlin);
 }}}
 
-That way this modifier is not used anymore, and does not consume any ressources. 
+That way this modifier is not used anymore, and does not consume any resources. 
 
 So instead of Perlin let's add Bend. But this time we will need to define it as a class member variable. So, add this before the constructor together with the rest of the variables: 
 
@@ -213,7 +213,7 @@ If you run the example now, the plane should bend back and forth in a movement t
 
 ==7. Animating with Tweener==
 
-[http://code.google.com/p/tweener/ Tweener] is a popular library used in Actionscript animation originally created by Zeh Fernando. It is very easy to understand and to use and has some quite powerful features. Fortunately integrating it with AS3Dmod is a piece of cake. 
+[http://code.google.com/p/tweener/ Tweener] is a popular library used in Actionscript animation. It is very easy to understand and to use and has some quite powerful features. Fortunately integrating it with AS3Dmod is a piece of cake. 
 
 To use Tweener, you need first of all remove the code that animates the force value in `onRenderTick`: 
 
@@ -244,7 +244,7 @@ There you go! The plane sound now bend with an elastic movement back and forth.
 
 ==7. Collapsing the modifier stack==
 
-Now that you know all the basics of using the modifier stack as well as adding and animating modifiers, I'd like to cover one last feature. Collapsing the stack means applying all the modifiers and freezing the geometry. This is particularly usefull if you want to apply one modifier once, and then add more modifiers later that will be animated.
+Now that you know all the basics of using the modifier stack as well as adding and animating modifiers, I'd like to cover one last feature. Collapsing the stack means applying all the modifiers and freezing the geometry. This is particularly useful if you want to apply one modifier once, and then add more modifiers later that will be animated.
 
 Go to the place where the stack and all the modifiers are initiated and add the Noise modifier:
 
