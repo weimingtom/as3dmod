@@ -18,7 +18,7 @@ To create 3d animations using AS3Dmod you will need the following:
 
 ==1. Setting up the workspace==
 
-As I mentioned above, this tutorial will assume that you use Papervision3D for you Flash 3D development. If you intend to use AS3Dmod with other supported engines, you will need to adapt your code. However, the rules apply the same way to any engine, so this tutorial is still valid.
+As mentioned above, this tutorial assumes that you use Papervision3D. If you intend to use AS3Dmod with other supported engines, you will need to adapt the code shown below. However, the rules apply the same way to any engine, so this tutorial is still valid.
 
 To start with, create a project in your AS3 editor and make sure you have the Papervision3D classes as well as AS3Dmod classes in your classpath. To make things easier, we will extend the class `BasicView` to create ad 3d scene to work on. BasicView is a class that makes working with Papervision3D a lot easier, and it is great for all demos/examples etc. Read more about it [http://pv3d.org/2008/12/06/what-is-basicview/ here]. 
 
