@@ -57,7 +57,9 @@ package com.as3dmod.tutorial {
 }
 }}}
 
-The beauty of `BasicView` is that it does all the job of creating the 3d environment for us. The only thing we need to do is to create a plane to which we will later apply the modifiers. The plane is rotated on the X and Y axes a bit to give it a better 3d look.
+The beauty of `BasicView` is that it does all the job of creating the 3d environment for us. The only thing we need to do is to create a plane to which we will later apply the modifiers. The plane is rotated on the X and Y axes a bit to give it a better 3d look. Here's what you should see after compiling this example:
+
+[http://www.everydayflash.com/flash/as3dmod/tutorial/base.gif]
 
 The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later.
 
