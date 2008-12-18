@@ -110,6 +110,8 @@ mstack.apply();
 
 Compile your class, and you will see that the plane is randomly displaced - this is what the Noise modifier does. 
 
+[http://www.everydayflash.com/flash/as3dmod/tutorial/noise.gif]
+
 Let's examine the code. In the first line you create a modifier. Noise is one of the family of modifiers. The argument indicates the force of the effect - you can different values here. 0 means no deformation at all, while a value somewhere around a 200 creates such a strong deformation that it doesn't make much sense any more.
 
 Once the modifier is created it needs to be added the the stack. That is the only way it can be applied to the 3d object. 
@@ -144,21 +146,15 @@ protected override function onRenderTick(event:Event = null):void {
 
 If you run the code you should see the plane waving gently as if it was a cloth exposed to  wind. This is the effect of the Perlin modifier. The animation is made possible because `apply()` is called on each frame. 
 
+[http://www.everydayflash.com/flash/as3dmod/tutorial/perlin.gif]
+
 If you were reading carefully, you might think that something is messing here: we call `apply()` over and over again, but we never modify any parameter of the modifier itself. That is true! The animation is made possible because Perlin is a bit special modifier. It animates itself internally. 
 
 The other modifiers do not work like this, and their properties need to be explicitly updated in the code. Let's examine probably the most popular one: Bend.
 
 ==5. Changing modifier properties==
 
-Let's start by removing the Perlin modifier. It is perfectly enough to comment out the line where it is added to the stack:
-
-{{{
-// mstack.addModifier(perlin);
-}}}
-
-That way this modifier is not used anymore, and does not consume any resources. 
-
-So instead of Perlin let's add Bend. But this time we will need to define it as a class member variable. So, add this before the constructor together with the rest of the variables: 
+Let's start by removing the Perlin modifier and instead of Perlin let's add Bend. But this time we will need to define it as a class member variable. So, add this before the constructor together with the rest of the variables: 
 
 {{{
 import com.as3dmod.modifiers.Bend;
