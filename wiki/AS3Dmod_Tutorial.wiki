@@ -14,7 +14,7 @@ To create 3d animations using AS3Dmod you will need the following:
 
   * *AS3Dmod library* It is strongly recommended to use the latest version from SVN [http://code.google.com/p/as3dmod/source/browse/trunk available here].
 
-  * *Tweener* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, although any other AS3 tweening library should also work.
+  * *Tweener* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, although any other AS3 tweening library can also be integrated with AS3Dmod.
 
 ==1. Setting up the workspace==
 
