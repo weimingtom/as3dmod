@@ -8,13 +8,13 @@ AS3Dmod is a cross-engine modifier library for creating 3d animations in Flash a
 
 To create 3d animations using AS3Dmod you will need the following:
 
-  * *An Actionscript3 editor*: [http://www.flashdevelop.org/community/ FlashDevelop], [http://fdt.powerflasher.com/ FDT] or [http://www.adobe.com/products/flex/ FlexBuilder]. The Flash IDE is not recommended. If you don't have any favorite editor use [http://www.flashdevelop.org/community/ FlashDevelop] which is available for free. 
+  * *An Actionscript3 editor:* [http://www.flashdevelop.org/community/ FlashDevelop], [http://fdt.powerflasher.com/ FDT] or [http://www.adobe.com/products/flex/ FlexBuilder]. The Flash IDE is not recommended. If you don't have any favorite editor use [http://www.flashdevelop.org/community/ FlashDevelop] which is available for free. 
 
-  * *A Flash 3D engine*: AS3Dmod currently works with [http://blog.papervision3d.org Papervision3d], [http://www.away3d.com Away3d], [http://www.sandy3d.com Sandy3d] and [http://alternativaplatform.com/en/ Alternativa3d]. This tutorial features examples in Papervision3d. Whichever you choose, I recommend using the latest versions from SVN repositories. 
+  * *A Flash 3D engine:* AS3Dmod currently works with [http://blog.papervision3d.org Papervision3d], [http://www.away3d.com Away3d], [http://www.sandy3d.com Sandy3d] and [http://alternativaplatform.com/en/ Alternativa3d]. This tutorial features examples in Papervision3d. Whichever you choose, I recommend using the latest versions from SVN repositories. 
 
-  * *AS3Dmod library* You must use the latest version from SVN [http://code.google.com/p/as3dmod/source/browse/trunk available here].
+  * *AS3Dmod library:* You must use the latest version from SVN [http://code.google.com/p/as3dmod/source/browse/trunk available here].
 
-  * *Tweener* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, although any other AS3 tweening library can also be integrated with AS3Dmod.
+  * *Tweener:* We will use [http://code.google.com/p/tweener/ Tweener] in the animation examples, although any other AS3 tweening library can also be integrated with AS3Dmod.
 
 ==1. Setting up the workspace==
 
