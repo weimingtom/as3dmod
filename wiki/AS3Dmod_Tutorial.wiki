@@ -248,7 +248,7 @@ tweenA();
 
 There you go! The plane sound now bend with an elastic movement back and forth. 
 
-==7. Collapsing the modifier stack==
+==8. Collapsing the modifier stack==
 
 Now that you know all the basics of using the modifier stack as well as adding and animating modifiers, I'd like to cover one last feature. Collapsing the stack means applying all the modifiers and freezing the geometry. This is particularly useful if you want to apply one modifier once, and then add more modifiers later that will be animated.
 
