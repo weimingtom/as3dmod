@@ -211,7 +211,11 @@ phase.value += .05;
 bend.force = phase.phasedValue;
 }}}
 
-If you run the example now, the plane should bend back and forth in a movement that looks a little bit like a flight of a large (square) bird. The `phasedValue` will always oscillate between -1 and 1. Whenever you need different range - multiply this value or add something to it. 
+If you run the example now, the plane should bend back and forth in a movement that looks a little bit like a flight of a large (square) bird. 
+
+[http://www.everydayflash.com/flash/as3dmod/tutorial/bendphase.gif]
+
+The `phasedValue` will always oscillate between -1 and 1. Whenever you need different range - multiply this value or add something to it. 
 
 ==7. Animating with Tweener==
 
