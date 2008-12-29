@@ -22,9 +22,9 @@ As mentioned above, this tutorial assumes that you use Papervision3D. If you int
 
 To start with, create a project in your AS3 editor and make sure you have the Papervision3D classes as well as AS3Dmod classes in your classpath. To make things easier, we will extend the class `BasicView` to create ad 3d scene to work on. 
 
-`BasicView` is a class facilitates working with Papervision3D a lot, and it's great for all demos/example/tutorials etc. Read more about it [http://pv3d.org/2008/12/06/what-is-basicview/ here]. 
+`BasicView` is a class that greatly facilitates working with Papervision3D. It's great for all demos/example/tutorials etc, and we will be using it in this tutorial. Read more about [http://pv3d.org/2008/12/06/what-is-basicview/ here]. 
 
-Here's a stub that we will use in our tutorial:
+Our starting point is a simple implementation of `BasicView` with all the necessary imports as well as some basic setup:
 
 {{{
 package com.as3dmod.tutorial {
@@ -57,11 +57,11 @@ package com.as3dmod.tutorial {
 }
 }}}
 
-The beauty of `BasicView` is that it does all the job of creating the 3d environment for us. The only thing we need to do is to create a plane to which we will later apply the modifiers. The plane is rotated on the X and Y axes a bit to give it a better 3d look. Here's what you should see after compiling this example:
+The beauty of `BasicView` is that it does all the job of creating the 3d environment for us. The only thing we need to do is to create a plane to which we will later apply the modifiers. The plane is rotated on the X and Y axes a bit to give some perspective. Here's what you should see after compiling this example:
 
 [http://www.everydayflash.com/flash/as3dmod/tutorial/base.gif]
 
-The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later.
+The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later on.
 
 ==2. Creating modifier stack==
 
