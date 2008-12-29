@@ -183,6 +183,8 @@ bend.force += .01;
 
 At each frame we are incrementing the the force of the bend a little bit. If you run the example now you can see the the plane bending slowly, at the point where the force = 2 it will start to roll on itself (that usually doesn't look good, especially with a color/bitmap material). 
 
+[http://www.everydayflash.com/flash/as3dmod/tutorial/bend.gif]
+
 ==6. Animating with Phase==
 
 You can always write your own code to control the properties of any modifier. There are however two simple ways to animate them without to much hassle. The first one is the Phase class. To use it let's import it and create a new class member variable and initialize the instance:
