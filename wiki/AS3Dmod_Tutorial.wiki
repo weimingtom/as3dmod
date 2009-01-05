@@ -139,7 +139,7 @@ We do not call the `apply()` method here anymore. Instead we will call it on eve
 
 {{{
 protected override function onRenderTick(event:Event = null):void {
-	stack.apply();
+	mstack.apply();
 	super.onRenderTick(event);
 }
 }}}
