@@ -96,7 +96,9 @@ Just creating the instance of the right class (like shown above) is enough. You 
 
 The second argument is the 3d object that the modifiers will be applied to. We pass the plane created before. AS3Dmod works with any 3d object, including all the primitives (planes, cubes, spheres, etc) as well as with different imported types like Collada DAE or Wavefront OBJ (available in Away3d). 
 
-This in detail would go a bit beyond the scope of this tutorial, for now just note that, if you want to apply the modifiers to Collada objects, you need to make sure you pass as argument the object that holds the geometry data (typically a child of the root object in a Collada file).
+This goes beyond the scope of this tutorial, but for now just note that, if you want to apply the modifiers to Collada objects, you need to make sure you pass as argument the object that holds the geometry data (typically a child of the root object in a Collada file).
+
+*The modifier stack does not work with nested 3d objects, it always expects that the 3d object passed as argument is the object that hold all the geometry.* This might change in future versions, but now this is how things work.
 
 ==3. Creating modifiers==
 
