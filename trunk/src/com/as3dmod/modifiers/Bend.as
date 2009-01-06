@@ -40,20 +40,20 @@ package com.as3dmod.modifiers {
 		private var width:Number;
 		private var height:Number;
 		private var origin:Number;
-		private var switchAxes:Boolean;
+		private var _switchAxes:Boolean = false;
 
-		public function Bend(f:Number=0, o:Number=.5, a:Number=0, switchAxes:Boolean=false) {
+		public function Bend(f:Number=0, o:Number=.5, a:Number=0) {
 			_force = f;
 			_offset = o;
 			angle = a;
-			this.switchAxes = switchAxes;
+
 		}
 
 		override public function setModifiable(mod:MeshProxy):void {
 			super.setModifiable(mod);
-			max = (switchAxes) ? mod.midAxis : mod.maxAxis;
+			max = (_switchAxes) ? mod.midAxis : mod.maxAxis;
 			min = mod.minAxis;
-			mid = (switchAxes) ? mod.maxAxis : mod.midAxis;
+			mid = (_switchAxes) ? mod.maxAxis : mod.midAxis;
 			
 			width = mod.getSize(max);	
 			height = mod.getSize(mid);
@@ -147,6 +147,14 @@ package com.as3dmod.modifiers {
 				v.setValue(mid, vmid);
 				v.setValue(min, vmin);
 			}
+		}
+		
+		public function get switchAxes():Boolean {
+			return _switchAxes;
+		}
+		
+		public function set switchAxes(switchAxes:Boolean):void {
+			_switchAxes = switchAxes;
 		}
 	}
 }

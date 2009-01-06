@@ -28,6 +28,14 @@ package com.as3dmod.core {
 			y -= v.y;
 			z -= v.z;
 		}
+		
+		public final function clone():Vector3D {
+			return new Vector3D(x, y, z);
+		}
+
+		public final function negate():void {
+			x = -x;			y = -y;			z = -z;
+		}
 
 		public function get modulo():Number {
 			return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);

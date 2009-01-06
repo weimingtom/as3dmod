@@ -27,6 +27,7 @@ package com.as3dmod.modifiers {
 		private var bmpHeight:Number;
 		
 		private var _inverse:Boolean = false;
+		private var _speed:Number = 1;
 
 		/**
 		 * @param	f force. May be modified later with the force attribute
@@ -37,7 +38,7 @@ package com.as3dmod.modifiers {
 			this.bmpWidth = bmpWidth;
 			frc = f;
 			b = new BitmapData(bmpWidth, bmpHeight);
-			off = 0;
+			off = Math.random() * 1000;
 			if(seed == 0) seed = Math.random() * 1000;
 		}
 		
@@ -69,8 +70,9 @@ package com.as3dmod.modifiers {
 		}
 
 		public function apply():void {
-			var p:Point = new Point(off++, 0);
-			b.perlinNoise(bmpWidth, bmpHeight, 1, seed, false, true, BitmapDataChannel.RED, true, [p, p, p]);
+			off += _speed;
+			var p:Point = new Point(off, 0);
+			b.perlinNoise(bmpWidth, bmpHeight, 2, seed, false, true, BitmapDataChannel.RED, true, [p, p, p]);
 			
 			var vs:Array = mod.getVertices();
 			var vc:int = vs.length;
@@ -107,6 +109,14 @@ package com.as3dmod.modifiers {
 		
 		public function set inverse(inverse:Boolean):void {
 			_inverse = inverse;
+		}
+		
+		public function get speed():Number {
+			return _speed;
+		}
+		
+		public function set speed(speed:Number):void {
+			_speed = speed;
 		}
 	}
 }
