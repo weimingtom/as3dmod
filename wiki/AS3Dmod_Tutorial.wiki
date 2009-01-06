@@ -292,8 +292,6 @@ The plane should now have a crumpled look and the bend should be working exactly
 
 ==9. Feedback==
 
-I hope this tutorial will help you understand the basics of AS3Dmod. Remember that the [http://www.everydayflash.com/flash/as3dmod/doc/ API Docs] are also available.
-
-Since AS3Dmod is always evolving. I will try to keep this document in synch with the latest version of the librayr from SVN. 
+I hope this tutorial will help you understand the basics of AS3Dmod. Remember that the [http://www.everydayflash.com/flash/as3dmod/doc/ API Docs] are also available. 
 
 *If you find any inconsistencies, errors or typos in the tutorial, please let me know*. You can leave a comment below or email me to bartek [at] everydayflash [dot] com.
