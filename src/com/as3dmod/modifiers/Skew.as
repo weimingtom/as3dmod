@@ -33,7 +33,7 @@ package com.as3dmod.modifiers {
 		
 		override public function setModifiable(mod:MeshProxy):void {
 			super.setModifiable(mod);
-			_skewAxis = mod.maxAxis;
+			_skewAxis = _skewAxis || mod.maxAxis;
 		}
 
 		public function apply():void {

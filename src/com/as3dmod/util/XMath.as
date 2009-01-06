@@ -1,7 +1,9 @@
 package com.as3dmod.util {
 
 	public class XMath {
-	
+
+		public static const PI:Number = 3.1415;
+		
 		public static function normalize(start:Number, end:Number, val:Number):Number
 		{
 			var range:Number = end - start;
@@ -22,7 +24,7 @@ package com.as3dmod.util {
 			var val:Number;
 		 
 			if (range == 0) {
-				val = 1;
+				val = 0;
 			} else {
 				val = start + (end - start) * normalized;
 			}
@@ -42,6 +44,28 @@ package com.as3dmod.util {
 		
 		public static function trim(start:Number, end:Number, value:Number):Number {
 			return Math.min(end, Math.max(start, value));
+		}
+		
+		public static function wrap(start:Number, end:Number, value:Number):Number {
+			if(value < start) return value + (end - start);			else if(value >= end) return value - (end - start);
+			else return value;
+		}
+		
+		public static function degToRad(deg:Number):Number {
+			return deg / 180 * Math.PI;
+		}
+		
+		public static function radToDeg(rad:Number):Number {
+			return rad / Math.PI * 180;
+		}
+		
+		public static function presicion(number:Number, precision:Number):Number {
+			var r:Number = Math.pow(10, precision);
+			return Math.round(number * r) / r;
+		}
+		
+		public static function uceil(val:Number):Number {
+			return (val < 0) ? Math.floor(val) : Math.ceil(val);
 		}
 	}
 }
