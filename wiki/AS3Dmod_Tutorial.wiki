@@ -61,7 +61,7 @@ The beauty of `BasicView` is that it does all the job of creating the 3d environ
 
 [http://www.everydayflash.com/flash/as3dmod/tutorial/base.gif]
 
-The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it is empty, but we will use it to animate the modifier properties later on.
+The `onRenderTick` function is called on each frame before the scene is rendered - another thing `BasicView` does for us. Now it contains only the necessary call to the method in the base class, but we will use it to animate the modifier properties later on.
 
 ==2. Creating modifier stack==
 
