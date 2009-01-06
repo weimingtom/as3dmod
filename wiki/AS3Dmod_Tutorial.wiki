@@ -92,7 +92,7 @@ com.as3dmod.plugins.away3d.LibraryAway3d;
 com.as3dmod.plugins.pv3d.LibraryPv3d;
 }}}
 
-Just creating the instance of the right class like show above is enough, and you do not need to care about anything 3d engine related anymore - just use the modifiers.
+Just creating the instance of the right class (like shown above) is enough. You do not need to care about anything 3d-engine-related from this point on. Just use the modifiers.
 
 The second argument is the 3d object that the modifiers will be applied to. We pass the plane created before. AS3Dmod works with any 3d object, including all the primitives (planes, cubes, spheres, etc) as well as with different imported types like Collada DAE or Wavefront OBJ (available in Away3d). 
 
