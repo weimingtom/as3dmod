@@ -102,7 +102,7 @@ This goes beyond the scope of this tutorial, but for now just note that, if you 
 
 ==3. Creating modifiers==
 
-The fun begins! Let's start with a simple bend. Immediately after you created the modifier stack, add the following lines:
+Now, the fun part begins! Let's start with a simple noise. Immediately after you created the modifier stack, add the following lines:
 
 {{{
 var noise:Noise = new Noise(20);
