@@ -96,7 +96,7 @@ Just creating the instance of the right class (like shown above) is enough. You 
 
 The second argument is the 3d object that the modifiers will be applied to. We pass the plane created before. AS3Dmod works with any 3d object, including all the primitives (planes, cubes, spheres, etc) as well as with different imported types like Collada DAE or Wavefront OBJ (available in Away3d). 
 
-However, if you want to apply the modifiers to Collada objects, you need to make sure you pass as argument the object that holds the geometry data (typically a child of the root object in a Collada file). I goes beyond the scope of this tutorial anyway :)
+This in detail would go a bit beyond the scope of this tutorial, for now just note that, if you want to apply the modifiers to Collada objects, you need to make sure you pass as argument the object that holds the geometry data (typically a child of the root object in a Collada file).
 
 ==3. Creating modifiers==
 
