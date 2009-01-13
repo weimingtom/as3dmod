@@ -102,7 +102,13 @@ This goes beyond the scope of this tutorial, but for now just note that, if you 
 
 ==3. Creating modifiers==
 
-Now, the fun part begins! Let's start with a simple noise. Immediately after you created the modifier stack, add the following lines:
+Now, the fun part begins! Let's start with a simple noise. In the imports section add the following:
+
+{{{
+import com.as3dmod.modifiers.Noise;
+}}}
+
+Now, immediately after you created the modifier stack, add the following lines:
 
 {{{
 var noise:Noise = new Noise(20);
