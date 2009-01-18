@@ -1,4 +1,4 @@
-=The AS3Dmod Tutorial (in progress) =
+=The AS3Dmod Tutorial =
 
 <wiki:toc max_depth="2" />
 
