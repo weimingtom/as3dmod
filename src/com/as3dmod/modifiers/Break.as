@@ -8,7 +8,15 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.util.Range;	
 
 	/**
-	 * @author bartekd
+	 * <b>Break.</b> Allow to break a mesh.
+	 * <br>
+	 * <p>This is the inital version of the class, it contains some 
+	 * hardcoded values that would make it unusable in most situations. 
+	 * 
+	 * <p>Updates coming soon.
+	 * 
+	 * @version 0
+	 * @author Bartek Drozdz
 	 */
 	public class Break extends Modifier implements IModifier {
 
