@@ -1,4 +1,5 @@
-/**
+package com.as3dmod {
+	/**
  * Copyright (c) 2008 Bartek Drozdz (http://www.everydayflash.com)
  * 
  * Permission is hereby granted, free of charge, to any person
@@ -24,7 +25,6 @@
  * 
  * Same license applies to every file in this package and its subpackages.  
  */
-package com.as3dmod {
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.plugins.Library3d;
@@ -63,9 +63,9 @@ package com.as3dmod {
 		 * 
 		 * @see	com.as3dmod.core.MeshProxy
 		 */
-		public function get mesh():MeshProxy {
-			return baseMesh;
-		}
+//		public function get mesh():MeshProxy {
+//			return baseMesh;
+//		}
 		
 		/**
 		 * 
@@ -114,6 +114,15 @@ package com.as3dmod {
 		 */
 		public function clear():void {
 			stack = new Array();
+		}
+		
+		/**
+		 * Gives access to information about the modified mesh. 
+		 * 
+		 * @see com.as3dmod.IMeshInfo
+		 */
+		public function get meshInfo():IMeshInfo {
+			return baseMesh;
 		}
 	}
 }

@@ -1,21 +1,24 @@
 package com.as3dmod.util {
-	import com.carlcalderon.arthropod.Debug;	
-	
+	import nl.demonsters.debugger.MonsterDebugger;
+
 	/**
 	 * @author Bartek Drozdz
 	 */
 	public class Log {
+
+		private static var debugger:MonsterDebugger;
 		
-		public static function init():void {
-			Debug.clear();
+		public static function init(root:Object):void {
+			debugger = new MonsterDebugger(root);
+			
 		}
 		
-		public static function info(msg:Object):void {
-			Debug.log(msg.toString());
+		public static function info(target:Object, msg:Object):void {
+			MonsterDebugger.trace(target, msg);
 		}
 		
-		public static function error(msg:Object):void {
-			Debug.log(msg.toString(), 0xff8080);
+		public static function error(target:Object, msg:Object):void {
+			MonsterDebugger.trace(target, msg, 0xff0000);
 		}
 	}
 }

@@ -74,7 +74,7 @@ package {
 			p = new Perlin(3); // alternativa / pv3d / sandy
 			//p = new Perlin(1); // away (less force)
 			// ## 5. the effect will be applied with decreasing intensity along the longes axis of the object
-			p.setFalloff(1, 0);
+//			p.setFalloff(1, 0);
 			// ## 6. add the modifier to the stack
 //			m.addModifier(p);
 			

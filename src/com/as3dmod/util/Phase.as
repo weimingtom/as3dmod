@@ -4,8 +4,8 @@ package com.as3dmod.util {
 		
 		private var v:Number;
 		
-		public function Phase() {
-			v = 0;
+		public function Phase(v:Number=0) {
+			this.v = v;
 		}
 		
 		public function get value():Number {
@@ -19,9 +19,14 @@ package com.as3dmod.util {
 		public function get phasedValue():Number {
 			return Math.sin(v);
 		}
-		
+
 		public function get absPhasedValue():Number {
 			return Math.abs(phasedValue);
 		}
+
+		public function get normValue():Number {
+			return (phasedValue+1)/2;
+		}
+
 	}
 }

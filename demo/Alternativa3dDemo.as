@@ -1,14 +1,4 @@
 ﻿package {
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageQuality;
-	import flash.display.StageScaleMode;
-	import flash.events.Event;
-
-	import com.as3dmod.ModifierStack;
-	import com.as3dmod.plugins.alternativa3d.LibraryAlternativa3d;
-	import com.carlcalderon.arthropod.Debug;
-
 	import alternativa.engine3d.controllers.CameraController;
 	import alternativa.engine3d.core.Camera3D;
 	import alternativa.engine3d.core.Mesh;
@@ -16,7 +6,17 @@
 	import alternativa.engine3d.core.Scene3D;
 	import alternativa.engine3d.display.View;
 	import alternativa.engine3d.materials.FillMaterial;
-	import alternativa.engine3d.primitives.Box;	
+	import alternativa.engine3d.primitives.Box;
+	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.alternativa3d.LibraryAlternativa3d;
+	import com.as3dmod.util.Log;
+	
+	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
+	import flash.events.Event;		
 
 	public class Alternativa3dDemo extends Sprite {
 
@@ -33,7 +33,7 @@
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			
-			Debug.clear();
+			Log.init(this);
 			
 			base = new DemoBase();
 			addEventListener(Event.ADDED_TO_STAGE, init);

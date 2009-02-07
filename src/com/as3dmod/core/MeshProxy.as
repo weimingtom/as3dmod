@@ -1,8 +1,12 @@
 package com.as3dmod.core {
+	import com.as3dmod.IMeshInfo;	
 	import com.as3dmod.util.ModConstant;		
 
-	public class MeshProxy {
-		
+	/**
+	 * @author bartekd
+	 */
+	public class MeshProxy implements IMeshInfo {
+
 		protected var vertices:Array;
 				
 		protected var _maxX:Number;
@@ -17,9 +21,9 @@ package com.as3dmod.core {
 		protected var _midAxis:int;
 		protected var _minAxis:int;
 		
-		protected var _sizeX:Number;
-		protected var _sizeY:Number;
-		protected var _sizeZ:Number;
+		protected var _width:Number;
+		protected var _height:Number;
+		protected var _depth:Number;
 		
 		public function MeshProxy() {
 			vertices = new Array();
@@ -27,6 +31,9 @@ package com.as3dmod.core {
 		
 		public function setMesh(mesh:*):void {
 			
+		}
+		
+		public function updateMeshPosition(p:Vector3):void {
 		}
 		
 		public function getVertices():Array {
@@ -58,34 +65,34 @@ package com.as3dmod.core {
 				v.setOriginalPosition(v.x, v.y, v.z);
 			}
 			
-			_sizeX = _maxX - _minX;
-			_sizeY = _maxY - _minY;
-			_sizeZ = _maxZ - _minZ;
+			_width = _maxX - _minX;
+			_height = _maxY - _minY;
+			_depth = _maxZ - _minZ;
 			
-			var maxe:Number = Math.max(_sizeX, Math.max(_sizeY, _sizeZ));
-			var mine:Number = Math.min(_sizeX, Math.min(_sizeY, _sizeZ));
+			var maxe:Number = Math.max(_width, Math.max(_height, _depth));
+			var mine:Number = Math.min(_width, Math.min(_height, _depth));
 			
-			if (maxe == _sizeX && mine == _sizeY) {
+			if (maxe == _width && mine == _height) {
 				_minAxis = ModConstant.Y;
 				_midAxis = ModConstant.Z;
 				_maxAxis = ModConstant.X;
-			} else if (maxe == _sizeX && mine == _sizeZ) {
+			} else if (maxe == _width && mine == _depth) {
 				_minAxis = ModConstant.Z;
 				_midAxis = ModConstant.Y;
 				_maxAxis = ModConstant.X;
-			} else if (maxe == _sizeY && mine == _sizeX) {
+			} else if (maxe == _height && mine == _width) {
 				_minAxis = ModConstant.X;
 				_midAxis = ModConstant.Z;
 				_maxAxis = ModConstant.Y;
-			} else if (maxe == _sizeY && mine == _sizeZ) {
+			} else if (maxe == _height && mine == _depth) {
 				_minAxis = ModConstant.Z;
 				_midAxis = ModConstant.X;
 				_maxAxis = ModConstant.Y;
-			} else if (maxe == _sizeZ && mine == _sizeX) {
+			} else if (maxe == _depth && mine == _width) {
 				_minAxis = ModConstant.X;
 				_midAxis = ModConstant.Y;
 				_maxAxis = ModConstant.Z;
-			} else if (maxe == _sizeZ && mine == _sizeY) {
+			} else if (maxe == _depth && mine == _height) {
 				_minAxis = ModConstant.Y;
 				_midAxis = ModConstant.X;
 				_maxAxis = ModConstant.Z;
@@ -93,7 +100,7 @@ package com.as3dmod.core {
 			
 			for (i = 0; i < vc; i++) {
 				v = getVertices()[i] as VertexProxy;
-				v.setRatios((v.x - _minX) / _sizeX, (v.y - _minY) / _sizeY, (v.z - _minZ) / _sizeZ);
+				v.setRatios((v.x - _minX) / _width, (v.y - _minY) / _height, (v.z - _minZ) / _depth);
 			}
 		}
 		
@@ -170,23 +177,23 @@ package com.as3dmod.core {
 		
 		public function getSize(axis:int):Number {
 			switch(axis) {
-				case ModConstant.X: return _sizeX;
-				case ModConstant.Y: return _sizeY;
-				case ModConstant.Z: return _sizeZ;
+				case ModConstant.X: return _width;
+				case ModConstant.Y: return _height;
+				case ModConstant.Z: return _depth;
 			}
 			return -1;
 		}
 		
-		public function get sizeX():Number {
-			return _sizeX;
+		public function get width():Number {
+			return _width;
 		}
 		
-		public function get sizeY():Number {
-			return _sizeY;
+		public function get height():Number {
+			return _height;
 		}
 		
-		public function get sizeZ():Number {
-			return _sizeZ;
+		public function get depth():Number {
+			return _depth;
 		}
 		
 		public function postApply():void {

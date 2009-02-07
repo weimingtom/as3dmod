@@ -3,21 +3,24 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.util.ModConstant;	
+	import com.as3dmod.util.ModConstant;
+	
+	import flash.geom.Matrix;
+	import flash.geom.Point;		
 
 	/**
 	 * 	<b>Bend modifier.</b> Bends an object along an axis. 
 	 * 	<br>
-	 * 	<br>IMPORTANT: This is the new version of the code - it allows bending at any angle.
-	 * 	<br>Please refer here for a demo: 
+	 * 	<br>Go here for a demo: 
 	 * 	<a href="http://www.everydayflash.com/">http://www.everydayflash.com/</a><br>
 	 * 	<br>
-	 * 	<br>If you were using the old verion of the Bend class, and your code is now broken,
-	 * 	just update to revision 29 from the SVN repository located here:
-	 * 	<br><a href="http://as3dmod.googlecode.com/svn/trunk/">http://as3dmod.googlecode.com/svn/trunk/</a>
 	 * 	
-	 * 	@version 2.0
+	 * 	@version 2.1
 	 * 	@author Bartek Drozdz
+	 * 	
+	 * 	Changes:
+	 * 	2.1 - Coordinate rotation now uses Matrix class
+	 * 	2.0 - Angle bending added
 	 */
 	public class Bend extends Modifier implements IModifier {
 		
@@ -25,10 +28,6 @@ package com.as3dmod.modifiers {
 		private var _offset:Number;
 		
 		private var _angle:Number;
-		private var cosa:Number;
-		private var ncosa:Number;
-		private var sina:Number;
-		private var nsina:Number;
 		
 		private var _diagAngle:Number;
 		
@@ -40,7 +39,10 @@ package com.as3dmod.modifiers {
 		private var width:Number;
 		private var height:Number;
 		private var origin:Number;
-		private var _switchAxes:Boolean = false;
+		private var m1:Matrix;
+		private var m2:Matrix;
+		
+		public var switchAxes:Boolean = false;
 
 		public function Bend(f:Number=0, o:Number=.5, a:Number=0) {
 			_force = f;
@@ -51,10 +53,10 @@ package com.as3dmod.modifiers {
 
 		override public function setModifiable(mod:MeshProxy):void {
 			super.setModifiable(mod);
-			max = (_switchAxes) ? mod.midAxis : mod.maxAxis;
+			max = (switchAxes) ? mod.midAxis : mod.maxAxis;
 			min = mod.minAxis;
-			mid = (_switchAxes) ? mod.maxAxis : mod.midAxis;
-			
+			mid = (switchAxes) ? mod.maxAxis : mod.midAxis;
+				
 			width = mod.getSize(max);	
 			height = mod.getSize(mid);
 			origin = mod.getMin(max);
@@ -94,10 +96,10 @@ package com.as3dmod.modifiers {
 		public function get angle():Number { return _angle; }
 		public function set angle(a:Number):void { 
 			_angle = a; 
-			cosa = Math.cos(a);
-			sina = Math.sin(a);
-			ncosa = Math.cos(-a);
-			nsina = Math.sin(-a);
+			m1 = new Matrix();
+			m1.rotate(_angle);
+			m2 = new Matrix();
+			m2.rotate(-_angle);
 		}
 
 		/**
@@ -120,11 +122,9 @@ package com.as3dmod.modifiers {
 				var vmid:Number = v.getValue(mid);
 				var vmin:Number = v.getValue(min);
 
-				var vmax2:Number = cosa * vmax - sina * vmid;
-				var vmid2:Number = cosa * vmid + sina * vmax;
-				
-				vmax = vmax2;
-				vmid = vmid2;
+				var np:Point = m1.transformPoint(new Point(vmax, vmid));
+				vmax = np.x;
+				vmid = np.y;
 
 				var p:Number = (vmax - origin) / width;
 
@@ -137,24 +137,14 @@ package com.as3dmod.modifiers {
 					vmax = distance - ow;
 				}
 
-				vmax2 = ncosa * vmax - nsina * vmid;
-				vmid2 = ncosa * vmid + nsina * vmax;
-				
-				vmax = vmax2;
-				vmid = vmid2;
+				var np2:Point = m2.transformPoint(new Point(vmax, vmid));
+				vmax = np2.x;
+				vmid = np2.y;
 				
 				v.setValue(max, vmax);
 				v.setValue(mid, vmid);
 				v.setValue(min, vmin);
 			}
-		}
-		
-		public function get switchAxes():Boolean {
-			return _switchAxes;
-		}
-		
-		public function set switchAxes(switchAxes:Boolean):void {
-			_switchAxes = switchAxes;
 		}
 	}
 }

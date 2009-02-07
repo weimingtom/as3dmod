@@ -10,8 +10,7 @@ package com.as3dmod.core {
 		
 		protected var ox:Number;
 		protected var oy:Number;
-		protected var oz:Number;
-
+		protected var oz:Number;
 		public function VertexProxy() {
 		}
 		
@@ -124,6 +123,20 @@ package com.as3dmod.core {
 			ox = x;
 			oy = y;
 			oz = z;
+		}
+		
+		public function get vector():Vector3 {
+			return new Vector3(x,y,z);
+		}
+		
+		public function set vector(v:Vector3):void {
+			x = v.x;
+			y = v.y;
+			z = v.z;
+		}
+		
+		public function get ratioVector():Vector3 {
+			return new Vector3(ratioX, ratioY, ratioZ);
 		}
 	}
 }

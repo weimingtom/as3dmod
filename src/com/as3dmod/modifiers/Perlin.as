@@ -1,122 +1,57 @@
 package com.as3dmod.modifiers {
-	import flash.display.Bitmap;
+	import com.as3dmod.IModifier;
+	import com.as3dmod.util.bitmap.PerlinNoise;
+	
 	import flash.display.BitmapData;
 	import flash.display.BitmapDataChannel;
-	import flash.geom.Point;
-	
-	import com.as3dmod.IModifier;
-	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.VertexProxy;	
-	
+	import flash.geom.Point;	
+
 	/**
-	 * 	<b>Perlin modifier.</b>
+	 * 	<b>Perlin modifier.</b> Displaces vertices based on a perlin noise bitmap.
 	 * 
 	 *  Generates a perlin noise bitmap and displaces vertices 
 	 *  based on the color value of each pixel of the noise map.
+	 *  
+	 *  @version 2.0
+	 * 	@author Bartek Drozdz
+	 * 	
+	 * 	Changes:
+	 * 	2.0 - Class rewritten, extends BitmapDisplacement, uses PerlinNoise class, inverse removed, falloff removed temporarily
 	 */
-	public class Perlin extends Modifier implements IModifier {
-		
-		private var b:BitmapData = null;
-		private var off:Number;
-		private var frc:Number;
-		private var seed:Number;
-		
-		private var start:Number = 0;
-		private var end:Number = 0;
-		private var bmpWidth:Number;
-		private var bmpHeight:Number;
-		
-		private var _inverse:Boolean = false;
-		private var _speed:Number = 1;
+	public class Perlin extends BitmapDisplacement implements IModifier {
+
+		public var speedX:Number = 1;
+		public var speedY:Number = 1;
+		public var source:PerlinNoise;
+		public var autoRun:Boolean;
+		public static const GREY:uint = 0x80808080;
 
 		/**
-		 * @param	f force. May be modified later with the force attribute
-		 * @param	bmpWidth Bitmap width. The width of the bitmap that will be generating the noise		 * @param	bmpHeight Bitmap height. The height of the bitmap that will be generating the noise
+		 * @param f Force
+		 * @param n instance of PerlinNoise class to be used as source for displacement
+		 * @param a if set to true the perlin noise will be offseted at each call to 'apply', making the modifier animated automatically.
 		 */
-		public function Perlin(f:Number=1, bmpWidth:Number=25, bmpHeight:Number=25, seed:Number=0) {
-			this.bmpHeight = bmpHeight;
-			this.bmpWidth = bmpWidth;
-			frc = f;
-			b = new BitmapData(bmpWidth, bmpHeight);
-			off = Math.random() * 1000;
-			if(seed == 0) seed = Math.random() * 1000;
-		}
-		
-		public function setFalloff(start:Number=0, end:Number=1):void {
-			this.start = start;
-			this.end = end;
-		}
-		
-		/**
-		 * The force by which the perlin color value used to move the vertex will be multiplied.
-		 */
-		public function set force(f:Number):void {
-			frc = f;
-		}
-		
-		public function get force():Number {
-			return frc;
-		}
-		
-		/**
-		 * Returns a preview of the perlin noise source bitmapData
-		 * 
-		 * @return bitmap Bitmap object that can be attached to a display list. Contains the bitmapData used a the perlin noise source.
-		 */
-		public function get previev():Bitmap {
-			var pr:Bitmap = new Bitmap(b);
-			pr.scaleX = pr.scaleY = 4;
-			return pr;
-		}
-
-		public function apply():void {
-			off += _speed;
-			var p:Point = new Point(off, 0);
-			b.perlinNoise(bmpWidth, bmpHeight, 2, seed, false, true, BitmapDataChannel.RED, true, [p, p, p]);
-			
-			var vs:Array = mod.getVertices();
-			var vc:int = vs.length;
-			
-			for (var i:int = 0; i < vc; i++) {
-				var v:VertexProxy = vs[i] as VertexProxy;
-				
-				var ma:Number = (inverse) ? 1 - v.getRatio(mod.maxAxis) : v.getRatio(mod.maxAxis);				var md:Number = (inverse) ? 1 - v.getRatio(mod.midAxis) : v.getRatio(mod.midAxis);
-				
-                var px:int = Math.ceil(ma * (bmpWidth - 1));
-				var py:int = Math.ceil(md * (bmpHeight - 1));
-				
-				var vzpos:Number = b.getPixel(px, py) & 0xff;
-				
-				var fa:Number = v.getRatio(mod.maxAxis);
-				if(start < end) {
-		 			if (fa < start) fa = 0;
-					if (fa > end) fa = 1;
-				} else if(start > end) {
-					fa = 1 - fa;
-					if (fa > start) fa = 0;
-					if (fa < end) fa = 1;
-				} else {
-					fa = 1;
-				}
-				
-                v.setValue(mod.minAxis, v.getValue(mod.minAxis) + (128 - vzpos) * frc * fa);
+		public function Perlin(f:Number = 1, n:PerlinNoise = null, a:Boolean=true) {
+			if(n == null) {
+				source = new PerlinNoise(25, 25);
+				source.channels = BitmapDataChannel.BLUE; 
+				source.octaves = 2;
+				source.baseX = 50;				source.baseY = 50;
+			} else {
+				source = n;
 			}
+			
+			autoRun = a;
+			if(autoRun) speedY = 0;
+
+			super(new BitmapData(source.width, source.height, true, GREY), f);
 		}
-		
-		public function get inverse():Boolean {
-			return _inverse;
-		}
-		
-		public function set inverse(inverse:Boolean):void {
-			_inverse = inverse;
-		}
-		
-		public function get speed():Number {
-			return _speed;
-		}
-		
-		public function set speed(speed:Number):void {
-			_speed = speed;
+
+		override public function apply():void {
+			if(autoRun) source.move(speedX, speedY);
+			bitmap.fillRect(bitmap.rect, GREY);
+			if(source.channels & 1) bitmap.copyChannel(source, source.rect, new Point(), 1, 1);			if(source.channels & 2) bitmap.copyChannel(source, source.rect, new Point(), 2, 2);			if(source.channels & 4) bitmap.copyChannel(source, source.rect, new Point(), 4, 4);
+			super.apply();
 		}
 	}
 }

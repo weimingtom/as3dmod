@@ -3,7 +3,6 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.util.Log;
 	import com.as3dmod.util.ModConstant;
 	import com.as3dmod.util.XMath;	
 
@@ -133,19 +132,19 @@ package com.as3dmod.modifiers {
 			_inverseFalloff = inverseFalloff;
 		}
 		
-		public function debug():void {
-			Log.info("Skew.debug:");
-			Log.info("_force: " + _force);
-			Log.info("_skewAxis: " + _skewAxis);
-			
-			Log.info("_offset: " + _offset);
-			Log.info("_constraint: " + _constraint);
-			Log.info("_power: " + _power);
-			Log.info("_falloff: " + _falloff);
-			Log.info("_inverseFalloff: " + _inverseFalloff);
-			Log.info("_oneSide: " + _oneSide);
-			Log.info("_swapAxes: " + _swapAxes);
-			Log.info("displaceAxis: " + displaceAxis);
+		public function debug():String {
+			var debugInfo:String = "Skew.debug:\n";
+			debugInfo += "_force: " + _force + "\n";
+			debugInfo += "_skewAxis: " + _skewAxis + "\n";
+			debugInfo += "_offset: " + _offset + "\n";
+			debugInfo += "_constraint: " + _constraint + "\n";
+			debugInfo += "_power: " + _power + "\n";
+			debugInfo += "_falloff: " + _falloff + "\n";
+			debugInfo += "_inverseFalloff: " + _inverseFalloff + "\n";
+			debugInfo += "_oneSide: " + _oneSide + "\n";
+			debugInfo += "_swapAxes: " + _swapAxes + "\n";
+			debugInfo += "displaceAxis: " + displaceAxis + "\n";
+			return debugInfo;
 		}
 	}
 }

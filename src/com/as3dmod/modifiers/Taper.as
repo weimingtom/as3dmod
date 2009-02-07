@@ -1,10 +1,9 @@
 package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
-	import com.as3dmod.core.Matrix3D;
+	import com.as3dmod.core.Matrix4;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.Vector3D;
-	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.util.XMath;		
+	import com.as3dmod.core.Vector3;
+	import com.as3dmod.core.VertexProxy;	
 
 	/**
 	 * 	<b>Taper modifier.</b>
@@ -14,35 +13,36 @@ package com.as3dmod.modifiers {
 	 * 	
 	 * 	@author Bartek Drozdz
 	 */
-	public class Taper extends Modifier implements IModifier
-	{
+	public class Taper extends Modifier implements IModifier {
 		private var frc:Number;		private var pow:Number;
-		
+
 		private var start:Number = 0;
 		private var end:Number = 1;
+
+		private var _vector:Vector3 = new Vector3(1, 0, 1);		private var _vector2:Vector3 = new Vector3(0, 1, 0);
 
 		public function Taper(f:Number) {
 			frc = f;
 			pow = 1;
 		}
-		
-		public function setFalloff(start:Number=0, end:Number=1):void {
+
+		public function setFalloff(start:Number = 0, end:Number = 1):void {
 			this.start = start;
 			this.end = end;
 		}
-		
+
 		public function set force(value:Number):void {
 			frc = value;
 		}
-		
+
 		public function get force():Number {
 			return frc;
 		}
-		
+
 		public function get power():Number { 
 			return pow; 
 		}
-		
+
 		public function set power(value:Number):void { 
 			pow = value; 
 		}
@@ -51,16 +51,17 @@ package com.as3dmod.modifiers {
 			var vs:Array = mod.getVertices();
 			var vc:int = vs.length;
 			
-			for (var i:int = 0; i < vc; i++) {
+			for (var i:int = 0;i < vc; i++) {
 				var v:VertexProxy = vs[i] as VertexProxy;
-
-				var ar:Number = Math.pow(XMath.normalize(start, end, v.getRatio(mod.maxAxis)), pow);				var sc:Number = frc * ar;
 				
-				var m:Matrix3D = Matrix3D.scaleMatrix(1+sc, 1+sc, 1);
-				var n:Vector3D = new Vector3D(v.getValue(mod.minAxis), v.getValue(mod.midAxis), v.getValue(mod.maxAxis));
-				Matrix3D.multiplyVector(m, n);
+				var ar:Vector3 = v.ratioVector.multiply(_vector2);
+				var sc:Number = frc * Math.pow(ar.magnitude, pow);
 				
-				v.setValue(mod.minAxis, n.x);				v.setValue(mod.midAxis, n.y);
+				var m:Matrix4 = Matrix4.scaleMatrix(1 + sc * _vector.x, 1 + sc * _vector.y, 1 + sc * _vector.z);
+				var n:Vector3 = v.vector;
+				
+				Matrix4.multiplyVector(m, n);
+				v.vector = n;
 			}
 		}
 	}

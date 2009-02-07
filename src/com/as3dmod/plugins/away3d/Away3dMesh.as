@@ -1,8 +1,9 @@
 package com.as3dmod.plugins.away3d {
-	import com.as3dmod.core.MeshProxy;
-	
 	import away3d.core.base.Mesh;
-	import away3d.core.base.Vertex;	
+	import away3d.core.base.Vertex;
+	
+	import com.as3dmod.core.MeshProxy;
+	import com.as3dmod.core.Vector3;	
 
 	public class Away3dMesh extends MeshProxy {
 		
@@ -19,6 +20,12 @@ package com.as3dmod.plugins.away3d {
 				nv.setVertex(vs[i] as Vertex);
 				vertices.push(nv);
 			}
+		}
+		
+		override public function updateMeshPosition(p:Vector3):void {
+			awm.x += p.x;
+			awm.y += p.y;
+			awm.z += p.z;
 		}
 	}
 }

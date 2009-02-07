@@ -1,8 +1,9 @@
 package com.as3dmod.plugins.alternativa3d {
-	import com.as3dmod.core.MeshProxy;
-	
 	import alternativa.engine3d.core.Mesh;
-	import alternativa.types.Set;		
+	import alternativa.types.Set;
+	
+	import com.as3dmod.core.MeshProxy;
+	import com.as3dmod.core.Vector3;	
 
 	public class Alternativa3dMesh extends MeshProxy {
 		
@@ -22,6 +23,12 @@ package com.as3dmod.plugins.alternativa3d {
 				nv.setVertex(vs.take());
 				vertices.push(nv);
 			}
+		}
+		
+		override public function updateMeshPosition(p:Vector3):void {
+			awm.x += p.x;
+			awm.y += p.y;
+			awm.z += p.z;
 		}
 	}
 }

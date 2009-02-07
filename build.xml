@@ -14,6 +14,22 @@
 	
 	<target name="build-all" depends="papervision3d,sandy3d,away3d,alternativa3d" description="Build demos for 4 engines"/>
 	
+	<!-- Temporary stuff -->
+	<target name="dashboard">
+        <mxmlc id="swf.compile"
+		    file="${app.home}/demo/com/as3dmod/demo/dashboard/Dashboard.as" 
+			output="bin/demo/dashboard.swf" 
+			keep-generated-actionscript="false">
+			<source-path path-element="${app.home}/src"/>
+        	<source-path path-element="${app.home}/demo"/>
+        	<source-path path-element="${papervision3d.home}"/>
+			<default-size width="${DEMO_WIDTH}" height="${DEMO_HEIGHT}" />
+			<default-background-color>0x000000</default-background-color>
+			<default-frame-rate>40</default-frame-rate>		
+        </mxmlc>
+    </target>
+	<!-- /Temporary stuff -->
+	
 	<target name="papervision3d">
         <mxmlc id="swf.compile"
 		    file="${app.home}/demo/Pv3dDemo.as" 
