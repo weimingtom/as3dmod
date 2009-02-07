@@ -1,8 +1,7 @@
 package {
-	import flash.display.StageAlign;
-	import flash.display.StageQuality;
-	import flash.display.StageScaleMode;
-	import flash.events.Event;
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.pv3d.LibraryPv3d;
+	import com.as3dmod.util.Log;
 	
 	import org.papervision3d.core.proto.MaterialObject3D;
 	import org.papervision3d.materials.ColorMaterial;
@@ -12,9 +11,10 @@ package {
 	import org.papervision3d.objects.primitives.Plane;
 	import org.papervision3d.view.BasicView;
 	
-	import com.as3dmod.ModifierStack;
-	import com.as3dmod.plugins.pv3d.LibraryPv3d;
-	import com.carlcalderon.arthropod.Debug;	
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
+	import flash.events.Event;		
 
 	public class Pv3dDemo extends BasicView {
 
@@ -28,9 +28,9 @@ package {
 			stage.align = StageAlign.TOP_LEFT;
 			stage.showDefaultContextMenu = false;
 			stage.stageFocusRect = false;
-
-			Debug.clear();
 			
+			Log.init(this);
+
 			base = new DemoBase();
 			var mt:CompositeMaterial = new CompositeMaterial();
 			mt.addMaterial(new ColorMaterial(0x27590e));

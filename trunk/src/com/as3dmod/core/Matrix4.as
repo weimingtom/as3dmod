@@ -3,7 +3,7 @@ package com.as3dmod.core {
 	/**
 	 * Code adapted from sandy.core.data.Matrix4 and org.papervision3d.core.math.Matrix3D classes
 	 */
-	public class Matrix3D {
+	public class Matrix4 {
 
 		public var n11:Number;
 		public var n12:Number;
@@ -22,7 +22,7 @@ package com.as3dmod.core {
 		public var n43:Number;
 		public var n44:Number;
 
-		public function Matrix3D(
+		public function Matrix4(
 					pn11:Number = 1, pn12:Number = 0 , pn13:Number = 0 , pn14:Number = 0,
 					pn21:Number = 0, pn22:Number = 1 , pn23:Number = 0 , pn24:Number = 0,
 					pn31:Number = 0, pn32:Number = 0 , pn33:Number = 1 , pn34:Number = 0,
@@ -45,26 +45,26 @@ package com.as3dmod.core {
 			n44 = pn44;
 		}
 
-		public static function translationMatrix( x:Number, y:Number, z:Number ):Matrix3D {
-			var m:Matrix3D = new Matrix3D();
+		public static function translationMatrix( x:Number, y:Number, z:Number ):Matrix4 {
+			var m:Matrix4 = new Matrix4();
 			m.n14 = x;
 			m.n24 = y;
 			m.n34 = z;
 			return m;
 		}
 
-		public static function scaleMatrix( x:Number, y:Number, z:Number ):Matrix3D {
-			var m:Matrix3D = new Matrix3D();
+		public static function scaleMatrix( x:Number, y:Number, z:Number ):Matrix4 {
+			var m:Matrix4 = new Matrix4();
 			m.n11 = x;
 			m.n22 = y;
 			m.n33 = z;
 			return m;
 		}
 
-		public static function rotationMatrix( x:Number, y:Number, z:Number, rad:Number, targetmatrix:Matrix3D = null ):Matrix3D {
+		public static function rotationMatrix( x:Number, y:Number, z:Number, rad:Number, targetmatrix:Matrix4 = null ):Matrix4 {
 			
-			var m:Matrix3D;
-			if(!targetmatrix) m = new Matrix3D();
+			var m:Matrix4;
+			if(!targetmatrix) m = new Matrix4();
 			else m = targetmatrix; 
 			
 			var nCos:Number = Math.cos(rad);
@@ -96,7 +96,7 @@ package com.as3dmod.core {
 			return m;
 		}
 
-		public function calculateMultiply( a:Matrix3D, b:Matrix3D ):void {
+		public function calculateMultiply( a:Matrix4, b:Matrix4 ):void {
 			var a11:Number = a.n11; 
 			var b11:Number = b.n11;
 			var a21:Number = a.n21; 
@@ -138,13 +138,13 @@ package com.as3dmod.core {
 			this.n34 = a31 * b14 + a32 * b24 + a33 * b34 + a34;
 		}
 
-		public static function multiply( a:Matrix3D, b:Matrix3D ):Matrix3D {
-			var m:Matrix3D = new Matrix3D();
+		public static function multiply( a:Matrix4, b:Matrix4 ):Matrix4 {
+			var m:Matrix4 = new Matrix4();
 			m.calculateMultiply(a, b);
 			return m;
 		}
 
-		public static function multiplyVector( m:Matrix3D, v:Vector3D ):void {
+		public static function multiplyVector( m:Matrix4, v:Vector3 ):void {
 			var vx:Number = v.x;
 			var vy:Number = v.y;
 			var vz:Number = v.z;

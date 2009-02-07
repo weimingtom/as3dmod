@@ -1,17 +1,17 @@
 package {
+	import away3d.containers.View3D;
+	import away3d.core.base.Mesh;
+	import away3d.primitives.Cube;
+	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.away3d.LibraryAway3d;
+	import com.as3dmod.util.Log;
+	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
-	import flash.events.Event;
-	
-	import com.as3dmod.ModifierStack;
-	import com.as3dmod.plugins.away3d.LibraryAway3d;
-	import com.carlcalderon.arthropod.Debug;
-	
-	import away3d.containers.View3D;
-	import away3d.core.base.Mesh;
-	import away3d.primitives.Cube;	
+	import flash.events.Event;	
 
 	public class Away3dDemo extends Sprite {
 
@@ -27,7 +27,7 @@ package {
 			stage.showDefaultContextMenu = false;
 			stage.stageFocusRect = false;
 			
-			Debug.clear();
+			Log.init(this);
 			base = new DemoBase();
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}

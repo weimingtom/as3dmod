@@ -1,14 +1,4 @@
 package {
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageQuality;
-	import flash.display.StageScaleMode;
-	import flash.events.Event;
-	
-	import com.as3dmod.ModifierStack;
-	import com.as3dmod.plugins.sandy3d.LibrarySandy3d;
-	import com.carlcalderon.arthropod.Debug;
-	
 	import sandy.core.Scene3D;
 	import sandy.core.scenegraph.Camera3D;
 	import sandy.core.scenegraph.Group;
@@ -18,7 +8,17 @@ package {
 	import sandy.materials.Material;
 	import sandy.materials.attributes.LineAttributes;
 	import sandy.materials.attributes.MaterialAttributes;
-	import sandy.primitive.Box;	
+	import sandy.primitive.Box;
+	
+	import com.as3dmod.ModifierStack;
+	import com.as3dmod.plugins.sandy3d.LibrarySandy3d;
+	import com.as3dmod.util.Log;
+	
+	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
+	import flash.events.Event;		
 
 	public class Sandy3dDemo extends Sprite {
 
@@ -34,7 +34,8 @@ package {
 			stage.showDefaultContextMenu = false;
 			stage.stageFocusRect = false;
 			
-			Debug.clear();
+			Log.init(this);
+			
 			base = new DemoBase();
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
