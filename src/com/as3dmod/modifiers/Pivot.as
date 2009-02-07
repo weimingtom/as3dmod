@@ -7,12 +7,12 @@ package com.as3dmod.modifiers {
 	/**
 	 * 	<b>Pivot modifier.</b> Allows to move the pivot point of a 3D mesh. 
 	 * 	<br>
-	 * 	<br>The pivot point will be moved by the amount specified by the pivot parameter.
+	 * 	<br>The pivot point will be moved by the amount specified by the pivot vector.
 	 * 	<br>Common use case is to set the values of the pivot vector, add it to the modifier stack
 	 * 	and collapse the stack. This way the pivot point will be moved and the modifier discarded. The
 	 * 	same stack can be later resused for other modifiers. 
 	 * 	<br>
-	 * 	<br>It is possible to animtate the pivot vector propeties also.
+	 * 	<br>It is also possible to animtate the pivot vector propeties.
 	 * 
 	 * 	@version 1.0
 	 * 	@author Bartek Drozdz

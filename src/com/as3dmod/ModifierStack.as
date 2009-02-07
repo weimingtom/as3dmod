@@ -1,5 +1,5 @@
 package com.as3dmod {
-	/**
+/**
  * Copyright (c) 2008 Bartek Drozdz (http://www.everydayflash.com)
  * 
  * Permission is hereby granted, free of charge, to any person
