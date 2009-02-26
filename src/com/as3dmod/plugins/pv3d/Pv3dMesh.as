@@ -24,11 +24,12 @@ package com.as3dmod.plugins.pv3d {
 		}
 		
 		override public function postApply():void {
-			for (var i:int = 0; i < do3d.geometry.faces.length; i++) {
-				do3d.geometry.faces[i].createNormal();
-			}
-			
-			do3d.geometry.ready = true;
+			// Commented out bacause it was causing a bug with Pv3d. Investigation underway :)
+//			for (var i:int = 0; i < do3d.geometry.faces.length; i++) {
+//				do3d.geometry.faces[i].createNormal();
+//			}
+//			
+//			do3d.geometry.ready = true;
 		}
 		
 		override public function updateMeshPosition(p:Vector3):void {
