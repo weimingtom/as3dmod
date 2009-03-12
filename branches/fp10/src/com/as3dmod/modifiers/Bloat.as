@@ -1,8 +1,10 @@
 ﻿package com.as3dmod.modifiers {
+	import com.as3dmod.util.Math3D;	
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.Vector3;
-	import com.as3dmod.core.VertexProxy;	
+	import com.as3dmod.core.VertexProxy;
+	
+	import flash.geom.Vector3D;	
 
 	/**
 	 * <b>Bloat modifier.</b>
@@ -12,16 +14,16 @@
 	 */
 	public class Bloat extends Modifier implements IModifier {
 
-		private var _center:Vector3 = Vector3.ZERO;
+		private var _center:Vector3D = new Vector3D();
 
 		/**
 		 * Center of bloating sphere.
 		 */
-		public function get center ():Vector3 { return _center; }
+		public function get center ():Vector3D { return _center; }
 		/**
 		 * @private setter
 		 */
-		public function set center (v:Vector3):void { _center = v; }
+		public function set center (v:Vector3D):void { _center = v; }
 
 		private var _r:Number = 0;
 		/**
@@ -45,7 +47,7 @@
 		 */
 		public function set a (v:Number):void { _a = Math.max (0, v); }
 
-		private var _u:Vector3 = Vector3.ZERO;
+		private var _u:Vector3D = new Vector3D();
 		/**
 		 * @inheritDoc
 		 */
@@ -59,7 +61,8 @@
 				_u.subtract (_center);
 
 				// change norm to norm + r * exp (-a * norm)
-				_u.magnitude += _r * Math.exp ( - _u.magnitude * _a);
+				var nn:Number = _r * Math.exp ( - _u.length * _a);
+				Math3D.setVectorMagnitude(_u, nn);
 
 				// move vertex accordingly
 				_u.add (_center);

@@ -3,7 +3,8 @@ package com.as3dmod.plugins.sandy3d {
 	import sandy.core.scenegraph.Shape3D;
 	
 	import com.as3dmod.core.MeshProxy;
-	import com.as3dmod.core.Vector3;	
+	
+	import flash.geom.Vector3D;		
 
 	public class Sandy3dMesh extends MeshProxy {
 		
@@ -25,7 +26,7 @@ package com.as3dmod.plugins.sandy3d {
 			}
 		}
 		
-		override public function updateMeshPosition(p:Vector3):void {
+		override public function updateMeshPosition(p:Vector3D):void {
 			shp.x += p.x;
 			shp.y += p.y;
 			shp.z += p.z;

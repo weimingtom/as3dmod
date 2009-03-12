@@ -8,7 +8,7 @@ package com.as3dmod.core {
 			this.mod = mod;
 		}
 		
-		public function getVertices():Array {
+		public function getVertices():Vector.<VertexProxy> {
 			return mod.getVertices();
 		}
 	}

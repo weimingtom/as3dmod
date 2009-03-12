@@ -1,11 +1,12 @@
 package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
-	import com.as3dmod.core.Matrix4;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.Vector3;
 	import com.as3dmod.core.VertexProxy;
-	import com.as3dmod.util.Range;	
+	import com.as3dmod.util.Range;
+	
+	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;		
 
 	/**
 	 * <b>Break.</b> Allow to break a mesh.
@@ -19,8 +20,7 @@ package com.as3dmod.modifiers {
 	 * @author Bartek Drozdz
 	 */
 	public class Break extends Modifier implements IModifier {
-
-//		private var bv:Vector3 = new Vector3(0, 0, 1);		private var bv:Vector3 = new Vector3(0, 1, 0);
+		private var bv:Vector3D = new Vector3D(0, 0, 1);
 		public var _offset:Number;
 		public var angle:Number;
 				public var range:Range = new Range(0,1);
@@ -31,26 +31,26 @@ package com.as3dmod.modifiers {
 		}
 
 		public function apply():void {
-			var vs:Array = mod.getVertices();
+			var vs:Vector.<VertexProxy> = mod.getVertices();
 			var vc:int = vs.length;
-			
-//			var pv:Vector3 = new Vector3(-(mod.minX + mod.width / 2), -(mod.minY + mod.height * offset), 0);			var pv:Vector3 = new Vector3(0, 0, -(mod.minZ + mod.depth * offset));
+			var pv:Vector3D = new Vector3D(0, -(mod.minY + mod.height * offset), 0);
 			
 
 			for (var i:int = 0;i < vc; i++) {
-				var v:VertexProxy = vs[i] as VertexProxy;
-				var c:Vector3 = v.vector;
+				var v:VertexProxy = vs[i];
+				var c:Vector3D = v.vector;
 				c = c.add(pv);
 
-				if(c.z >= 0 && range.isIn(v.ratioY)) {
+				if(c.y >= 0 && range.isIn(v.ratioZ)) {
 					var ta:Number = angle;
-
-					var rm:Matrix4 = Matrix4.rotationMatrix(bv.x, bv.y, bv.z, ta);
-					Matrix4.multiplyVector(rm, c);
+					var rm:Matrix3D = new Matrix3D();
+					rm.appendRotation(ta / Math.PI * 180, bv);
+					c = rm.transformVector(c);
 				}
 
 				
-				var npv:Vector3 = pv.negate();
+				var npv:Vector3D = pv.clone();
+				npv.negate();
 				c = c.add(npv);
 			
 				v.x = c.x;

@@ -1,4 +1,6 @@
 package com.as3dmod.core {
+	import flash.geom.Vector3D;	
+	
 	import com.as3dmod.IMeshInfo;	
 	import com.as3dmod.util.ModConstant;		
 
@@ -7,8 +9,8 @@ package com.as3dmod.core {
 	 */
 	public class MeshProxy implements IMeshInfo {
 
-		protected var vertices:Array;
-				
+		protected var vertices:Vector.<VertexProxy>;
+
 		protected var _maxX:Number;
 		protected var _maxY:Number;
 		protected var _maxZ:Number;
@@ -26,17 +28,17 @@ package com.as3dmod.core {
 		protected var _depth:Number;
 		
 		public function MeshProxy() {
-			vertices = new Array();
+			vertices = new Vector.<VertexProxy>();
 		}
 		
 		public function setMesh(mesh:*):void {
 			
 		}
 		
-		public function updateMeshPosition(p:Vector3):void {
+		public function updateMeshPosition(p:Vector3D):void {
 		}
 		
-		public function getVertices():Array {
+		public function getVertices():Vector.<VertexProxy> {
 			return vertices;
 		}
 		
@@ -46,7 +48,7 @@ package com.as3dmod.core {
 			var v:VertexProxy;
 			
 			for (i = 0; i < vc; i++) {
-				v = getVertices()[i] as VertexProxy;
+				v = vertices[i];
 				
 				if (i == 0) {
 					_minX = _maxX = v.x;
@@ -99,23 +101,23 @@ package com.as3dmod.core {
 			}
 			
 			for (i = 0; i < vc; i++) {
-				v = getVertices()[i] as VertexProxy;
+				v = vertices[i];
 				v.setRatios((v.x - _minX) / _width, (v.y - _minY) / _height, (v.z - _minZ) / _depth);
 			}
 		}
 		
 		public function resetGeometry():void {
-			var vc:int = getVertices().length;
+			var vc:int = vertices.length;
 			for (var i:int = 0; i < vc; i++) {
-				var v:VertexProxy = getVertices()[i] as VertexProxy;
+				var v:VertexProxy = vertices[i];
 				v.reset();
 			}
 		}
 		
 		public function collapseGeometry():void {
-			var vc:int = getVertices().length;
+			var vc:int = vertices.length;
 			for (var i:int = 0; i < vc; i++) {
-				var v:VertexProxy = getVertices()[i] as VertexProxy;
+				var v:VertexProxy = vertices[i];
 				v.collapse();
 			}
 			analyzeGeometry();

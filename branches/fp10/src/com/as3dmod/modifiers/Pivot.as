@@ -1,8 +1,9 @@
 package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.Vector3;
-	import com.as3dmod.core.VertexProxy;	
+	import com.as3dmod.core.VertexProxy;
+	
+	import flash.geom.Vector3D;	
 
 	/**
 	 * 	<b>Pivot modifier.</b> Allows to move the pivot point of a 3D mesh. 
@@ -19,10 +20,10 @@ package com.as3dmod.modifiers {
 	 */
 	public class Pivot extends Modifier implements IModifier {
 
-		public var pivot:Vector3;
+		public var pivot:Vector3D;
 
 		public function Pivot(x:Number=0, y:Number=0, z:Number=0) {
-			this.pivot = new Vector3(x, y, z);
+			this.pivot = new Vector3D(x, y, z);
 		}
 		
 		/**
@@ -30,7 +31,7 @@ package com.as3dmod.modifiers {
 		 */
 		public function setMeshCenter():void {
 			var vx:Number = -(mod.minX + mod.width / 2);			var vy:Number = -(mod.minY + mod.height / 2);			var vz:Number = -(mod.minZ + mod.depth / 2);
-			pivot = new Vector3(vx, vy, vz);
+			pivot = new Vector3D(vx, vy, vz);
 		}
 
 		public function apply():void {
@@ -42,8 +43,9 @@ package com.as3dmod.modifiers {
 				v.vector = v.vector.add(pivot);
 			}
 			
-			var npivot:Vector3 = pivot.clone();
-			mod.updateMeshPosition(npivot.negate());
+			var npivot:Vector3D = pivot.clone();
+			npivot.negate();
+			mod.updateMeshPosition(npivot);
 		}
 	}
 }

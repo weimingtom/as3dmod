@@ -1,4 +1,6 @@
 package com.as3dmod.modifiers {
+	import flash.geom.Vector3D;	
+	
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
@@ -108,7 +110,7 @@ package com.as3dmod.modifiers {
 		public function apply():void {	
 			if(force == 0) return;
 
-			var vs:Array = mod.getVertices();
+			var vs:Vector.<VertexProxy> = mod.getVertices();
 			var vc:int = vs.length;
 			
 			var distance:Number = origin + width * offset;
@@ -116,7 +118,7 @@ package com.as3dmod.modifiers {
 			var bendAngle:Number = Math.PI * 2 * (width / (radius * Math.PI * 2));
 
 			for (var i:int = 0; i < vc; i++) {
-				var v:VertexProxy = vs[i] as VertexProxy;
+				var v:VertexProxy = vs[i];
 				
 				var vmax:Number = v.getValue(max);
 				var vmid:Number = v.getValue(mid);
