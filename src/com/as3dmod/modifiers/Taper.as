@@ -1,9 +1,11 @@
 package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
-	import com.as3dmod.core.Matrix4;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.Vector3;
-	import com.as3dmod.core.VertexProxy;	
+	import com.as3dmod.core.VertexProxy;
+	import com.as3dmod.util.Math3D;
+	
+	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;		
 
 	/**
 	 * 	<b>Taper modifier.</b>
@@ -19,7 +21,7 @@ package com.as3dmod.modifiers {
 		private var start:Number = 0;
 		private var end:Number = 1;
 
-		private var _vector:Vector3 = new Vector3(1, 0, 1);		private var _vector2:Vector3 = new Vector3(0, 1, 0);
+		private var _vector:Vector3D = new Vector3D(1, 0, 1);		private var _vector2:Vector3D = new Vector3D(0, 1, 0);
 
 		public function Taper(f:Number) {
 			frc = f;
@@ -54,13 +56,14 @@ package com.as3dmod.modifiers {
 			for (var i:int = 0;i < vc; i++) {
 				var v:VertexProxy = vs[i] as VertexProxy;
 				
-				var ar:Vector3 = v.ratioVector.multiply(_vector2);
-				var sc:Number = frc * Math.pow(ar.magnitude, pow);
+				var ar:Vector3D = Math3D.multiplyVectors(v.ratioVector, _vector2);
+				var sc:Number = frc * Math.pow(ar.length, pow);
 				
-				var m:Matrix4 = Matrix4.scaleMatrix(1 + sc * _vector.x, 1 + sc * _vector.y, 1 + sc * _vector.z);
-				var n:Vector3 = v.vector;
+				var m:Matrix3D = new Matrix3D();
+				m.appendScale(1 + sc * _vector.x, 1 + sc * _vector.y, 1 + sc * _vector.z);
+				var n:Vector3D = v.vector;
 				
-				Matrix4.multiplyVector(m, n);
+				n = m.transformVector(n);
 				v.vector = n;
 			}
 		}

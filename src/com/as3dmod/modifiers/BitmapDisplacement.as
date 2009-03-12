@@ -30,13 +30,13 @@ package com.as3dmod.modifiers {
 			_force = f;
 		}
 		public function apply():void {
-			var vs:Array = mod.getVertices();
+			var vs:Vector.<VertexProxy> = mod.getVertices();
 			var vc:int = vs.length;
 			
 			for (var i:int = 0;i < vc; i++) {
-				var v:VertexProxy = vs[i] as VertexProxy;
+				var v:VertexProxy = vs[i];
 				
-				var uv:Number = getUVPixel(v.ratioX, v.ratioY);
+				var uv:Number = getUVPixel(v.ratioX, v.ratioZ);
 
 				if(axes & 1) v.x += ((uv >> 16 & 0xff) - offset) * _force;
 				if(axes & 2) v.y += ((uv >> 8 & 0xff) - offset) * _force;

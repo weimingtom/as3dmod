@@ -3,7 +3,8 @@ package com.as3dmod.plugins.away3d {
 	import away3d.core.base.Vertex;
 	
 	import com.as3dmod.core.MeshProxy;
-	import com.as3dmod.core.Vector3;	
+	
+	import flash.geom.Vector3D;	
 
 	public class Away3dMesh extends MeshProxy {
 		
@@ -22,7 +23,7 @@ package com.as3dmod.plugins.away3d {
 			}
 		}
 		
-		override public function updateMeshPosition(p:Vector3):void {
+		override public function updateMeshPosition(p:Vector3D):void {
 			awm.x += p.x;
 			awm.y += p.y;
 			awm.z += p.z;

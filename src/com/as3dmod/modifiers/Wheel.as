@@ -1,10 +1,12 @@
 package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
-	import com.as3dmod.core.Matrix4;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.Vector3;
-	import com.as3dmod.core.VertexProxy;	
+	import com.as3dmod.core.VertexProxy;
+	
+	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;	
+
 	/**
 	 * 	<b>Wheel modifier.</b> Use it with vehicle models for wheels.
 	 * 	<br>
@@ -46,7 +48,7 @@ package com.as3dmod.modifiers {
 
 		private var roll:Number;		private var _radius:Number;
 		
-		public var steerVector:Vector3 = new Vector3(0, 1, 0);		public var rollVector:Vector3 = new Vector3(0, 0, 1);
+		public var steerVector:Vector3D = new Vector3D(0, 1, 0);		public var rollVector:Vector3D = new Vector3D(0, 0, 1);
 
 		public function Wheel() {
 			speed = 0;
@@ -60,23 +62,24 @@ package com.as3dmod.modifiers {
 		}
 		public function apply():void {
 			roll += speed;
+
+			var ms:Matrix3D = new Matrix3D();
+			if(turn != 0) {
+				var mt:Matrix3D = new Matrix3D();
+				mt.appendRotation(turn, steerVector);
+				var rv:Vector3D = rollVector.clone();
+				rv = mt.transformVector(rv);
+				ms.appendRotation(roll, rv);
+			} else {
+				ms.appendRotation(roll, rollVector);
+			}
 			
 			var vs:Array = mod.getVertices();
-			var vc:int = vs.length;
-			
-			var ms:Matrix4;
-			if(turn != 0) {
-				var mt:Matrix4 = Matrix4.rotationMatrix(steerVector.x, steerVector.y, steerVector.z, turn);
-				var rv:Vector3 = rollVector.clone();
-				Matrix4.multiplyVector(mt, rv);
-				ms = Matrix4.rotationMatrix(rv.x, rv.y, rv.z, roll);
-			} else {
-				ms = Matrix4.rotationMatrix(rollVector.x, rollVector.y, rollVector.z, roll);
-			}
+			var vc:int = vs.length;
 			for (var i:int = 0;i < vc; i++) {
 				var v:VertexProxy = vs[i] as VertexProxy;
-				var c:Vector3 = v.vector.clone();
-				if(turn != 0) Matrix4.multiplyVector(mt, c);				Matrix4.multiplyVector(ms, c);
+				var c:Vector3D = v.vector.clone();
+				if(turn != 0) c = mt.transformVector(c);				c = ms.transformVector(c);
 				v.x = c.x;				v.y = c.y;				v.z = c.z;
 			}
 		}

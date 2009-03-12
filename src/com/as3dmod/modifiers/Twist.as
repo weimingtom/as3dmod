@@ -1,9 +1,10 @@
 ﻿package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
-	import com.as3dmod.core.Matrix4;
 	import com.as3dmod.core.Modifier;
-	import com.as3dmod.core.Vector3;
-	import com.as3dmod.core.VertexProxy;		
+	import com.as3dmod.core.VertexProxy;
+	
+	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;	
 
 	/**
 	 * <b>Twist modifier.</b>
@@ -13,12 +14,13 @@
 	 */
 	public class Twist extends Modifier implements IModifier {
 
-		private var _vector:Vector3 = new Vector3(0, 1, 0);
+		private var _vector:Vector3D = new Vector3D(0, 1, 0);
 		private var _angle:Number;
-		public var center:Vector3 = Vector3.ZERO;
+		public var center:Vector3D = new Vector3D();
 
 		public function Twist(a:Number = 0) {
 			_angle = a;
+			_vector.normalize();
 		}
 
 		public function get angle():Number { 
@@ -29,33 +31,34 @@
 			_angle = value; 
 		}
 
-		public function get vector():Vector3 { 
+		public function get vector():Vector3D { 
 			return _vector; 
 		}
 
-		public function set vector(value:Vector3):void { 
+		public function set vector(value:Vector3D):void { 
 			_vector = value; 
+			_vector.normalize();
 		}
 
 		public function apply():void {
-			_vector.normalize();
-			
-			var dv:Vector3 = new Vector3(mod.maxX / 2, mod.maxY / 2, mod.maxZ / 2);
-			var d:Number = -Vector3.dot(_vector, center);
+
+			var dv:Vector3D = new Vector3D(mod.maxX / 2, mod.maxY / 2, mod.maxZ / 2);
+			var d:Number = -_vector.dotProduct(center);
 
 			for(var i:int = 0;i < mod.getVertices().length; i++) {
 				var vertex:VertexProxy = mod.getVertices()[i];
-				var dd:Number = Vector3.dot(new Vector3(vertex.x, vertex.y, vertex.z), _vector) + d;
-				twistPoint(vertex, (dd / dv.magnitude) * _angle);
+				var dd:Number = vertex.vector.dotProduct(_vector) + d;
+				twistPoint(vertex, (dd / dv.length) * _angle);
 			}
 		}
 
 		private function twistPoint(v:VertexProxy, a:Number):void {
-			var mat:Matrix4 = Matrix4.translationMatrix(v.x, v.y, v.z);	
-			mat = Matrix4.multiply(Matrix4.rotationMatrix(_vector.x, _vector.y, _vector.z, a), mat);	
-			v.x = mat.n14;
-			v.y = mat.n24;
-			v.z = mat.n34;
+			var mat:Matrix3D = new Matrix3D();
+			mat.appendTranslation(v.x, v.y, v.z);	
+			mat.appendRotation(a / Math.PI * 180, _vector);
+			v.x = mat.rawData[12]; // n14
+			v.y = mat.rawData[13]; // n24
+			v.z = mat.rawData[14]; // n34
 		}
 	}
 }
