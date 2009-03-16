@@ -1,9 +1,11 @@
 package com.as3dmod.plugins.pv3d {
+	import com.as3dmod.core.FaceProxy;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Vector3;
 	
+	import flash.utils.Dictionary;
+	
 	import org.papervision3d.core.geom.renderables.Vertex3D;
-	import org.papervision3d.core.proto.GeometryObject3D;
 	import org.papervision3d.objects.DisplayObject3D;	
 
 	public class Pv3dMesh extends MeshProxy {
@@ -13,13 +15,25 @@ package com.as3dmod.plugins.pv3d {
 		override public function setMesh(mesh:*):void {
 			do3d = mesh as DisplayObject3D;
 			
+			var lookUp : Dictionary = new Dictionary(true);
 			var vs:Array = do3d.geometry.vertices;
+			var ts:Array = do3d.geometry.faces;
 			var vc:int = vs.length;
+			var tc:int = ts.length;
 			
 			for (var i:int = 0; i < vc; i++) {
 				var nv:Pv3dVertex = new Pv3dVertex();
 				nv.setVertex(vs[i] as Vertex3D);
 				vertices.push(nv);
+				lookUp[vs[i]] = nv;
+			}
+			
+			for (i = 0; i < tc; i++) {
+				var nt:FaceProxy = new FaceProxy();
+				nt.addVertex(lookUp[ts[i].vertices[0]]);
+				nt.addVertex(lookUp[ts[i].vertices[1]]);
+				nt.addVertex(lookUp[ts[i].vertices[2]]);
+				faces.push(nt);
 			}
 		}
 		

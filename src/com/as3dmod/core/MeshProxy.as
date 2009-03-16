@@ -1,5 +1,5 @@
 package com.as3dmod.core {
-	import com.as3dmod.IMeshInfo;	
+	import com.as3dmod.IMeshInfo;
 	import com.as3dmod.util.ModConstant;		
 
 	/**
@@ -8,7 +8,8 @@ package com.as3dmod.core {
 	public class MeshProxy implements IMeshInfo {
 
 		protected var vertices:Array;
-				
+		protected var faces:Array;
+		
 		protected var _maxX:Number;
 		protected var _maxY:Number;
 		protected var _maxZ:Number;
@@ -27,6 +28,7 @@ package com.as3dmod.core {
 		
 		public function MeshProxy() {
 			vertices = new Array();
+			faces = new Array()
 		}
 		
 		public function setMesh(mesh:*):void {
@@ -38,6 +40,10 @@ package com.as3dmod.core {
 		
 		public function getVertices():Array {
 			return vertices;
+		}
+		
+		public function getFaces():Array {
+			return faces;
 		}
 		
 		public function analyzeGeometry():void {
