@@ -41,12 +41,14 @@
 		}
 
 		public function apply():void {
+			var vs:Vector.<VertexProxy> = mod.getVertices();
+			var vc:int = vs.length;
 
 			var dv:Vector3D = new Vector3D(mod.maxX / 2, mod.maxY / 2, mod.maxZ / 2);
 			var d:Number = -_vector.dotProduct(center);
 
-			for(var i:int = 0;i < mod.getVertices().length; i++) {
-				var vertex:VertexProxy = mod.getVertices()[i];
+			for(var i:int = 0;i < vc; i++) {
+				var vertex:VertexProxy = vs[i];
 				var dd:Number = vertex.vector.dotProduct(_vector) + d;
 				twistPoint(vertex, (dd / dv.length) * _angle);
 			}
