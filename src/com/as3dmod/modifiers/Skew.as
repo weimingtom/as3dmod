@@ -36,7 +36,7 @@ package com.as3dmod.modifiers {
 		}
 
 		public function apply():void {
-			var vs:Array = mod.getVertices();
+			var vs:Vector.<VertexProxy> = mod.getVertices();
 			var vc:int = vs.length;
 
 			for (var i:int = 0; i < vc; i++) {
