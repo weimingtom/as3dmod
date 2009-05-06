@@ -10,15 +10,19 @@ package com.as3dmod.util {
 		
 		public static function init(root:Object):void {
 			debugger = new MonsterDebugger(root);
-			
+			clear();
 		}
-		
+
 		public static function info(target:Object, msg:Object):void {
 			MonsterDebugger.trace(target, msg);
 		}
 		
 		public static function error(target:Object, msg:Object):void {
 			MonsterDebugger.trace(target, msg, 0xff0000);
+		}
+		
+		public static function clear():void {
+			MonsterDebugger.clearTraces();
 		}
 	}
 }
