@@ -21,15 +21,25 @@ package com.as3dmod.modifiers {
 
 		protected var _force:Number;
 		protected var _bitmap:BitmapData;
+		
+		protected var _colors:Vector.<uint>;		protected var _width:int;		protected var _height:int;
+		protected var _numPixels:int;
+		
 		protected var _axes:int = 7;
 
 		protected var offset:Number = 0x80;
+		
 
 		public function BitmapDisplacement(b:BitmapData, f:Number = 1) {
 			_bitmap = b;
 			_force = f;
+			_width = _bitmap.width;			_height = _bitmap.height;
+			_numPixels = _width * _height;
 		}
 		public function apply():void {
+			_colors = _bitmap.getVector(_bitmap.rect);
+			
+			
 			var vs:Vector.<VertexProxy> = mod.getVertices();
 			var vc:int = vs.length;
 			
@@ -45,9 +55,10 @@ package com.as3dmod.modifiers {
 		}
 
 		public function getUVPixel(u:Number, v:Number):uint {
-			var x:int = (_bitmap.width - 1) * u; 
-			var y:int = (_bitmap.height - 1) * v;
-			return _bitmap.getPixel32((_bitmap.width - 1) - x, (_bitmap.height - 1) - y);
+			var x:int = (_width - 1) * u; 
+			var y:int = (_height - 1) * v;
+			var i:int = Math.max(0, _width * (y - 1)) + x;
+			return _colors[i];
 		}
 
 		public function get force():Number {

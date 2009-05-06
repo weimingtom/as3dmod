@@ -1,6 +1,4 @@
 package com.as3dmod.modifiers {
-	import flash.geom.Vector3D;	
-	
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
