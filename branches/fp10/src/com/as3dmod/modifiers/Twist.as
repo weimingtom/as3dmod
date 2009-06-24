@@ -57,7 +57,7 @@
 		private function twistPoint(v:VertexProxy, a:Number):void {
 			var mat:Matrix3D = new Matrix3D();
 			mat.appendTranslation(v.x, v.y, v.z);	
-			mat.appendRotation(a / Math.PI * 180, _vector);
+			mat.appendRotation(a, _vector);
 			v.x = mat.rawData[12]; // n14
 			v.y = mat.rawData[13]; // n24
 			v.z = mat.rawData[14]; // n34

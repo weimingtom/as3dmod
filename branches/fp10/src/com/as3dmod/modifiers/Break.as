@@ -1,12 +1,11 @@
 package com.as3dmod.modifiers {
 	import com.as3dmod.IModifier;
-	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
 	import com.as3dmod.util.Range;
-	
+
 	import flash.geom.Matrix3D;
-	import flash.geom.Vector3D;		
+	import flash.geom.Vector3D;
 
 	/**
 	 * <b>Break.</b> Allow to break a mesh.
@@ -20,7 +19,7 @@ package com.as3dmod.modifiers {
 	 * @author Bartek Drozdz
 	 */
 	public class Break extends Modifier implements IModifier {
-		private var bv:Vector3D = new Vector3D(0, 0, 1);
+		public var bv:Vector3D = new Vector3D(0,0,1);
 		public var _offset:Number;
 		public var angle:Number;
 				public var range:Range = new Range(0,1);

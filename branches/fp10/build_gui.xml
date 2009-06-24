@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AS3DMod" default="Double Decker">
+	<property file="./build.properties" />
+	
+	<!-- IMPORTANT Adapt this path to your local filesystem prior to compilation,
+		 Update all the paths in build.properties as well -->
+	<taskdef resource="flexTasks.tasks" classpath="c:/ASpace/sdk4/ant/lib/flexTasks.jar"/>
+
+	<property name="APP_WIDTH" value="800"/>
+	<property name="APP_HEIGHT" value="600"/>
+	
+	<property name="DEMO_WIDTH" value="700"/>
+	<property name="DEMO_HEIGHT" value="500"/>
+	
+
+	<target name="Double Decker">
+        <mxmlc id="swf.compile"
+		    file="${app.home}/demo/com/as3dmod/components/DoubleDeckerDemo.as" 
+			output="bin/demo/doubledecker.swf" 
+			keep-generated-actionscript="false">
+			<source-path path-element="${app.home}/src"/>
+        	<source-path path-element="${app.home}/demo"/>
+			<default-size width="${DEMO_WIDTH}" height="${DEMO_HEIGHT}" />
+			<default-background-color>0x000000</default-background-color>
+			<default-frame-rate>40</default-frame-rate>		
+        </mxmlc>
+    </target>
+	
+</project>

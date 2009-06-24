@@ -3,9 +3,9 @@ package com.as3dmod.modifiers {
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.core.Modifier;
 	import com.as3dmod.core.VertexProxy;
-	
+
 	import flash.geom.Matrix3D;
-	import flash.geom.Vector3D;	
+	import flash.geom.Vector3D;
 
 	/**
 	 * 	<b>Wheel modifier.</b> Use it with vehicle models for wheels.
@@ -59,19 +59,19 @@ package com.as3dmod.modifiers {
 		override public function setModifiable(mod:MeshProxy):void {
 			super.setModifiable(mod);
 			_radius = mod.width / 2;
-		}
-		public function apply():void {
+		}		public function apply():void {
 			roll += speed;
 
 			var ms:Matrix3D = new Matrix3D();
+			var mt:Matrix3D = new Matrix3D();
+			
 			if(turn != 0) {
-				var mt:Matrix3D = new Matrix3D();
-				mt.appendRotation(turn, steerVector);
+				mt.appendRotation(turn / Math.PI * 180, steerVector);
 				var rv:Vector3D = rollVector.clone();
 				rv = mt.transformVector(rv);
-				ms.appendRotation(roll, rv);
+				ms.appendRotation(roll / Math.PI * 180, rv);
 			} else {
-				ms.appendRotation(roll, rollVector);
+				ms.appendRotation(roll / Math.PI * 180, rollVector);
 			}
 			
 			var vs:Vector.<VertexProxy> = mod.getVertices();
@@ -82,6 +82,8 @@ package com.as3dmod.modifiers {
 				if(turn != 0) c = mt.transformVector(c);				c = ms.transformVector(c);
 				v.x = c.x;				v.y = c.y;				v.z = c.z;
 			}
+			
+//			SosLog.info(c.toString());
 		}
 
 		public function get step():Number {

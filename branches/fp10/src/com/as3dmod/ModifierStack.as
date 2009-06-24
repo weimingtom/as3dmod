@@ -24,11 +24,12 @@ package com.as3dmod {
  * OTHER DEALINGS IN THE SOFTWARE.
  * 
  * Same license applies to every file in this package and its subpackages.  
- */
+	 */
 	import com.as3dmod.IModifier;
 	import com.as3dmod.core.MeshProxy;
 	import com.as3dmod.plugins.Library3d;
-	import com.as3dmod.plugins.PluginFactory;	
+	import com.as3dmod.plugins.PluginFactory;
+	import com.as3dmod.util.Log;
 
 	/**
 	 * <p><h2>Modifier Stack</h2>
@@ -43,7 +44,7 @@ package com.as3dmod {
 		
 		private var lib3d:Library3d;
 		private var baseMesh:MeshProxy;
-		private var stack:Array;
+		private var stack:Vector.<IModifier>;
 		
 		/**
 		 * @param	lib3d A instance of a class implementing com.as3dmod.plugins.Library3d for the specific engine
@@ -55,17 +56,8 @@ package com.as3dmod {
 			baseMesh = PluginFactory.getMeshProxy(lib3d);
 			baseMesh.setMesh(mesh);
 			baseMesh.analyzeGeometry();
-			stack = new Array();
+			stack = new Vector.<IModifier>();
 		}
-		
-		/**
-		 * The mesh that this stack is operating on. 
-		 * 
-		 * @see	com.as3dmod.core.MeshProxy
-		 */
-//		public function get mesh():MeshProxy {
-//			return baseMesh;
-//		}
 		
 		/**
 		 * 
@@ -75,6 +67,10 @@ package com.as3dmod {
 		public function addModifier(mod:IModifier):void {
 			mod.setModifiable(baseMesh);
 			stack.push(mod);
+		}
+		
+		public function removeModifier(mod:IModifier):void {
+			stack.splice(stack.indexOf(mod), 1);
 		}
 		
 		/**
@@ -104,7 +100,7 @@ package com.as3dmod {
 		public function collapse():void {
 			apply();
 			baseMesh.collapseGeometry();
-			stack = new Array();
+			stack = new Vector.<IModifier>();
 		}
 		
 		/**
@@ -113,7 +109,7 @@ package com.as3dmod {
 		 * 	Removes all the elements from the stack.
 		 */
 		public function clear():void {
-			stack = new Array();
+			stack = new Vector.<IModifier>();
 		}
 		
 		/**
