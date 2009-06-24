@@ -55,10 +55,11 @@ package com.as3dmod.modifiers {
 		}
 
 		public function getUVPixel(u:Number, v:Number):uint {
-			var x:int = (_width - 1) * u; 
-			var y:int = (_height - 1) * v;
-			var i:int = Math.max(0, _width * (y - 1)) + x;
-			return _colors[i];
+			var x:Number = (_width - 1) * u; 
+			var y:Number = (_height - 1) * v;
+			return _bitmap.getPixel32(x, y);
+//			var i:int = Math.max(0, _width * (y - 1)) + x;
+//			return _colors[i];
 		}
 
 		public function get force():Number {

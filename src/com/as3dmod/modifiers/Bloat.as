@@ -52,7 +52,7 @@
 		 * @inheritDoc
 		 */
 		public function apply():void {
-			var vs:Array = mod.getVertices();
+			var vs:Vector.<VertexProxy> = mod.getVertices();
 
 			for each (var v:VertexProxy in vs) {
 
