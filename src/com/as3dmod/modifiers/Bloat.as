@@ -55,15 +55,17 @@
 			for each (var v:VertexProxy in vs) {
 
 				// get a vector towards vertex
-				_u.x = v.x; _u.y = v.y; _u.z = v.z;
-				_u.subtract (_center);
+				_u.x = v.x - _center.x;
+				_u.y = v.y - _center.y;
+				_u.z = v.z - _center.z;
 
 				// change norm to norm + r * exp (-a * norm)
 				_u.magnitude += _r * Math.exp ( - _u.magnitude * _a);
 
 				// move vertex accordingly
-				_u.add (_center);
-				v.x = _u.x; v.y = _u.y; v.z = _u.z;
+				v.x = _u.x + _center.x;
+				v.y = _u.y + _center.y;
+				v.z = _u.z + _center.z;
 			}
 		}
 
